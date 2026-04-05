@@ -198,9 +198,11 @@ function MutualFundCalculator() {
   const [inflationRate, setInflationRate] = useState(
     DEFAULT_VALUES.inflationRate
   );
-  const [currencyCode, setCurrencyCode] = useState(
-    () => detectDefaultCurrency().code
-  );
+  const [currencyCode, setCurrencyCode] = useState(currencyOptions[0].code);
+
+  useEffect(() => {
+    setCurrencyCode(detectDefaultCurrency().code);
+  }, []);
 
   const selectedCurrency =
     currencyOptions.find((option) => option.code === currencyCode) ??

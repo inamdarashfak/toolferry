@@ -55,7 +55,7 @@ const PregnancyDueDateCalculator = dynamic(
 type ToolPageProps = {
   tool: Tool
   helpContent: ToolHelpContent
-  faqs: Array<{
+  faqs?: Array<{
     question: string
     answer: string
   }>
@@ -79,7 +79,7 @@ function CalculatorFallback() {
   )
 }
 
-function ToolPage({ tool, helpContent, faqs, relatedToolSlugs }: ToolPageProps) {
+function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPageProps) {
   useEffect(() => {
     trackEvent('tool_open', {
       tool_slug: tool.slug,
@@ -117,13 +117,22 @@ function ToolPage({ tool, helpContent, faqs, relatedToolSlugs }: ToolPageProps) 
 
   return (
     <Container>
-      <Stack spacing={{ xs: 4, md: 3 }}>
+      <Stack
+        spacing={{ xs: 4, md: 3 }}
+        sx={{
+          overflowX: 'clip',
+          '& .MuiGrid-container': {
+            width: 'auto',
+            margin: 0,
+          },
+        }}
+      >
         <Box
           component="h1"
           sx={{
             position: 'absolute',
-            width: 1,
-            height: 1,
+            width: '1px',
+            height: '1px',
             p: 0,
             m: -1,
             overflow: 'hidden',

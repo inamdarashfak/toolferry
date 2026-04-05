@@ -357,7 +357,11 @@ function GoalCalculator() {
   );
   const [expectedReturn, setExpectedReturn] = useState(DEFAULT_VALUES.expectedReturn);
   const [yearlyStepUp, setYearlyStepUp] = useState(DEFAULT_VALUES.yearlyStepUp);
-  const [currencyCode, setCurrencyCode] = useState(() => detectDefaultCurrency().code);
+  const [currencyCode, setCurrencyCode] = useState(currencyOptions[0].code);
+
+  useEffect(() => {
+    setCurrencyCode(detectDefaultCurrency().code);
+  }, []);
 
   const selectedCurrency =
     currencyOptions.find((option) => option.code === currencyCode) ?? currencyOptions[0];

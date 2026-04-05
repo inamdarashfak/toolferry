@@ -123,9 +123,11 @@ function GstCalculator() {
   const [amount, setAmount] = useState(DEFAULT_VALUES.amount);
   const [gstRate, setGstRate] = useState(DEFAULT_VALUES.gstRate);
   const [taxMode, setTaxMode] = useState(DEFAULT_VALUES.taxMode);
-  const [currencyCode, setCurrencyCode] = useState(
-    () => detectDefaultCurrency().code
-  );
+  const [currencyCode, setCurrencyCode] = useState(currencyOptions[0].code);
+
+  useEffect(() => {
+    setCurrencyCode(detectDefaultCurrency().code);
+  }, []);
 
   const selectedCurrency =
     currencyOptions.find((option) => option.code === currencyCode) ??

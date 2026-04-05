@@ -7,14 +7,14 @@ import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 
 type ToolFaqSectionProps = {
-  faqs: Array<{
+  faqs?: Array<{
     question: string
     answer: string
   }>
 }
 
 function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
-  if (faqs.length === 0) {
+  if (!faqs?.length) {
     return null
   }
 

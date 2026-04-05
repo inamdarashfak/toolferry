@@ -163,9 +163,11 @@ function EmiCalculator() {
   const [loanAmount, setLoanAmount] = useState(DEFAULT_VALUES.loanAmount);
   const [interestRate, setInterestRate] = useState(DEFAULT_VALUES.interestRate);
   const [tenureYears, setTenureYears] = useState(DEFAULT_VALUES.tenureYears);
-  const [currencyCode, setCurrencyCode] = useState(
-    () => detectDefaultCurrency().code
-  );
+  const [currencyCode, setCurrencyCode] = useState(currencyOptions[0].code);
+
+  useEffect(() => {
+    setCurrencyCode(detectDefaultCurrency().code);
+  }, []);
 
   const selectedCurrency =
     currencyOptions.find((option) => option.code === currencyCode) ??
