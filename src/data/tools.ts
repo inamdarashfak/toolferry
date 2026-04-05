@@ -7,6 +7,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Goal Calculator to plan a future purchase or milestone with savings projections, funding gaps, and catch-up options.',
     slug: 'goal-calculator',
+    categorySlug: 'planning-tools',
   },
   {
     name: 'EMI Calculator',
@@ -14,6 +15,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the EMI Calculator to estimate monthly EMI, interest cost, and total payment for home, car, or personal loans.',
     slug: 'emi-calculator',
+    categorySlug: 'loan-calculators',
   },
   {
     name: 'FD Interest Calculator',
@@ -21,6 +23,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the FD Interest Calculator to estimate maturity value, interest earned, and fixed deposit growth over time.',
     slug: 'fd-interest-calculator',
+    categorySlug: 'investment-calculators',
   },
   {
     name: 'Mutual Fund Returns Calculator',
@@ -28,6 +31,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Mutual Fund Returns Calculator to estimate SIP or lump-sum growth, returns, and total portfolio value.',
     slug: 'mutual-fund-returns-calculator',
+    categorySlug: 'investment-calculators',
   },
   {
     name: 'GST Calculator',
@@ -35,6 +39,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the GST Calculator to calculate inclusive or exclusive GST, tax amount, and final total instantly.',
     slug: 'gst-calculator',
+    categorySlug: 'business-tools',
   },
   {
     name: 'Unit Converter',
@@ -42,6 +47,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Unit Converter to convert values across length, speed, storage, temperature, area, and more.',
     slug: 'unit-converter',
+    categorySlug: 'conversion-tools',
   },
   {
     name: 'Text Formatter',
@@ -49,6 +55,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Text Formatter to clean, transform, sort, replace, and convert text with simple utility tools.',
     slug: 'text-formatter',
+    categorySlug: 'text-tools',
   },
   {
     name: 'JSON Viewer',
@@ -56,6 +63,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the JSON Viewer to inspect raw JSON in a searchable, collapsible tree and copy keys or values more easily.',
     slug: 'json-viewer',
+    categorySlug: 'developer-tools',
   },
   {
     name: 'Age Calculator',
@@ -63,6 +71,7 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Age Calculator to find exact age and duration in years, months, and days between two dates.',
     slug: 'age-calculator',
+    categorySlug: 'date-tools',
   },
   {
     name: 'Pregnancy Due Date Calculator',
@@ -70,5 +79,6 @@ export const tools: Tool[] = [
     metaDescription:
       'Use the Pregnancy Due Date Calculator to estimate due date, conception date, pregnancy progress, and days remaining.',
     slug: 'pregnancy-due-date-calculator',
+    categorySlug: 'health-tools',
   },
 ]

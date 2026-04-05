@@ -1,10 +1,11 @@
+'use client';
+
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { Link as RouterLink } from "react-router-dom";
+import Link from "next/link";
 import Container from "../Container/Container";
 import ToolFerryLogo from "../ToolFerryLogo/ToolFerryLogo";
 
@@ -31,8 +32,8 @@ function Header() {
           }}
         >
           <Box
-            component={RouterLink}
-            to="/"
+            component={Link}
+            href="/"
             sx={{
               textDecoration: "none",
               color: "inherit",

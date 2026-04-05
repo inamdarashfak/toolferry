@@ -1,3 +1,5 @@
+'use client';
+
 import HelpOutlineRoundedIcon from "@mui/icons-material/HelpOutlineRounded";
 import IconButton from "@mui/material/IconButton";
 import Tooltip from "@mui/material/Tooltip";

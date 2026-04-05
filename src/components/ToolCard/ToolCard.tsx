@@ -1,10 +1,12 @@
+'use client'
+
 import ArrowOutwardRoundedIcon from '@mui/icons-material/ArrowOutwardRounded'
 import Card from '@mui/material/Card'
 import CardActionArea from '@mui/material/CardActionArea'
 import CardContent from '@mui/material/CardContent'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { Link as RouterLink } from 'react-router-dom'
+import Link from 'next/link'
 import type { Tool } from '../../types/tool'
 
 type ToolCardProps = {
@@ -23,8 +25,8 @@ function ToolCard({ tool }: ToolCardProps) {
       }}
     >
       <CardActionArea
-        component={RouterLink}
-        to={`/tool/${tool.slug}`}
+        component={Link}
+        href={`/tool/${tool.slug}`}
         sx={{
           height: '100%',
           alignItems: 'stretch',

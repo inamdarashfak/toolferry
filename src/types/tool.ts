@@ -3,4 +3,5 @@ export type Tool = {
   description: string
   metaDescription: string
   slug: string
+  categorySlug: string
 }

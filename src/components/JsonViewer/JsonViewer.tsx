@@ -1,3 +1,5 @@
+'use client';
+
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import UnfoldLessRoundedIcon from "@mui/icons-material/UnfoldLessRounded";
 import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded";

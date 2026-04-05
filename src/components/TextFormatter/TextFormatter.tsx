@@ -1,3 +1,5 @@
+'use client';
+
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import ContentCopyRoundedIcon from "@mui/icons-material/ContentCopyRounded";
 import PublishedWithChangesRoundedIcon from "@mui/icons-material/PublishedWithChangesRounded";

@@ -2,4 +2,5 @@
 .env.local
 .env.*.local
 dist
+.next
 node_modules

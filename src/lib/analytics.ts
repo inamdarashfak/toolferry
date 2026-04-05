@@ -1,4 +1,4 @@
-const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
+const MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
 let isInitialized = false;
 
@@ -9,16 +9,6 @@ function isAnalyticsEnabled() {
 export function initAnalytics() {
   if (!isAnalyticsEnabled() || isInitialized || typeof window === "undefined") {
     return;
-  }
-
-  const scriptSrc = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
-  const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
-
-  if (!existingScript) {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = scriptSrc;
-    document.head.appendChild(script);
   }
 
   window.dataLayer = window.dataLayer || [];

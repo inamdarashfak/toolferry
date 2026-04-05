@@ -1,3 +1,5 @@
+'use client';
+
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import TrendingFlatRoundedIcon from "@mui/icons-material/TrendingFlatRounded";
 import Box from "@mui/material/Box";

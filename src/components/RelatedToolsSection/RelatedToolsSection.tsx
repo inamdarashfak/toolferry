@@ -1,3 +1,5 @@
+'use client';
+
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -6,7 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Link as RouterLink } from "react-router-dom";
+import Link from "next/link";
 import type { Tool } from "../../types/tool";
 
 type RelatedToolsSectionProps = {
@@ -43,8 +45,8 @@ function RelatedToolsSection({ tools }: RelatedToolsSectionProps) {
               }}
             >
               <CardActionArea
-                component={RouterLink}
-                to={`/tool/${tool.slug}`}
+                component={Link}
+                href={`/tool/${tool.slug}`}
                 sx={{
                   height: "100%",
                   alignItems: "stretch",

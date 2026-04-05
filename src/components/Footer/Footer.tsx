@@ -1,9 +1,12 @@
+'use client';
+
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Link from "@mui/material/Link";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { Link as RouterLink } from "react-router-dom";
+import NextLink from "next/link";
+import { toolCategories } from "../../data/toolCategories";
 import { tools } from "../../data/tools";
 import Container from "../Container/Container";
 import ToolFerryLogo from "../ToolFerryLogo/ToolFerryLogo";
@@ -16,6 +19,7 @@ function Footer() {
   ];
 
   const toolLinks = tools.slice(0, 6);
+  const categoryLinks = toolCategories.slice(0, 6);
 
   return (
     <Box
@@ -30,7 +34,7 @@ function Footer() {
         <Grid container spacing={{ xs: 3, md: 4 }} sx={{ py: { xs: 4, md: 5 } }}>
           <Grid size={{ xs: 12, md: 5 }}>
             <Stack spacing={1.5}>
-              <Box component={RouterLink} to="/" sx={{ display: "inline-flex", width: "fit-content" }}>
+              <Box component={NextLink} href="/" sx={{ display: "inline-flex", width: "fit-content" }}>
                 <ToolFerryLogo compact />
               </Box>
               <Typography color="text.secondary" sx={{ maxWidth: 420 }}>
@@ -48,8 +52,8 @@ function Footer() {
               {primaryLinks.map((linkItem) => (
                 <Link
                   key={linkItem.to}
-                  component={RouterLink}
-                  to={linkItem.to}
+                  component={NextLink}
+                  href={linkItem.to}
                   color="text.secondary"
                   underline="hover"
                   sx={{
@@ -65,7 +69,32 @@ function Footer() {
             </Stack>
           </Grid>
 
-          <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
+            <Stack spacing={1.2}>
+              <Typography variant="overline" sx={{ color: "secondary.main" }}>
+                Categories
+              </Typography>
+              {categoryLinks.map((category) => (
+                <Link
+                  key={category.slug}
+                  component={NextLink}
+                  href={`/category/${category.slug}`}
+                  color="text.secondary"
+                  underline="hover"
+                  sx={{
+                    width: "fit-content",
+                    '&:hover': {
+                      color: '#c7573a',
+                    },
+                  }}
+                >
+                  {category.name}
+                </Link>
+              ))}
+            </Stack>
+          </Grid>
+
+          <Grid size={{ xs: 12, sm: 6, md: 2 }}>
             <Stack spacing={1.2}>
               <Typography variant="overline" sx={{ color: "secondary.main" }}>
                 Popular Tools
@@ -73,8 +102,8 @@ function Footer() {
               {toolLinks.map((tool) => (
                 <Link
                   key={tool.slug}
-                  component={RouterLink}
-                  to={`/tool/${tool.slug}`}
+                  component={NextLink}
+                  href={`/tool/${tool.slug}`}
                   color="text.secondary"
                   underline="hover"
                   sx={{
