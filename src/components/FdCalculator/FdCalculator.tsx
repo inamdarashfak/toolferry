@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import {
   CartesianGrid,
   Cell,
@@ -50,9 +51,14 @@ const DEFAULT_VALUES = {
   interestRate: "7.25",
   tenureYears: "5",
   compounding: "4",
+  inflationRate: "6",
 };
 
 const PIE_COLORS = ["#0b1f33", "#0f8b8d"];
+
+function clampInflationRate(value: number) {
+  return Math.min(8, Math.max(2, value));
+}
 
 function detectDefaultCurrency() {
   if (typeof navigator === "undefined") {
@@ -170,6 +176,9 @@ function FdCalculator() {
   const [interestRate, setInterestRate] = useState(DEFAULT_VALUES.interestRate);
   const [tenureYears, setTenureYears] = useState(DEFAULT_VALUES.tenureYears);
   const [compounding, setCompounding] = useState(DEFAULT_VALUES.compounding);
+  const [inflationRate, setInflationRate] = useState(
+    DEFAULT_VALUES.inflationRate
+  );
   const [currencyCode, setCurrencyCode] = useState(
     () => detectDefaultCurrency().code
   );
@@ -183,13 +192,21 @@ function FdCalculator() {
   const annualRate = Number(interestRate) || 0;
   const years = Number(tenureYears) || 0;
   const compoundsPerYear = Number(compounding) || 4;
+  const selectedInflationRate = clampInflationRate(Number(inflationRate) || 0);
 
-  const { maturityValue, estimatedReturns, growthSeries, hasValidInput } =
+  const {
+    maturityValue,
+    estimatedReturns,
+    inflationAdjustedValue,
+    growthSeries,
+    hasValidInput,
+  } =
     useMemo(() => {
       if (principal <= 0 || annualRate < 0 || years <= 0) {
         return {
           maturityValue: principal,
           estimatedReturns: 0,
+          inflationAdjustedValue: principal,
           growthSeries: [],
           hasValidInput: false,
         };
@@ -211,6 +228,15 @@ function FdCalculator() {
         yearlyPoints.push({
           label: `Year ${year}`,
           maturityValue: Number(value.toFixed(2)),
+          inflationAdjustedValue: Number(
+            (
+              value /
+              Math.pow(
+                1 + selectedInflationRate / 100,
+                effectiveYears
+              )
+            ).toFixed(2)
+          ),
           investedAmount: principal,
           interestEarned: Number((value - principal).toFixed(2)),
         });
@@ -219,14 +245,17 @@ function FdCalculator() {
       return {
         maturityValue: maturity,
         estimatedReturns: interest,
+        inflationAdjustedValue:
+          maturity / Math.pow(1 + selectedInflationRate / 100, years),
         growthSeries: yearlyPoints,
         hasValidInput: true,
       };
-    }, [annualRate, compoundsPerYear, principal, years]);
+    }, [annualRate, compoundsPerYear, principal, selectedInflationRate, years]);
 
   const animatedPrincipal = useAnimatedNumber(principal);
   const animatedReturns = useAnimatedNumber(estimatedReturns);
   const animatedMaturity = useAnimatedNumber(maturityValue);
+  const animatedInflationAdjusted = useAnimatedNumber(inflationAdjustedValue);
 
   const chartData = [
     { name: "Deposit", value: principal },
@@ -268,6 +297,7 @@ function FdCalculator() {
     setInterestRate(DEFAULT_VALUES.interestRate);
     setTenureYears(DEFAULT_VALUES.tenureYears);
     setCompounding(DEFAULT_VALUES.compounding);
+    setInflationRate(DEFAULT_VALUES.inflationRate);
     setCurrencyCode(detectDefaultCurrency().code);
   };
 
@@ -285,12 +315,12 @@ function FdCalculator() {
       >
         <Stack spacing={3}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.55rem", md: "2rem" }, mb: 0.75 }}
-            >
-              FD Calculator
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+                FD Calculator
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
               Estimate fixed deposit maturity, earned interest, and value growth
               over time with a simple compounding setup.
@@ -308,6 +338,22 @@ function FdCalculator() {
                 }}
               >
                 <Stack spacing={2}>
+                  <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
+                    <Button
+                      variant="outlined"
+                      color="inherit"
+                      size="small"
+                      startIcon={<AutorenewRoundedIcon />}
+                      onClick={handleReset}
+                      sx={{
+                        borderRadius: 0,
+                        minHeight: 40,
+                        alignSelf: { xs: "stretch", sm: "flex-start" },
+                      }}
+                    >
+                      Reset
+                    </Button>
+                  </Stack>
                   <Box>
                     <Stack
                       direction={{ xs: "column", sm: "row" }}
@@ -439,6 +485,47 @@ function FdCalculator() {
                     />
                   </Box>
 
+                  <Box>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      justifyContent="space-between"
+                      spacing={0.5}
+                      sx={{ mb: 1 }}
+                    >
+                      <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                        Inflation Rate
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {selectedInflationRate}%
+                      </Typography>
+                    </Stack>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      value={inflationRate}
+                      onChange={(event) =>
+                        setInflationRate(
+                          sanitizeNumericInput(event.target.value, true)
+                        )
+                      }
+                      helperText="Used to calculate inflation-adjusted value."
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">%</InputAdornment>
+                        ),
+                      }}
+                    />
+                    <Slider
+                      size="small"
+                      sx={{ mt: 1 }}
+                      value={selectedInflationRate}
+                      min={2}
+                      max={8}
+                      step={0.1}
+                      onChange={(_, value) => setInflationRate(String(value))}
+                    />
+                  </Box>
+
                   <Grid container spacing={1.5} alignItems="end">
                     <Grid size={{ xs: 12, sm: 5 }}>
                       <TextField
@@ -458,7 +545,7 @@ function FdCalculator() {
                         ))}
                       </TextField>
                     </Grid>
-                    <Grid size={{ xs: 12, sm: 4 }}>
+                    <Grid size={{ xs: 12, sm: 7 }}>
                       <TextField
                         select
                         fullWidth
@@ -473,19 +560,6 @@ function FdCalculator() {
                           </MenuItem>
                         ))}
                       </TextField>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 3 }}>
-                      <Button
-                        variant="outlined"
-                        color="inherit"
-                        size="small"
-                        startIcon={<AutorenewRoundedIcon />}
-                        onClick={handleReset}
-                        fullWidth
-                        sx={{ borderRadius: 0 }}
-                      >
-                        Reset
-                      </Button>
                     </Grid>
                   </Grid>
                 </Stack>
@@ -518,6 +592,26 @@ function FdCalculator() {
                       />
                     ))}
                   </Stack>
+
+                  <Box
+                    sx={{
+                      border: "1px solid rgba(11, 31, 51, 0.08)",
+                      backgroundColor: "rgba(255, 255, 255, 0.85)",
+                    }}
+                  >
+                    <SummaryRow
+                      label="Inflation-adjusted Value"
+                      value={`${selectedCurrency.symbol} ${formatNumber(
+                        animatedInflationAdjusted,
+                        numberLocale
+                      )}`}
+                    />
+                    <Divider />
+                    <SummaryRow
+                      label="Inflation Assumption"
+                      value={`${formatNumber(selectedInflationRate, numberLocale)}% yearly`}
+                    />
+                  </Box>
 
                   <Divider />
 
@@ -645,6 +739,15 @@ function FdCalculator() {
                       name="Maturity Value"
                       stroke="#0f8b8d"
                       strokeWidth={3}
+                      dot={false}
+                      animationDuration={500}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="inflationAdjustedValue"
+                      name="Inflation-adjusted Value"
+                      stroke="#6c8a2b"
+                      strokeWidth={2.25}
                       dot={false}
                       animationDuration={500}
                     />

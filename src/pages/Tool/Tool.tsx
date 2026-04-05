@@ -5,9 +5,13 @@ import Chip from '@mui/material/Chip'
 import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
-import { Suspense, lazy, useEffect } from 'react'
+import { type ReactNode, Suspense, lazy, useEffect } from 'react'
 import { Link as RouterLink, useParams } from 'react-router-dom'
 import Container from '../../components/Container/Container'
+import RelatedToolsSection from '../../components/RelatedToolsSection/RelatedToolsSection'
+import ToolHelpSection from '../../components/ToolHelpSection/ToolHelpSection'
+import { relatedTools } from '../../data/relatedTools'
+import { toolHelpContent } from '../../data/toolHelpContent'
 import { tools } from '../../data/tools'
 import { trackEvent } from '../../lib/analytics'
 
@@ -16,6 +20,7 @@ const FdCalculator = lazy(() => import('../../components/FdCalculator/FdCalculat
 const MutualFundCalculator = lazy(
   () => import('../../components/MutualFundCalculator/MutualFundCalculator'),
 )
+const GoalCalculator = lazy(() => import('../../components/GoalCalculator/GoalCalculator'))
 const GstCalculator = lazy(() => import('../../components/GstCalculator/GstCalculator'))
 const UnitConverter = lazy(() => import('../../components/UnitConverter/UnitConverter'))
 const TextFormatter = lazy(() => import('../../components/TextFormatter/TextFormatter'))
@@ -45,10 +50,25 @@ function CalculatorFallback() {
 function Tool() {
   const { toolName } = useParams()
   const selectedTool = tools.find((tool) => tool.slug === toolName)
+  const selectedToolHelp = selectedTool ? toolHelpContent[selectedTool.slug] : null
+  const selectedRelatedTools = selectedTool
+    ? (relatedTools[selectedTool.slug] ?? [])
+        .map((slug) => tools.find((tool) => tool.slug === slug))
+        .filter((tool): tool is (typeof tools)[number] => Boolean(tool))
+    : []
 
   useEffect(() => {
     const title = selectedTool ? `${selectedTool.name} | ToolFerry` : 'Tool Not Found | ToolFerry'
     document.title = title
+
+    const metaDescription =
+      selectedTool?.metaDescription ??
+      'ToolFerry is a clean productivity tools hub for calculators, converters, and text utilities.'
+    const metaTag = document.querySelector('meta[name="description"]')
+
+    if (metaTag) {
+      metaTag.setAttribute('content', metaDescription)
+    }
   }, [selectedTool])
 
   useEffect(() => {
@@ -91,27 +111,31 @@ function Tool() {
     )
   }
 
+  let toolContent: ReactNode | null = null
+
   if (selectedTool.slug === 'emi-calculator') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense
-            fallback={<CalculatorFallback />}
-          >
-            <EmiCalculator />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
+    toolContent = <EmiCalculator />
+  } else if (selectedTool.slug === 'fd-interest-calculator') {
+    toolContent = <FdCalculator />
+  } else if (selectedTool.slug === 'mutual-fund-returns-calculator') {
+    toolContent = <MutualFundCalculator />
+  } else if (selectedTool.slug === 'goal-calculator') {
+    toolContent = <GoalCalculator />
+  } else if (selectedTool.slug === 'unit-converter') {
+    toolContent = <UnitConverter />
+  } else if (selectedTool.slug === 'gst-calculator') {
+    toolContent = <GstCalculator />
+  } else if (selectedTool.slug === 'text-formatter') {
+    toolContent = <TextFormatter />
+  } else if (selectedTool.slug === 'json-viewer') {
+    toolContent = <JsonViewer />
+  } else if (selectedTool.slug === 'age-calculator') {
+    toolContent = <AgeCalculator />
+  } else if (selectedTool.slug === 'pregnancy-due-date-calculator') {
+    toolContent = <PregnancyDueDateCalculator />
   }
 
-  if (selectedTool.slug === 'fd-interest-calculator') {
+  if (toolContent) {
     return (
       <Container>
         <Stack spacing={4}>
@@ -121,135 +145,11 @@ function Tool() {
             </Button>
           </Box>
 
-          <Suspense fallback={<CalculatorFallback />}>
-            <FdCalculator />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
+          <Suspense fallback={<CalculatorFallback />}>{toolContent}</Suspense>
 
-  if (selectedTool.slug === 'mutual-fund-returns-calculator') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
+          {selectedToolHelp && <ToolHelpSection content={selectedToolHelp} />}
 
-          <Suspense fallback={<CalculatorFallback />}>
-            <MutualFundCalculator />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'unit-converter') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <UnitConverter />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'gst-calculator') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <GstCalculator />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'text-formatter') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <TextFormatter />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'json-viewer') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <JsonViewer />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'age-calculator') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <AgeCalculator />
-          </Suspense>
-        </Stack>
-      </Container>
-    )
-  }
-
-  if (selectedTool.slug === 'pregnancy-due-date-calculator') {
-    return (
-      <Container>
-        <Stack spacing={4}>
-          <Box>
-            <Button component={RouterLink} to="/" startIcon={<ArrowBackRoundedIcon />}>
-              Back to all tools
-            </Button>
-          </Box>
-
-          <Suspense fallback={<CalculatorFallback />}>
-            <PregnancyDueDateCalculator />
-          </Suspense>
+          <RelatedToolsSection tools={selectedRelatedTools} />
         </Stack>
       </Container>
     )

@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import {
   CartesianGrid,
   Cell,
@@ -310,12 +311,12 @@ function EmiCalculator() {
       >
         <Stack spacing={3}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.55rem", md: "2rem" }, mb: 0.75 }}
-            >
-              EMI Calculator
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+                EMI Calculator
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
               Estimate your monthly installment, interest outflow, and total
               repayment with a simple loan setup.

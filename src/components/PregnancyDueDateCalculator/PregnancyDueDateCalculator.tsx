@@ -9,6 +9,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useMemo, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 
 const MILLISECONDS_PER_DAY = 24 * 60 * 60 * 1000;
 const DEFAULT_CYCLE_LENGTH = 28;
@@ -146,12 +147,12 @@ function PregnancyDueDateCalculator() {
       >
         <Stack spacing={3}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.55rem", md: "2rem" }, mb: 0.75 }}
-            >
-              Pregnancy Due Date Calculator
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+                Pregnancy Due Date Calculator
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
               Estimate your due date from the first day of your last period and adjust
               for shorter or longer cycle lengths.

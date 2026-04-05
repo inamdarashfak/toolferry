@@ -1,56 +1,57 @@
-const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID
+const MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID;
 
-let isInitialized = false
+let isInitialized = false;
 
 function isAnalyticsEnabled() {
-  return Boolean(MEASUREMENT_ID)
+  return Boolean(MEASUREMENT_ID);
 }
 
 export function initAnalytics() {
-  if (!isAnalyticsEnabled() || isInitialized || typeof window === 'undefined') {
-    return
+  if (!isAnalyticsEnabled() || isInitialized || typeof window === "undefined") {
+    return;
   }
 
-  const existingScript = document.querySelector(
-    `script[src="https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}"]`,
-  )
+  const scriptSrc = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`;
+  const existingScript = document.querySelector(`script[src="${scriptSrc}"]`);
 
   if (!existingScript) {
-    const script = document.createElement('script')
-    script.async = true
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${MEASUREMENT_ID}`
-    document.head.appendChild(script)
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = scriptSrc;
+    document.head.appendChild(script);
   }
 
-  window.dataLayer = window.dataLayer || []
+  window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag(...args: unknown[]) {
-    window.dataLayer?.push(args)
-  }
+    window.dataLayer?.push(args);
+  };
 
-  window.gtag('js', new Date())
-  window.gtag('config', MEASUREMENT_ID, {
+  window.gtag("js", new Date());
+  window.gtag("config", MEASUREMENT_ID, {
     send_page_view: false,
-  })
+  });
 
-  isInitialized = true
+  isInitialized = true;
 }
 
 export function trackPageView(path: string) {
-  if (!isAnalyticsEnabled() || typeof window === 'undefined') {
-    return
+  if (!isAnalyticsEnabled() || typeof window === "undefined") {
+    return;
   }
 
-  initAnalytics()
-  window.gtag?.('config', MEASUREMENT_ID, {
+  initAnalytics();
+  window.gtag?.("event", "page_view", {
     page_path: path,
-  })
+    page_location: window.location.href,
+    page_title: document.title,
+  });
 }
 
 export function trackEvent(name: string, params?: Record<string, unknown>) {
-  if (!isAnalyticsEnabled() || typeof window === 'undefined') {
-    return
+  if (!isAnalyticsEnabled() || typeof window === "undefined") {
+    return;
   }
 
-  initAnalytics()
-  window.gtag?.('event', name, params)
+  initAnalytics();
+  window.gtag?.("event", name, params);
 }

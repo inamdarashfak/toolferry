@@ -74,7 +74,7 @@ function Header() {
             letterSpacing: "0.01em",
           }}
         >
-          ToolFerry has gone live today. Welcome and thanks for being here.
+          Welcome to ToolFerry. New tools are added regularly, so check back often.
         </Typography>
       </Box>
     </AppBar>

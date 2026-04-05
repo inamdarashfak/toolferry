@@ -11,6 +11,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import {
   CartesianGrid,
   Cell,
@@ -45,10 +46,30 @@ const DEFAULT_VALUES = {
   stepUpRate: "0",
   returnRate: "12",
   timePeriodYears: "10",
+  inflationRate: "6",
   investmentMode: "lumpsum",
 };
 
 const PIE_COLORS = ["#0b1f33", "#0f8b8d"];
+
+function clampInflationRate(value: number) {
+  return Math.min(8, Math.max(2, value));
+}
+
+function getInflationAdjustedValue(
+  value: number,
+  years: number,
+  inflationRate: number
+) {
+  return value / Math.pow(1 + inflationRate / 100, years);
+}
+
+function getMonthlyRealRate(annualReturnRate: number, inflationRate: number) {
+  const annualGrowthFactor = 1 + annualReturnRate / 100;
+  const annualInflationFactor = 1 + inflationRate / 100;
+
+  return Math.pow(annualGrowthFactor / annualInflationFactor, 1 / 12) - 1;
+}
 
 function detectDefaultCurrency() {
   if (typeof navigator === "undefined") {
@@ -172,6 +193,9 @@ function MutualFundCalculator() {
   const [timePeriodYears, setTimePeriodYears] = useState(
     DEFAULT_VALUES.timePeriodYears
   );
+  const [inflationRate, setInflationRate] = useState(
+    DEFAULT_VALUES.inflationRate
+  );
   const [currencyCode, setCurrencyCode] = useState(
     () => detectDefaultCurrency().code
   );
@@ -186,11 +210,13 @@ function MutualFundCalculator() {
   const yearlyStepUp = Number(stepUpRate) || 0;
   const annualRate = Number(returnRate) || 0;
   const years = Number(timePeriodYears) || 0;
+  const selectedInflationRate = clampInflationRate(Number(inflationRate) || 0);
 
   const {
     investedAmount,
     estimatedReturns,
     totalValue,
+    inflationAdjustedValue,
     growthSeries,
     hasValidInput,
   } = useMemo(() => {
@@ -199,6 +225,7 @@ function MutualFundCalculator() {
         investedAmount: 0,
         estimatedReturns: 0,
         totalValue: 0,
+        inflationAdjustedValue: 0,
         growthSeries: [],
         hasValidInput: false,
       };
@@ -212,14 +239,20 @@ function MutualFundCalculator() {
           investedAmount: 0,
           estimatedReturns: 0,
           totalValue: 0,
+          inflationAdjustedValue: 0,
           growthSeries: [],
           hasValidInput: false,
         };
       }
 
       const monthlyRate = annualRate / 12 / 100;
+      const monthlyRealRate = getMonthlyRealRate(
+        annualRate,
+        selectedInflationRate
+      );
       const months = Math.round(years * 12);
       let futureValue = 0;
+      let inflationAdjustedFutureValue = 0;
       let invested = 0;
 
       for (let month = 1; month <= months; month += 1) {
@@ -229,11 +262,14 @@ function MutualFundCalculator() {
 
         invested += steppedSip;
         futureValue = (futureValue + steppedSip) * (1 + monthlyRate);
+        inflationAdjustedFutureValue =
+          (inflationAdjustedFutureValue + steppedSip) * (1 + monthlyRealRate);
       }
 
       for (let year = 1; year <= Math.ceil(years); year += 1) {
         const effectiveMonths = Math.min(year * 12, months);
         let pointValue = 0;
+        let inflationAdjustedPointValue = 0;
         let pointInvested = 0;
 
         for (let month = 1; month <= effectiveMonths; month += 1) {
@@ -243,11 +279,16 @@ function MutualFundCalculator() {
 
           pointInvested += steppedSip;
           pointValue = (pointValue + steppedSip) * (1 + monthlyRate);
+          inflationAdjustedPointValue =
+            (inflationAdjustedPointValue + steppedSip) * (1 + monthlyRealRate);
         }
 
         yearlySeries.push({
           label: `Year ${year}`,
           portfolioValue: Number(pointValue.toFixed(2)),
+          inflationAdjustedValue: Number(
+            inflationAdjustedPointValue.toFixed(2)
+          ),
           investedAmount: Number(pointInvested.toFixed(2)),
           estimatedReturns: Number((pointValue - pointInvested).toFixed(2)),
         });
@@ -257,6 +298,7 @@ function MutualFundCalculator() {
         investedAmount: invested,
         estimatedReturns: futureValue - invested,
         totalValue: futureValue,
+        inflationAdjustedValue: inflationAdjustedFutureValue,
         growthSeries: yearlySeries,
         hasValidInput: true,
       };
@@ -267,6 +309,7 @@ function MutualFundCalculator() {
         investedAmount: 0,
         estimatedReturns: 0,
         totalValue: 0,
+        inflationAdjustedValue: 0,
         growthSeries: [],
         hasValidInput: false,
       };
@@ -277,26 +320,47 @@ function MutualFundCalculator() {
     for (let year = 1; year <= Math.ceil(years); year += 1) {
       const effectiveYears = Math.min(year, years);
       const pointValue = lumpsum * Math.pow(1 + annualRate / 100, effectiveYears);
-      yearlySeries.push({
-        label: `Year ${year}`,
-        portfolioValue: Number(pointValue.toFixed(2)),
-        investedAmount: lumpsum,
-        estimatedReturns: Number((pointValue - lumpsum).toFixed(2)),
-      });
-    }
+        yearlySeries.push({
+          label: `Year ${year}`,
+          portfolioValue: Number(pointValue.toFixed(2)),
+          inflationAdjustedValue: Number(
+            getInflationAdjustedValue(
+              pointValue,
+              effectiveYears,
+              selectedInflationRate
+            ).toFixed(2)
+          ),
+          investedAmount: lumpsum,
+          estimatedReturns: Number((pointValue - lumpsum).toFixed(2)),
+        });
+      }
 
     return {
       investedAmount: lumpsum,
       estimatedReturns: futureValue - lumpsum,
       totalValue: futureValue,
+      inflationAdjustedValue: getInflationAdjustedValue(
+        futureValue,
+        years,
+        selectedInflationRate
+      ),
       growthSeries: yearlySeries,
       hasValidInput: true,
     };
-  }, [annualRate, investmentMode, lumpsum, monthlySip, years, yearlyStepUp]);
+  }, [
+    annualRate,
+    investmentMode,
+    lumpsum,
+    monthlySip,
+    selectedInflationRate,
+    years,
+    yearlyStepUp,
+  ]);
 
   const animatedInvested = useAnimatedNumber(investedAmount);
   const animatedReturns = useAnimatedNumber(estimatedReturns);
   const animatedTotal = useAnimatedNumber(totalValue);
+  const animatedInflationAdjusted = useAnimatedNumber(inflationAdjustedValue);
 
   const chartData = [
     { name: "Invested", value: investedAmount },
@@ -310,6 +374,7 @@ function MutualFundCalculator() {
     setStepUpRate(DEFAULT_VALUES.stepUpRate);
     setReturnRate(DEFAULT_VALUES.returnRate);
     setTimePeriodYears(DEFAULT_VALUES.timePeriodYears);
+    setInflationRate(DEFAULT_VALUES.inflationRate);
     setCurrencyCode(detectDefaultCurrency().code);
   };
 
@@ -327,12 +392,12 @@ function MutualFundCalculator() {
       >
         <Stack spacing={3}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.55rem", md: "2rem" }, mb: 0.75 }}
-            >
-              Mutual Fund Returns Calculator
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+                Mutual Fund Returns Calculator
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
               Estimate invested amount, expected returns, and future portfolio
               value for one-time or SIP-based mutual fund investing.
@@ -374,6 +439,20 @@ function MutualFundCalculator() {
                       sx={{ borderRadius: 0 }}
                     >
                       Monthly SIP
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="inherit"
+                      size="small"
+                      startIcon={<AutorenewRoundedIcon />}
+                      onClick={handleReset}
+                      sx={{
+                        borderRadius: 0,
+                        minHeight: 40,
+                        alignSelf: { xs: "stretch", sm: "auto" },
+                      }}
+                    >
+                      Reset
                     </Button>
                   </Stack>
 
@@ -610,8 +689,49 @@ function MutualFundCalculator() {
                     />
                   </Box>
 
+                  <Box>
+                    <Stack
+                      direction={{ xs: "column", sm: "row" }}
+                      justifyContent="space-between"
+                      spacing={0.5}
+                      sx={{ mb: 1 }}
+                    >
+                      <Typography variant="body1" sx={{ fontWeight: 600 }}>
+                        Inflation Rate
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {selectedInflationRate}%
+                      </Typography>
+                    </Stack>
+                    <TextField
+                      fullWidth
+                      size="small"
+                      value={inflationRate}
+                      onChange={(event) =>
+                        setInflationRate(
+                          sanitizeNumericInput(event.target.value, true)
+                        )
+                      }
+                      helperText="Used to calculate inflation-adjusted value."
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end">%</InputAdornment>
+                        ),
+                      }}
+                    />
+                    <Slider
+                      size="small"
+                      sx={{ mt: 1 }}
+                      value={selectedInflationRate}
+                      min={2}
+                      max={8}
+                      step={0.1}
+                      onChange={(_, value) => setInflationRate(String(value))}
+                    />
+                  </Box>
+
                   <Grid container spacing={1.5} alignItems="end">
-                    <Grid size={{ xs: 12, sm: 6 }}>
+                    <Grid size={{ xs: 12, sm: 12 }}>
                       <TextField
                         select
                         fullWidth
@@ -628,19 +748,6 @@ function MutualFundCalculator() {
                           </MenuItem>
                         ))}
                       </TextField>
-                    </Grid>
-                    <Grid size={{ xs: 12, sm: 6 }}>
-                      <Button
-                        variant="outlined"
-                        color="inherit"
-                        size="small"
-                        startIcon={<AutorenewRoundedIcon />}
-                        onClick={handleReset}
-                        fullWidth
-                        sx={{ borderRadius: 0 }}
-                      >
-                        Reset
-                      </Button>
                     </Grid>
                   </Grid>
                 </Stack>
@@ -687,6 +794,26 @@ function MutualFundCalculator() {
                       )}`}
                     />
                   </Stack>
+
+                  <Box
+                    sx={{
+                      border: "1px solid rgba(11, 31, 51, 0.08)",
+                      backgroundColor: "rgba(255, 255, 255, 0.85)",
+                    }}
+                  >
+                    <SummaryRow
+                      label="Inflation-adjusted Value"
+                      value={`${selectedCurrency.symbol} ${formatNumber(
+                        animatedInflationAdjusted,
+                        numberLocale
+                      )}`}
+                    />
+                    <Divider />
+                    <SummaryRow
+                      label="Inflation Assumption"
+                      value={`${formatNumber(selectedInflationRate, numberLocale)}% yearly`}
+                    />
+                  </Box>
 
                   <Divider />
 
@@ -814,6 +941,15 @@ function MutualFundCalculator() {
                       name="Portfolio Value"
                       stroke="#0f8b8d"
                       strokeWidth={3}
+                      dot={false}
+                      animationDuration={500}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="inflationAdjustedValue"
+                      name="Inflation-adjusted Value"
+                      stroke="#6c8a2b"
+                      strokeWidth={2.25}
                       dot={false}
                       animationDuration={500}
                     />

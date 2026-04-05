@@ -15,6 +15,7 @@ import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import { useEffect, useMemo, useRef, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 
 type TransformKey =
   | "none"
@@ -505,12 +506,12 @@ function TextFormatter() {
       >
         <Stack spacing={2.25}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.55rem", md: "2rem" }, mb: 0.75 }}
-            >
-              Text Formatter
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+                Text Formatter
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
               Clean, transform, and prepare plain text with quick everyday
               formatting actions.

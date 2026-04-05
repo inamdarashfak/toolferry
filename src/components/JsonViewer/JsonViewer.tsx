@@ -10,6 +10,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
+import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 
 type JsonValue =
   | string
@@ -263,13 +264,15 @@ function JsonTreeNode({
         }
         sx={{
           px: 0,
-          py: 0.15,
+          py: 0.05,
           borderRadius: "6px",
           justifyContent: "flex-start",
           minWidth: 0,
+          minHeight: 0,
           textTransform: "none",
-          alignItems: "flex-start",
+          alignItems: "center",
           width: "100%",
+          lineHeight: 1,
           cursor: expandable ? "pointer" : "default",
           backgroundColor: isActiveMatch
             ? "rgba(15, 139, 141, 0.14)"
@@ -288,7 +291,6 @@ function JsonTreeNode({
             width: 16,
             minWidth: 16,
             height: 16,
-            mt: "1px",
             mr: 0.75,
             flexShrink: 0,
             display: "inline-flex",
@@ -303,18 +305,32 @@ function JsonTreeNode({
                 width: 14,
                 height: 14,
                 display: "inline-flex",
+                position: "relative",
                 alignItems: "center",
                 justifyContent: "center",
                 border: "1px solid rgba(15, 139, 141, 0.3)",
-                color: "secondary.main",
                 backgroundColor: "rgba(15, 139, 141, 0.06)",
-                fontSize: "0.72rem",
-                fontWeight: 700,
-                lineHeight: 1,
+                borderRadius: "3px",
+                "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  width: 7,
+                  height: 1.5,
+                  backgroundColor: "secondary.main",
+                  borderRadius: "999px",
+                },
+                "&::after": isExpanded
+                  ? undefined
+                  : {
+                      content: '""',
+                      position: "absolute",
+                      width: 1.5,
+                      height: 7,
+                      backgroundColor: "secondary.main",
+                      borderRadius: "999px",
+                    },
               }}
-            >
-              {isExpanded ? "-" : "+"}
-            </Box>
+            />
           ) : (
             <Box
               component="span"
@@ -330,8 +346,8 @@ function JsonTreeNode({
           component="span"
           sx={{
             fontFamily: '"Roboto Mono", "Menlo", monospace',
-            fontSize: "0.82rem",
-            lineHeight: 1.5,
+            fontSize: "0.8rem",
+            lineHeight: 1.15,
             textAlign: "left",
             color: "#0b1f33",
             wordBreak: "break-word",
@@ -350,9 +366,10 @@ function JsonTreeNode({
                 color: "#475569",
                 backgroundColor: "rgba(148, 163, 184, 0.14)",
                 px: 0.75,
-                py: 0.15,
+                py: 0.05,
                 borderRadius: "999px",
-                fontSize: "0.76rem",
+                fontSize: "0.72rem",
+                lineHeight: 1.1,
               }}
             >
               {renderHighlightedText(getValueSummary(value), searchQuery)}
@@ -417,8 +434,9 @@ function PrimitiveValue({
           color: "#166534",
           backgroundColor: "rgba(34, 197, 94, 0.08)",
           px: 0.5,
-          py: 0.1,
+          py: 0.05,
           borderRadius: "4px",
+          lineHeight: 1.1,
         }}
       >
         {renderHighlightedText(`"${value}"`, searchQuery)}
@@ -633,12 +651,12 @@ function JsonViewer() {
       >
         <Stack spacing={1.75}>
           <Box sx={{ maxWidth: 760 }}>
-            <Typography
-              variant="h3"
-              sx={{ fontSize: { xs: "1.4rem", md: "1.8rem" }, mb: 0.5 }}
-            >
-              JSON Viewer
-            </Typography>
+            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.4rem", md: "1.8rem" } }}>
+                JSON Viewer
+              </Typography>
+              <ScrollToInstructionsButton />
+            </Stack>
             <Typography color="text.secondary" sx={{ lineHeight: 1.7, fontSize: "0.95rem" }}>
               Paste raw JSON and explore it in a clean collapsible tree with
               expandable objects and arrays.
