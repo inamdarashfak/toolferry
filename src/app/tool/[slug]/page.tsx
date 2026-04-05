@@ -115,7 +115,7 @@ async function ToolRoutePage({ params }: ToolPageProps) {
       <ToolPage
         tool={selectedTool}
         helpContent={toolHelpContent[selectedTool.slug]}
-        seoContent={seoContent}
+        faqs={seoContent.faqs}
         relatedToolSlugs={relatedTools[selectedTool.slug] ?? []}
       />
     </>

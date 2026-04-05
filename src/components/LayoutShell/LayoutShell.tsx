@@ -7,7 +7,7 @@ function LayoutShell({ children }: PropsWithChildren) {
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Header />
-      <Box component="main" sx={{ py: { xs: 2, sm: 3, md: 5 }, flex: 1 }}>
+      <Box component="main" sx={{ py: { xs: 2, sm: 3, md: 4 }, flex: 1 }}>
         {children}
       </Box>
       <Footer />

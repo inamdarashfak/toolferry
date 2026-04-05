@@ -1,25 +1,19 @@
 'use client'
 
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
-import Chip from '@mui/material/Chip'
-import Grid from '@mui/material/Grid'
-import Paper from '@mui/material/Paper'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { useEffect, type ReactNode } from 'react'
 import Container from '../Container/Container'
-import BreadcrumbNav from '../BreadcrumbNav/BreadcrumbNav'
 import RelatedToolsSection from '../RelatedToolsSection/RelatedToolsSection'
 import ToolFaqSection from '../ToolFaqSection/ToolFaqSection'
 import ToolHelpSection from '../ToolHelpSection/ToolHelpSection'
-import { relatedTools } from '../../data/relatedTools'
-import { toolCategoryMap } from '../../data/toolCategories'
 import type { ToolHelpContent } from '../../data/toolHelpContent'
-import type { ToolSeoContent } from '../../data/toolSeoContent'
 import { tools } from '../../data/tools'
 import { trackEvent } from '../../lib/analytics'
 import type { Tool } from '../../types/tool'
@@ -61,7 +55,10 @@ const PregnancyDueDateCalculator = dynamic(
 type ToolPageProps = {
   tool: Tool
   helpContent: ToolHelpContent
-  seoContent: ToolSeoContent
+  faqs: Array<{
+    question: string
+    answer: string
+  }>
   relatedToolSlugs: string[]
 }
 
@@ -82,7 +79,7 @@ function CalculatorFallback() {
   )
 }
 
-function ToolPage({ tool, helpContent, seoContent, relatedToolSlugs }: ToolPageProps) {
+function ToolPage({ tool, helpContent, faqs, relatedToolSlugs }: ToolPageProps) {
   useEffect(() => {
     trackEvent('tool_open', {
       tool_slug: tool.slug,
@@ -93,7 +90,6 @@ function ToolPage({ tool, helpContent, seoContent, relatedToolSlugs }: ToolPageP
   const selectedRelatedTools = relatedToolSlugs
     .map((slug) => tools.find((item) => item.slug === slug))
     .filter((item): item is Tool => Boolean(item))
-  const category = toolCategoryMap[tool.categorySlug]
 
   let toolContent: ReactNode | null = null
 
@@ -121,83 +117,35 @@ function ToolPage({ tool, helpContent, seoContent, relatedToolSlugs }: ToolPageP
 
   return (
     <Container>
-      <Stack spacing={4}>
+      <Stack spacing={{ xs: 4, md: 3 }}>
+        <Box
+          component="h1"
+          sx={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            p: 0,
+            m: -1,
+            overflow: 'hidden',
+            clip: 'rect(0 0 0 0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          {tool.name}
+        </Box>
+
         <Box>
           <Button component={Link} href="/" startIcon={<ArrowBackRoundedIcon />}>
             Back to all tools
           </Button>
         </Box>
 
-        <Paper
-          sx={{
-            p: { xs: 2.5, md: 3.5 },
-            borderRadius: 0,
-            border: '1px solid rgba(11, 31, 51, 0.08)',
-            background:
-              'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,250,0.96) 100%)',
-            boxShadow: '0 14px 30px rgba(11, 31, 51, 0.045)',
-          }}
-        >
-          <Stack spacing={1.5}>
-            <BreadcrumbNav
-              items={[
-                { label: 'Home', href: '/' },
-                ...(category ? [{ label: category.name, href: `/category/${category.slug}` }] : []),
-                { label: tool.name },
-              ]}
-            />
-            <Chip
-              label={seoContent.category}
-              sx={{
-                alignSelf: 'flex-start',
-                backgroundColor: 'rgba(15, 139, 141, 0.08)',
-                color: 'secondary.main',
-              }}
-            />
-            <Typography variant="h1" sx={{ fontSize: { xs: '1.8rem', md: '2.5rem' } }}>
-              {tool.name}
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: 840, lineHeight: 1.75 }}>
-              {seoContent.intro}
-            </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: 840, lineHeight: 1.75 }}>
-              {seoContent.audience}
-            </Typography>
-            <Grid container spacing={1.25}>
-              {seoContent.highlights.map((highlight) => (
-                <Grid key={highlight} size={{ xs: 12, md: 4 }}>
-                  <Paper
-                    variant="outlined"
-                    sx={{
-                      p: 1.5,
-                      borderRadius: 0,
-                      height: '100%',
-                      borderColor: 'rgba(11, 31, 51, 0.08)',
-                      backgroundColor: 'rgba(255,255,255,0.72)',
-                    }}
-                  >
-                    <Typography variant="body2" sx={{ lineHeight: 1.7 }}>
-                      {highlight}
-                    </Typography>
-                  </Paper>
-                </Grid>
-              ))}
-            </Grid>
-            {category && (
-              <Box>
-                <Button component={Link} href={`/category/${category.slug}`} variant="outlined">
-                  Explore more {category.name.toLowerCase()}
-                </Button>
-              </Box>
-            )}
-          </Stack>
-        </Paper>
-
         {toolContent}
 
         <ToolHelpSection content={helpContent} />
 
-        <ToolFaqSection faqs={seoContent.faqs} />
+        <ToolFaqSection faqs={faqs} />
 
         <RelatedToolsSection tools={selectedRelatedTools} />
       </Stack>

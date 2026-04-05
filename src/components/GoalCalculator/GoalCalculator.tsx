@@ -286,7 +286,6 @@ function calculateDelayMonths({
   currentProjectionValue,
   currentFutureCost,
   currentMonths,
-  currentSavings,
   monthlyContribution,
   annualReturn,
   yearlyStepUp,
@@ -294,7 +293,6 @@ function calculateDelayMonths({
   currentProjectionValue: number;
   currentFutureCost: number;
   currentMonths: number;
-  currentSavings: number;
   monthlyContribution: number;
   annualReturn: number;
   yearlyStepUp: number;
@@ -436,7 +434,6 @@ function GoalCalculator() {
       currentProjectionValue: projection.projectedValue,
       currentFutureCost: projection.futureGoalCost,
       currentMonths: Math.max(1, Math.round(years * 12)),
-      currentSavings: savedAmount,
       monthlyContribution: monthlyAmount,
       annualReturn,
       yearlyStepUp: stepUpRate,
@@ -542,10 +539,10 @@ function GoalCalculator() {
   ];
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -553,32 +550,32 @@ function GoalCalculator() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 860 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 Goal Calculator
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
               Turn a real-life goal into a practical savings plan. See whether
               your current plan can fund it,
               and which adjustment path gets you there most cleanly.
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, md: 1.75 }}>
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={2}>
+                <Stack spacing={{ xs: 2, md: 1.75 }}>
                   <Stack
                     direction={{ xs: "column", sm: "row" }}
                     spacing={1}
@@ -938,13 +935,13 @@ function GoalCalculator() {
 
                   <Paper
                     sx={{
-                      p: 2,
+                      p: { xs: 2, md: 1.75 },
                       borderRadius: 0,
                       border: "1px solid rgba(11, 31, 51, 0.08)",
                       background: status.background,
                     }}
                   >
-                    <Stack spacing={1.25}>
+                    <Stack spacing={{ xs: 1.25, md: 1 }}>
                       <Stack
                         direction={{ xs: "column", sm: "row" }}
                         justifyContent="space-between"
@@ -970,7 +967,7 @@ function GoalCalculator() {
                           }}
                         />
                       </Box>
-                      <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+                      <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}>
                         {fundingGap > 0
                           ? `Your current plan is projected to fund ${formatNumber(
                               achievementPercentage,
@@ -992,7 +989,7 @@ function GoalCalculator() {
                     </Stack>
                   </Paper>
 
-                  <Grid container spacing={1.5}>
+                  <Grid container spacing={{ xs: 1.5, md: 1.25 }}>
                     {recommendationCards.map((card) => (
                       <Grid key={card.title} size={{ xs: 12, sm: 4 }}>
                         <Paper
@@ -1009,8 +1006,8 @@ function GoalCalculator() {
                           <Stack spacing={0}>
                             <Box
                               sx={{
-                                px: 1.5,
-                                py: 0.9,
+                                px: { xs: 1.5, md: 1.25 },
+                                py: { xs: 0.9, md: 0.75 },
                                 borderBottom: "1px solid rgba(11, 31, 51, 0.08)",
                                 backgroundColor: "rgba(255,255,255,0.42)",
                               }}
@@ -1037,11 +1034,11 @@ function GoalCalculator() {
                               </Stack>
                             </Box>
 
-                            <Stack spacing={1} sx={{ p: 1.5, height: "100%" }}>
+                            <Stack spacing={0.85} sx={{ p: { xs: 1.5, md: 1.25 }, height: "100%" }}>
                               <Typography
                                 variant="h6"
                                 sx={{
-                                  fontSize: "1rem",
+                                  fontSize: { xs: "1rem", md: "0.94rem" },
                                   lineHeight: 1.25,
                                   color: card.accent,
                                   fontWeight: 800,
@@ -1051,14 +1048,14 @@ function GoalCalculator() {
                               </Typography>
                               <Box
                                 sx={{
-                                  width: 34,
+                                  width: 28,
                                   height: 2,
                                   backgroundColor: card.accent,
                                 }}
                               />
                               <Typography
                                 color="text.secondary"
-                                sx={{ lineHeight: 1.55, fontSize: "0.84rem" }}
+                                sx={{ lineHeight: 1.5, fontSize: { xs: "0.84rem", md: "0.8rem" } }}
                               >
                                 {card.detail}
                               </Typography>
@@ -1075,16 +1072,16 @@ function GoalCalculator() {
 
           <Paper
             sx={{
-              p: 2.25,
+              p: { xs: 2.25, md: 2 },
               borderRadius: 0,
               border: "1px solid rgba(11, 31, 51, 0.08)",
               boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
             }}
           >
-            <Stack spacing={2}>
+            <Stack spacing={{ xs: 2, md: 1.5 }}>
               <Typography variant="h6">Journey View</Typography>
-              <Box sx={{ minHeight: { xs: 220, md: 260 } }}>
-                <ResponsiveContainer width="100%" height={260}>
+              <Box sx={{ minHeight: { xs: 220, md: 220 } }}>
+                <ResponsiveContainer width="100%" height={220}>
                   <LineChart
                     data={growthSeries}
                     margin={{ top: 10, right: 12, left: 8, bottom: 0 }}

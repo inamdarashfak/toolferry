@@ -21,7 +21,7 @@ function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
   return (
     <Paper
       sx={{
-        p: { xs: 2, md: 2.5 },
+        p: { xs: 2, md: 2.1 },
         borderRadius: 0,
         border: '1px solid rgba(11, 31, 51, 0.08)',
         background:
@@ -29,15 +29,17 @@ function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
         boxShadow: '0 14px 30px rgba(11, 31, 51, 0.045)',
       }}
     >
-      <Stack spacing={1.5}>
+      <Stack spacing={{ xs: 1.5, md: 1.2 }}>
         <Stack spacing={0.5}>
           <Typography variant="overline" sx={{ color: 'secondary.main', lineHeight: 1.2 }}>
             FAQs
           </Typography>
-          <Typography variant="h6">Common questions about this tool</Typography>
+          <Typography variant="h6" sx={{ fontSize: { xs: '1rem', md: '0.98rem' } }}>
+            Common questions about this tool
+          </Typography>
         </Stack>
 
-        <Stack spacing={1}>
+        <Stack spacing={{ xs: 1, md: 0.85 }}>
           {faqs.map((faq) => (
             <Accordion
               key={faq.question}
@@ -51,11 +53,16 @@ function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
                 },
               }}
             >
-              <AccordionSummary expandIcon={<ExpandMoreRoundedIcon />}>
-                <Typography sx={{ fontWeight: 700 }}>{faq.question}</Typography>
+              <AccordionSummary
+                expandIcon={<ExpandMoreRoundedIcon />}
+                sx={{ minHeight: { xs: 48, md: 42 }, '& .MuiAccordionSummary-content': { my: { xs: 1.5, md: 1.1 } } }}
+              >
+                <Typography sx={{ fontWeight: 700, fontSize: { xs: '0.96rem', md: '0.92rem' } }}>
+                  {faq.question}
+                </Typography>
               </AccordionSummary>
-              <AccordionDetails>
-                <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+              <AccordionDetails sx={{ pt: 0, pb: { xs: 2, md: 1.5 } }}>
+                <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}>
                   {faq.answer}
                 </Typography>
               </AccordionDetails>

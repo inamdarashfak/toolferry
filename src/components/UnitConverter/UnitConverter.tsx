@@ -358,10 +358,10 @@ function UnitConverter() {
   };
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -369,31 +369,31 @@ function UnitConverter() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 Unit Converter
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
               Pick a category, choose the units you want, and convert instantly in
               a compact everyday-friendly layout.
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, md: 1.75 }}>
             <Grid size={{ xs: 12, lg: 5 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={2}>
+                <Stack spacing={{ xs: 2, md: 1.75 }}>
                   <TextField
                     select
                     fullWidth

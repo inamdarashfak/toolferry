@@ -21,18 +21,18 @@ function RelatedToolsSection({ tools }: RelatedToolsSectionProps) {
   }
 
   return (
-    <Stack spacing={1.5}>
+    <Stack spacing={{ xs: 1.5, md: 1.25 }}>
       <Box sx={{ maxWidth: 760 }}>
         <Typography variant="h6" sx={{ mb: 0.5 }}>
           Related Tools
         </Typography>
-        <Typography color="text.secondary" sx={{ lineHeight: 1.7 }}>
+        <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}>
           Explore a few closely related tools to continue the same task or compare
           another approach.
         </Typography>
       </Box>
 
-      <Grid container spacing={1.5}>
+      <Grid container spacing={{ xs: 1.5, md: 1.25 }}>
         {tools.map((tool) => (
           <Grid key={tool.slug} size={{ xs: 12, md: 4 }}>
             <Card
@@ -56,15 +56,15 @@ function RelatedToolsSection({ tools }: RelatedToolsSectionProps) {
                   },
                 }}
               >
-                <CardContent sx={{ p: 2.25 }}>
-                  <Stack spacing={1.25} sx={{ height: "100%" }}>
+                <CardContent sx={{ p: { xs: 2.25, md: 1.9 } }}>
+                  <Stack spacing={{ xs: 1.25, md: 1 }} sx={{ height: "100%" }}>
                     <Stack
                       direction="row"
                       justifyContent="space-between"
                       alignItems="flex-start"
                       spacing={1.5}
                     >
-                      <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 700, fontSize: { xs: "1rem", md: "0.95rem" } }}>
                         {tool.name}
                       </Typography>
                       <ArrowOutwardRoundedIcon
@@ -76,7 +76,7 @@ function RelatedToolsSection({ tools }: RelatedToolsSectionProps) {
                         }}
                       />
                     </Stack>
-                    <Typography color="text.secondary" sx={{ lineHeight: 1.65 }}>
+                    <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.65, md: 1.55 } }}>
                       {tool.description}
                     </Typography>
                   </Stack>

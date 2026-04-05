@@ -495,10 +495,10 @@ function TextFormatter() {
   }, [isDragging]);
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -506,10 +506,10 @@ function TextFormatter() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={2.25}>
+        <Stack spacing={{ xs: 2.25, md: 2 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 Text Formatter
               </Typography>
               <ScrollToInstructionsButton />

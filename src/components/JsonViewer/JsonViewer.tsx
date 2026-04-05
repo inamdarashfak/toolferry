@@ -640,10 +640,10 @@ function JsonViewer() {
   };
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2, md: 2.25 },
+          p: { xs: 2, md: 2 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -651,10 +651,10 @@ function JsonViewer() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={1.75}>
+        <Stack spacing={{ xs: 1.75, md: 1.5 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.4rem", md: "1.8rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.4rem", md: "1.65rem" } }}>
                 JSON Viewer
               </Typography>
               <ScrollToInstructionsButton />

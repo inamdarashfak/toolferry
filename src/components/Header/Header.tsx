@@ -25,7 +25,7 @@ function Header() {
         <Toolbar
           disableGutters
           sx={{
-            minHeight: { xs: 64, sm: 72 },
+            minHeight: { xs: 64, sm: 68 },
             gap: { xs: 1.5, sm: 2 },
             py: { xs: 1, sm: 0 },
             flexWrap: { xs: "wrap", sm: "nowrap" },
@@ -71,7 +71,7 @@ function Header() {
             color: "#ffffff",
             fontWeight: 800,
             textAlign: "center",
-            fontSize: { xs: "0.82rem", sm: "0.9rem" },
+            fontSize: { xs: "0.82rem", sm: "0.86rem" },
             letterSpacing: "0.01em",
           }}
         >

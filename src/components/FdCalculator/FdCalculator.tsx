@@ -304,10 +304,10 @@ function FdCalculator() {
   };
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -315,31 +315,31 @@ function FdCalculator() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 FD Calculator
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
               Estimate fixed deposit maturity, earned interest, and value growth
               over time with a simple compounding setup.
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, md: 1.75 }}>
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={2}>
+                <Stack spacing={{ xs: 2, md: 1.75 }}>
                   <Stack direction={{ xs: "column", sm: "row" }} spacing={1}>
                     <Button
                       variant="outlined"
@@ -651,7 +651,7 @@ function FdCalculator() {
                       </Box>
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
-                      <Stack spacing={2}>
+                      <Stack spacing={{ xs: 2, md: 1.5 }}>
                         <KeyValue
                           label="Deposit amount"
                           value={`${selectedCurrency.symbol}${formatNumber(
@@ -678,16 +678,16 @@ function FdCalculator() {
 
           <Paper
             sx={{
-              p: 2.25,
+              p: { xs: 2.25, md: 2 },
               borderRadius: 0,
               border: "1px solid rgba(11, 31, 51, 0.08)",
               boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
             }}
           >
-            <Stack spacing={2}>
+            <Stack spacing={{ xs: 2, md: 1.5 }}>
               <Typography variant="h6">Maturity Growth</Typography>
-              <Box sx={{ minHeight: { xs: 200, md: 220 } }}>
-                <ResponsiveContainer width="100%" height={220}>
+              <Box sx={{ minHeight: { xs: 200, md: 200 } }}>
+                <ResponsiveContainer width="100%" height={200}>
                   <LineChart
                     data={growthSeries}
                     margin={{ top: 10, right: 12, left: 8, bottom: 0 }}
@@ -782,8 +782,8 @@ function SummaryRow({ label, value }: SummaryRowProps) {
       justifyContent="space-between"
       spacing={0.75}
       sx={{
-        px: 2,
-        py: 1.5,
+        px: { xs: 2, md: 1.75 },
+        py: { xs: 1.5, md: 1.2 },
       }}
     >
       <Typography
@@ -797,7 +797,7 @@ function SummaryRow({ label, value }: SummaryRowProps) {
         sx={{
           fontWeight: 800,
           lineHeight: 1.2,
-          fontSize: "1.05rem",
+          fontSize: { xs: "1.05rem", md: "0.98rem" },
           wordBreak: "break-word",
           textAlign: { xs: "left", sm: "right" },
         }}
@@ -820,9 +820,12 @@ function KeyValue({ color, label, value }: KeyValueProps) {
       <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
         {label}
       </Typography>
-      <Stack direction="row" spacing={1.25} alignItems="center">
+      <Stack direction="row" spacing={{ xs: 1.25, md: 1 }} alignItems="center">
         <Box sx={{ width: 10, height: 10, backgroundColor: color }} />
-        <Typography variant="h6" sx={{ fontSize: "1.05rem", wordBreak: "break-word" }}>
+        <Typography
+          variant="h6"
+          sx={{ fontSize: { xs: "1.05rem", md: "0.98rem" }, wordBreak: "break-word" }}
+        >
           {value}
         </Typography>
       </Stack>

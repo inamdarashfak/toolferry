@@ -14,7 +14,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
     <Paper
       id="tool-instructions"
       sx={{
-        p: { xs: 2, md: 2.5 },
+        p: { xs: 2, md: 2.1 },
         borderRadius: 0,
         border: "1px solid rgba(11, 31, 51, 0.08)",
         background:
@@ -23,7 +23,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
         scrollMarginTop: 88,
       }}
     >
-      <Stack spacing={2.25}>
+      <Stack spacing={{ xs: 2.25, md: 1.9 }}>
         <Stack spacing={0.6} sx={{ maxWidth: 880 }}>
           <Typography
             variant="overline"
@@ -31,7 +31,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
           >
             Tool Guide
           </Typography>
-          <Typography variant="h6" sx={{ fontSize: { xs: "1rem", md: "1.08rem" } }}>
+          <Typography variant="h6" sx={{ fontSize: { xs: "1rem", md: "1rem" } }}>
             Description, how to use it, and what each control does
           </Typography>
           <Typography color="text.secondary" sx={{ lineHeight: 1.65 }}>
@@ -39,7 +39,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
           </Typography>
         </Stack>
 
-        <Stack spacing={2.25}>
+        <Stack spacing={{ xs: 2.25, md: 1.9 }}>
           <Box component="section">
             <Typography
               variant="subtitle1"
@@ -48,7 +48,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
             >
               What This Tool Does
             </Typography>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.75 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.75, md: 1.62 } }}>
               {content.description}
             </Typography>
           </Box>
@@ -70,11 +70,11 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
                 pl: 2.25,
                 color: "text.secondary",
                 display: "grid",
-                gap: 0.85,
+                gap: { xs: 0.85, md: 0.65 },
               }}
             >
               {content.steps.map((step) => (
-                <Box key={step} component="li" sx={{ lineHeight: 1.7 }}>
+                <Box key={step} component="li" sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}>
                   {step}
                 </Box>
               ))}
@@ -92,7 +92,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
               Field Guide
             </Typography>
 
-            <Stack spacing={1.5}>
+            <Stack spacing={{ xs: 1.5, md: 1.2 }}>
               {content.fieldGroups.map((group) => (
                 <Box key={group.title ?? "default"}>
                   {group.title && (
@@ -124,7 +124,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
                         direction={{ xs: "column", sm: "row" }}
                         spacing={0.75}
                         justifyContent="space-between"
-                        sx={{ px: 1.5, py: 1.15 }}
+                        sx={{ px: { xs: 1.5, md: 1.25 }, py: { xs: 1.15, md: 0.95 } }}
                       >
                         <Typography
                           variant="body2"
@@ -139,7 +139,7 @@ function ToolHelpSection({ content }: ToolHelpSectionProps) {
                         <Typography
                           variant="body2"
                           color="text.secondary"
-                          sx={{ lineHeight: 1.65, maxWidth: 760 }}
+                          sx={{ lineHeight: { xs: 1.65, md: 1.55 }, maxWidth: 760 }}
                         >
                           {field.description}
                         </Typography>

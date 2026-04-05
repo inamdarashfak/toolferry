@@ -25,19 +25,19 @@ function Footer() {
     <Box
       component="footer"
       sx={{
-        mt: { xs: 6, md: 8 },
+        mt: { xs: 6, md: 7 },
         borderTop: "1px solid rgba(11, 31, 51, 0.08)",
         backgroundColor: "rgba(255, 255, 255, 0.72)",
       }}
     >
       <Container>
-        <Grid container spacing={{ xs: 3, md: 4 }} sx={{ py: { xs: 4, md: 5 } }}>
+        <Grid container spacing={{ xs: 3, md: 3 }} sx={{ py: { xs: 4, md: 3.5 } }}>
           <Grid size={{ xs: 12, md: 5 }}>
-            <Stack spacing={1.5}>
+            <Stack spacing={{ xs: 1.5, md: 1.2 }}>
               <Box component={NextLink} href="/" sx={{ display: "inline-flex", width: "fit-content" }}>
                 <ToolFerryLogo compact />
               </Box>
-              <Typography color="text.secondary" sx={{ maxWidth: 420 }}>
+              <Typography color="text.secondary" sx={{ maxWidth: 420, lineHeight: { xs: 1.7, md: 1.58 } }}>
                 ToolFerry brings practical calculators and utility tools into one
                 focused, easy-to-use workspace.
               </Typography>
@@ -45,7 +45,7 @@ function Footer() {
           </Grid>
 
           <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-            <Stack spacing={1.2}>
+            <Stack spacing={{ xs: 1.2, md: 0.95 }}>
               <Typography variant="overline" sx={{ color: "secondary.main" }}>
                 Sitemap
               </Typography>
@@ -70,7 +70,7 @@ function Footer() {
           </Grid>
 
           <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-            <Stack spacing={1.2}>
+            <Stack spacing={{ xs: 1.2, md: 0.95 }}>
               <Typography variant="overline" sx={{ color: "secondary.main" }}>
                 Categories
               </Typography>
@@ -95,7 +95,7 @@ function Footer() {
           </Grid>
 
           <Grid size={{ xs: 12, sm: 6, md: 2 }}>
-            <Stack spacing={1.2}>
+            <Stack spacing={{ xs: 1.2, md: 0.95 }}>
               <Typography variant="overline" sx={{ color: "secondary.main" }}>
                 Popular Tools
               </Typography>
@@ -122,11 +122,11 @@ function Footer() {
 
         <Box
           sx={{
-            py: 1.75,
+            py: { xs: 1.75, md: 1.5 },
             borderTop: "1px solid rgba(11, 31, 51, 0.08)",
           }}
         >
-          <Typography color="text.secondary" sx={{ fontSize: "0.9rem" }}>
+          <Typography color="text.secondary" sx={{ fontSize: { xs: "0.9rem", md: "0.84rem" } }}>
             © {new Date().getFullYear()} ToolFerry. All rights reserved.
           </Typography>
         </Box>

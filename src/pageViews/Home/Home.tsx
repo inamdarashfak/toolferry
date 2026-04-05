@@ -13,10 +13,10 @@ import { tools } from "../../data/tools";
 function Home() {
   return (
     <Container>
-      <Stack spacing={{ xs: 4, md: 6 }}>
+      <Stack spacing={{ xs: 4, md: 5 }}>
         <Paper
           sx={{
-            p: { xs: 2.5, sm: 3.5, md: 4.5 },
+            p: { xs: 2.5, sm: 3.25, md: 3.75 },
             borderRadius: 0,
             border: "1px solid rgba(11, 31, 51, 0.08)",
             background:
@@ -37,11 +37,11 @@ function Home() {
               <Typography
                 variant="h1"
                 sx={{
-                  fontSize: { xs: "2rem", sm: "2.8rem", md: "4.2rem" },
-                  lineHeight: { xs: 1.1, md: 1.02 },
+                  fontSize: { xs: "2rem", sm: "2.55rem", md: "3.5rem" },
+                  lineHeight: { xs: 1.1, md: 1.03 },
                   letterSpacing: "-0.05em",
-                  mb: 2,
-                  maxWidth: 900,
+                  mb: 1.5,
+                  maxWidth: 820,
                 }}
               >
                 Practical tools, presented with a cleaner and calmer interface.
@@ -50,8 +50,8 @@ function Home() {
                 variant="body1"
                 color="text.secondary"
                 sx={{
-                  fontSize: { xs: "1rem", md: "1.08rem" },
-                  maxWidth: 700,
+                  fontSize: { xs: "1rem", md: "1rem" },
+                  maxWidth: 660,
                 }}
               >
                 ToolFerry brings calculators and utility tools into one focused
@@ -63,7 +63,7 @@ function Home() {
           </Stack>
         </Paper>
 
-        <Grid container spacing={{ xs: 2, md: 3 }}>
+        <Grid container spacing={{ xs: 2, md: 2.5 }}>
           {tools.map((tool) => (
             <Grid key={tool.slug} size={{ xs: 12, sm: 6, md: 4 }}>
               <ToolCard tool={tool} />
@@ -81,7 +81,7 @@ function Home() {
             </Typography>
           </Box>
 
-          <Grid container spacing={{ xs: 2, md: 3 }}>
+          <Grid container spacing={{ xs: 2, md: 2.5 }}>
             {toolCategories.map((category) => (
               <Grid key={category.slug} size={{ xs: 12, sm: 6, md: 4 }}>
                 <CategoryCard

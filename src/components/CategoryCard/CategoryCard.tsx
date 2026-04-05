@@ -37,10 +37,10 @@ function CategoryCard({ category, toolCount }: CategoryCardProps) {
           },
         }}
       >
-        <CardContent sx={{ p: { xs: 2.25, sm: 2.5 } }}>
-          <Stack spacing={1.25} sx={{ height: '100%' }}>
+        <CardContent sx={{ p: { xs: 2.25, sm: 2.25, md: 1.9 } }}>
+          <Stack spacing={{ xs: 1.25, md: 1 }} sx={{ height: '100%' }}>
             <Stack direction="row" justifyContent="space-between" spacing={1.5}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 700, fontSize: { xs: '1rem', md: '0.95rem' } }}>
                 {category.name}
               </Typography>
               <ArrowOutwardRoundedIcon
@@ -49,7 +49,7 @@ function CategoryCard({ category, toolCount }: CategoryCardProps) {
                 sx={{ transition: 'transform 180ms ease, color 180ms ease' }}
               />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.65 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.65, md: 1.55 } }}>
               {category.description}
             </Typography>
             <Typography variant="body2" sx={{ color: 'secondary.main', fontWeight: 700 }}>

@@ -181,7 +181,6 @@ function EmiCalculator() {
     totalInterest,
     totalPayment,
     paymentSeries,
-    hasValidInput,
   } = useMemo(() => {
     if (principal <= 0 || years <= 0 || annualRate < 0) {
       return {
@@ -300,10 +299,10 @@ function EmiCalculator() {
   ];
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -311,31 +310,31 @@ function EmiCalculator() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 EMI Calculator
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
               Estimate your monthly installment, interest outflow, and total
               repayment with a simple loan setup.
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, md: 1.75 }}>
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={2}>
+                <Stack spacing={{ xs: 2, md: 1.75 }}>
                   <Box>
                     <Stack
                       direction={{ xs: "column", sm: "row" }}
@@ -566,7 +565,7 @@ function EmiCalculator() {
                       </Box>
                     </Grid>
                     <Grid size={{ xs: 12, md: 6 }}>
-                      <Stack spacing={2.5}>
+                      <Stack spacing={{ xs: 2.5, md: 2 }}>
                         <Box>
                           <Typography
                             variant="body2"
@@ -577,7 +576,7 @@ function EmiCalculator() {
                           </Typography>
                           <Stack
                             direction="row"
-                            spacing={1.25}
+                            spacing={{ xs: 1.25, md: 1 }}
                             alignItems="center"
                           >
                             <Box
@@ -590,7 +589,7 @@ function EmiCalculator() {
                             />
                             <Typography
                               variant="h6"
-                              sx={{ fontSize: "1.05rem", wordBreak: "break-word" }}
+                              sx={{ fontSize: { xs: "1.05rem", md: "0.98rem" }, wordBreak: "break-word" }}
                             >
                               {selectedCurrency.symbol}{" "}
                               {formatNumber(principal, numberLocale)}
@@ -607,7 +606,7 @@ function EmiCalculator() {
                           </Typography>
                           <Stack
                             direction="row"
-                            spacing={1.25}
+                            spacing={{ xs: 1.25, md: 1 }}
                             alignItems="center"
                           >
                             <Box
@@ -620,7 +619,7 @@ function EmiCalculator() {
                             />
                             <Typography
                               variant="h6"
-                              sx={{ fontSize: "1.05rem", wordBreak: "break-word" }}
+                              sx={{ fontSize: { xs: "1.05rem", md: "0.98rem" }, wordBreak: "break-word" }}
                             >
                               {selectedCurrency.symbol}{" "}
                               {formatNumber(totalInterest, numberLocale)}
@@ -637,16 +636,16 @@ function EmiCalculator() {
 
           <Paper
             sx={{
-              p: 2.25,
+              p: { xs: 2.25, md: 2 },
               borderRadius: 0,
               border: "1px solid rgba(11, 31, 51, 0.08)",
               boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
             }}
           >
-            <Stack spacing={2}>
+            <Stack spacing={{ xs: 2, md: 1.5 }}>
               <Typography variant="h6">Your Amortization Details</Typography>
-              <Box sx={{ minHeight: { xs: 200, md: 220 } }}>
-                <ResponsiveContainer width="100%" height={220}>
+              <Box sx={{ minHeight: { xs: 200, md: 200 } }}>
+                <ResponsiveContainer width="100%" height={200}>
                   <LineChart
                     data={paymentSeries}
                     margin={{ top: 10, right: 12, left: 8, bottom: 0 }}
@@ -726,8 +725,8 @@ function SummaryRow({ label, value }: SummaryRowProps) {
       justifyContent="space-between"
       spacing={0.75}
       sx={{
-        px: 2,
-        py: 1.5,
+        px: { xs: 2, md: 1.75 },
+        py: { xs: 1.5, md: 1.2 },
       }}
     >
       <Typography
@@ -741,7 +740,7 @@ function SummaryRow({ label, value }: SummaryRowProps) {
         sx={{
           fontWeight: 800,
           lineHeight: 1.2,
-          fontSize: "1.05rem",
+          fontSize: { xs: "1.05rem", md: "0.98rem" },
           wordBreak: "break-word",
           textAlign: { xs: "left", sm: "right" },
         }}

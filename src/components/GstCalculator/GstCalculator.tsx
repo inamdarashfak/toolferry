@@ -188,10 +188,10 @@ function GstCalculator() {
   };
 
   return (
-    <Stack spacing={2.5}>
+    <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
         sx={{
-          p: { xs: 2.5, md: 3 },
+          p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
           border: "1px solid rgba(11, 31, 51, 0.08)",
           background:
@@ -199,31 +199,31 @@ function GstCalculator() {
           boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
         }}
       >
-        <Stack spacing={3}>
+        <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "2rem" } }}>
+              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
                 GST Calculator
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: 1.8 }}>
+            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
               Calculate GST instantly for inclusive or exclusive pricing and see
               the base amount, tax amount, and total at a glance.
             </Typography>
           </Box>
 
-          <Grid container spacing={2}>
+          <Grid container spacing={{ xs: 2, md: 1.75 }}>
             <Grid size={{ xs: 12, lg: 5 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={2}>
+                <Stack spacing={{ xs: 2, md: 1.75 }}>
                   <Box>
                     <Stack
                       direction={{ xs: "column", sm: "row" }}
@@ -377,14 +377,14 @@ function GstCalculator() {
             <Grid size={{ xs: 12, lg: 7 }}>
               <Paper
                 sx={{
-                  p: 2.25,
+                  p: { xs: 2.25, md: 2 },
                   height: "100%",
                   borderRadius: 0,
                   border: "1px solid rgba(11, 31, 51, 0.08)",
                   boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
                 }}
               >
-                <Stack spacing={1.75}>
+                <Stack spacing={{ xs: 1.75, md: 1.5 }}>
                   <Stack
                     divider={<Divider />}
                     sx={{
@@ -421,17 +421,17 @@ function GstCalculator() {
 
                   <Divider />
 
-                  <Grid container spacing={2}>
+                  <Grid container spacing={{ xs: 2, md: 1.5 }}>
                     <Grid size={{ xs: 12, md: 6 }}>
                       <Paper
                         sx={{
-                          p: 2,
+                          p: { xs: 2, md: 1.65 },
                           borderRadius: 0,
                           border: "1px solid rgba(11, 31, 51, 0.08)",
                           backgroundColor: "rgba(255,255,255,0.92)",
                         }}
                       >
-                        <Stack spacing={1}>
+                        <Stack spacing={{ xs: 1, md: 0.8 }}>
                           <Typography
                             variant="overline"
                             sx={{ color: "secondary.main", fontWeight: 700 }}
@@ -440,7 +440,7 @@ function GstCalculator() {
                           </Typography>
                           <Typography
                             variant="h5"
-                            sx={{ fontWeight: 800, lineHeight: 1.1 }}
+                            sx={{ fontWeight: 800, lineHeight: 1.1, fontSize: { xs: "1.5rem", md: "1.3rem" } }}
                           >
                             {selectedCurrency.symbol}{" "}
                             {formatNumber(animatedCgst, numberLocale)}
@@ -455,13 +455,13 @@ function GstCalculator() {
                     <Grid size={{ xs: 12, md: 6 }}>
                       <Paper
                         sx={{
-                          p: 2,
+                          p: { xs: 2, md: 1.65 },
                           borderRadius: 0,
                           border: "1px solid rgba(11, 31, 51, 0.08)",
                           backgroundColor: "rgba(255,255,255,0.92)",
                         }}
                       >
-                        <Stack spacing={1}>
+                        <Stack spacing={{ xs: 1, md: 0.8 }}>
                           <Typography
                             variant="overline"
                             sx={{ color: "secondary.main", fontWeight: 700 }}
@@ -470,7 +470,7 @@ function GstCalculator() {
                           </Typography>
                           <Typography
                             variant="h5"
-                            sx={{ fontWeight: 800, lineHeight: 1.1 }}
+                            sx={{ fontWeight: 800, lineHeight: 1.1, fontSize: { xs: "1.5rem", md: "1.3rem" } }}
                           >
                             {selectedCurrency.symbol}{" "}
                             {formatNumber(animatedSgst, numberLocale)}
@@ -510,8 +510,8 @@ function SummaryRow({ label, value }: SummaryRowProps) {
       justifyContent="space-between"
       spacing={0.75}
       sx={{
-        px: 2,
-        py: 1.5,
+        px: { xs: 2, md: 1.75 },
+        py: { xs: 1.5, md: 1.2 },
       }}
     >
       <Typography
@@ -525,7 +525,7 @@ function SummaryRow({ label, value }: SummaryRowProps) {
         sx={{
           fontWeight: 800,
           lineHeight: 1.2,
-          fontSize: "1.05rem",
+          fontSize: { xs: "1.05rem", md: "0.98rem" },
           wordBreak: "break-word",
           textAlign: { xs: "left", sm: "right" },
         }}

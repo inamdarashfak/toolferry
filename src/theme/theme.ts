@@ -25,23 +25,32 @@ const theme = createTheme({
     fontFamily: '"Plus Jakarta Sans", "Segoe UI", sans-serif',
     h1: {
       fontWeight: 700,
+      fontSize: '2.2rem',
+      lineHeight: 1.08,
     },
     h2: {
       fontWeight: 700,
+      fontSize: '1.65rem',
+      lineHeight: 1.15,
     },
     h3: {
       fontWeight: 700,
+      fontSize: '1.35rem',
+      lineHeight: 1.18,
     },
     button: {
       fontWeight: 600,
+      fontSize: '0.94rem',
       letterSpacing: 0,
       textTransform: 'none',
     },
     body1: {
-      lineHeight: 1.75,
+      fontSize: '0.98rem',
+      lineHeight: 1.68,
     },
     body2: {
-      lineHeight: 1.65,
+      fontSize: '0.92rem',
+      lineHeight: 1.58,
     },
     overline: {
       fontWeight: 700,
@@ -82,8 +91,8 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 0,
-          paddingInline: 16,
-          minHeight: 40,
+          paddingInline: 14,
+          minHeight: 38,
         },
         containedPrimary: {
           backgroundColor: '#0b1f33',
