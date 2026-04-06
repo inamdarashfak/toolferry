@@ -129,14 +129,19 @@ function AgeCalculator() {
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>

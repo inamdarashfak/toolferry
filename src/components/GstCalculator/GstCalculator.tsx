@@ -193,14 +193,19 @@ function GstCalculator() {
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
@@ -384,21 +389,31 @@ function GstCalculator() {
 
             <Grid size={{ xs: 12, lg: 7 }}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: { xs: 2.25, md: 2 },
                   height: "100%",
                   borderRadius: 0,
-                  border: "1px solid rgba(11, 31, 51, 0.08)",
-                  boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
-                }}
+                  border: `1px solid ${theme.palette.divider}`,
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(10, 17, 27, 0.72)"
+                      : theme.palette.background.paper,
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                      : "0 14px 30px rgba(11, 31, 51, 0.045)",
+                })}
               >
                 <Stack spacing={{ xs: 1.75, md: 1.5 }}>
                   <Stack
                     divider={<Divider />}
-                    sx={{
-                      border: "1px solid rgba(11, 31, 51, 0.08)",
-                      backgroundColor: "rgba(245, 248, 248, 0.85)",
-                    }}
+                    sx={(theme) => ({
+                      border: `1px solid ${theme.palette.divider}`,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.04)"
+                          : "rgba(245, 248, 248, 0.85)",
+                    })}
                   >
                     <SummaryRow
                       label={taxMode === "inclusive" ? "Actual Amount" : "Base Amount"}
@@ -432,12 +447,15 @@ function GstCalculator() {
                   <Grid container spacing={{ xs: 2, md: 1.5 }}>
                     <Grid size={{ xs: 12, md: 6 }}>
                       <Paper
-                        sx={{
+                        sx={(theme) => ({
                           p: { xs: 2, md: 1.65 },
                           borderRadius: 0,
-                          border: "1px solid rgba(11, 31, 51, 0.08)",
-                          backgroundColor: "rgba(255,255,255,0.92)",
-                        }}
+                          border: `1px solid ${theme.palette.divider}`,
+                          backgroundColor:
+                            theme.palette.mode === "dark"
+                              ? "rgba(255,255,255,0.05)"
+                              : "rgba(255,255,255,0.92)",
+                        })}
                       >
                         <Stack spacing={{ xs: 1, md: 0.8 }}>
                           <Typography
@@ -462,12 +480,15 @@ function GstCalculator() {
 
                     <Grid size={{ xs: 12, md: 6 }}>
                       <Paper
-                        sx={{
+                        sx={(theme) => ({
                           p: { xs: 2, md: 1.65 },
                           borderRadius: 0,
-                          border: "1px solid rgba(11, 31, 51, 0.08)",
-                          backgroundColor: "rgba(255,255,255,0.92)",
-                        }}
+                          border: `1px solid ${theme.palette.divider}`,
+                          backgroundColor:
+                            theme.palette.mode === "dark"
+                              ? "rgba(255,255,255,0.05)"
+                              : "rgba(255,255,255,0.92)",
+                        })}
                       >
                         <Stack spacing={{ xs: 1, md: 0.8 }}>
                           <Typography

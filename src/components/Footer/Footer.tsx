@@ -24,11 +24,14 @@ function Footer() {
   return (
     <Box
       component="footer"
-      sx={{
+      sx={(theme) => ({
         mt: { xs: 6, md: 7 },
-        borderTop: "1px solid rgba(11, 31, 51, 0.08)",
-        backgroundColor: "rgba(255, 255, 255, 0.72)",
-      }}
+        borderTop: `1px solid ${theme.palette.divider}`,
+        backgroundColor:
+          theme.palette.mode === "dark"
+            ? "rgba(12, 21, 33, 0.74)"
+            : "rgba(255, 255, 255, 0.72)",
+      })}
     >
       <Container>
         <Grid container spacing={{ xs: 3, md: 3 }} sx={{ py: { xs: 4, md: 3.5 } }}>
@@ -59,7 +62,7 @@ function Footer() {
                   sx={{
                     width: "fit-content",
                     '&:hover': {
-                      color: '#c7573a',
+                      color: 'secondary.main',
                     },
                   }}
                 >
@@ -84,7 +87,7 @@ function Footer() {
                   sx={{
                     width: "fit-content",
                     '&:hover': {
-                      color: '#c7573a',
+                      color: 'secondary.main',
                     },
                   }}
                 >
@@ -109,7 +112,7 @@ function Footer() {
                   sx={{
                     width: "fit-content",
                     '&:hover': {
-                      color: '#c7573a',
+                      color: 'secondary.main',
                     },
                   }}
                 >
@@ -121,10 +124,10 @@ function Footer() {
         </Grid>
 
         <Box
-          sx={{
+          sx={(theme) => ({
             py: { xs: 1.75, md: 1.5 },
-            borderTop: "1px solid rgba(11, 31, 51, 0.08)",
-          }}
+            borderTop: `1px solid ${theme.palette.divider}`,
+          })}
         >
           <Typography color="text.secondary" sx={{ fontSize: { xs: "0.9rem", md: "0.84rem" } }}>
             © {new Date().getFullYear()} ToolFerry. All rights reserved.

@@ -33,9 +33,8 @@ function CategoryPage({ category, tools }: CategoryPageProps) {
           sx={{
             p: { xs: 2.5, md: 3.5 },
             borderRadius: 0,
-            border: '1px solid rgba(11, 31, 51, 0.08)',
-            background:
-              'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,250,0.96) 100%)',
+            borderColor: 'divider',
+            bgcolor: 'background.paper',
             boxShadow: '0 14px 30px rgba(11, 31, 51, 0.045)',
           }}
         >

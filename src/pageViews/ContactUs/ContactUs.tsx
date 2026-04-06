@@ -10,9 +10,8 @@ function ContactUs() {
         sx={{
           p: { xs: 3, md: 4.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
-          background:
-            "linear-gradient(180deg, rgba(255,255,255,0.97) 0%, rgba(247,250,250,0.95) 100%)",
+          borderColor: "divider",
+          bgcolor: "background.paper",
           boxShadow: "0 16px 40px rgba(11, 31, 51, 0.05)",
         }}
       >

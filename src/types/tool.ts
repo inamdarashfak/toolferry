@@ -4,4 +4,6 @@ export type Tool = {
   metaDescription: string
   slug: string
   categorySlug: string
+  isFeatured?: boolean
+  homeRank?: number
 }

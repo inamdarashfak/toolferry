@@ -194,6 +194,50 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
       },
     ],
   },
+  "ppf-calculator": {
+    description:
+      "Estimate Public Provident Fund maturity using a simplified annual contribution model, interest rate, and total duration.",
+    steps: [
+      "Enter the amount you plan to contribute each year.",
+      "Adjust the annual interest rate and the investment duration.",
+      "Review the maturity value, total invested amount, and interest earned.",
+      "Use the yearly growth chart to compare invested amount with projected value over time.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Yearly contribution",
+            description:
+              "The amount added to the PPF account once per year in this simplified model.",
+          },
+          {
+            label: "Interest rate",
+            description:
+              "The annual growth rate used to project the PPF balance.",
+          },
+          {
+            label: "Duration",
+            description:
+              "How many years the contributions remain invested, up to the supported range in the tool.",
+          },
+          {
+            label: "Currency",
+            description: "Changes the number formatting used in the result summary.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default PPF example values.",
+          },
+          {
+            label: "Yearly growth chart",
+            description:
+              "Compares cumulative invested amount against projected maturity value each year.",
+          },
+        ],
+      },
+    ],
+  },
   "mutual-fund-returns-calculator": {
     description:
       "Estimate mutual fund growth for one-time investing or SIP-based investing, with returns, total value, and inflation-adjusted output.",
@@ -263,6 +307,43 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
       },
     ],
   },
+  "cagr-calculator": {
+    description:
+      "Calculate compounded annual growth rate using a starting value, ending value, and time period in years.",
+    steps: [
+      "Enter the initial value and the final value you want to compare.",
+      "Set the time period in years.",
+      "Review the CAGR output along with the total gain and growth multiple.",
+      "Use reset if you want to test another scenario quickly.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Initial value",
+            description: "The starting amount or baseline value.",
+          },
+          {
+            label: "Final value",
+            description: "The ending amount reached after the selected period.",
+          },
+          {
+            label: "Time period",
+            description: "How many years separate the initial and final value.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default CAGR example.",
+          },
+          {
+            label: "Annualized growth summary",
+            description:
+              "Shows CAGR, absolute gain, growth multiple, and ending value.",
+          },
+        ],
+      },
+    ],
+  },
   "gst-calculator": {
     description:
       "Calculate GST for inclusive or exclusive pricing and instantly see the tax amount, base amount, and total payable.",
@@ -306,6 +387,83 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
       },
     ],
   },
+  "percentage-calculator": {
+    description:
+      "Solve common percentage problems from one tool, including percentage-of calculations, reverse percentages, and percentage change.",
+    steps: [
+      "Choose the percentage calculation mode you want to use.",
+      "Enter the two values required for that mode.",
+      "Review the result and the short explanation shown in the summary panel.",
+      "Reset the form if you want to switch back to the default example.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Calculation mode",
+            description:
+              "Switches between percentage-of, reverse percentage, and percentage change workflows.",
+          },
+          {
+            label: "Value inputs",
+            description:
+              "The two numbers used by the selected percentage formula.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default percentage example.",
+          },
+          {
+            label: "Result summary",
+            description:
+              "Shows the main output and a short description of the calculation performed.",
+          },
+        ],
+      },
+    ],
+  },
+  "discount-calculator": {
+    description:
+      "Calculate how much a discount saves, what the reduced subtotal becomes, and the final amount after optional tax.",
+    steps: [
+      "Enter the original price of the item or service.",
+      "Set the discount percentage and optional tax percentage.",
+      "Choose the display currency if needed.",
+      "Review the savings, discounted subtotal, tax amount, and final payable total.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Original price",
+            description: "The full price before any discount is applied.",
+          },
+          {
+            label: "Discount",
+            description: "The percentage reduction applied to the original price.",
+          },
+          {
+            label: "Tax after discount",
+            description:
+              "Optional tax percentage added after the discount is applied.",
+          },
+          {
+            label: "Currency",
+            description: "Changes the display formatting for money values.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default discount example.",
+          },
+          {
+            label: "Discount summary",
+            description:
+              "Shows savings, discounted subtotal, tax amount, and final price.",
+          },
+        ],
+      },
+    ],
+  },
   "unit-converter": {
     description:
       "Convert values between different units by selecting a category, source unit, destination unit, and amount.",
@@ -341,6 +499,140 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
           {
             label: "Reset",
             description: "Returns the converter to its default state.",
+          },
+        ],
+      },
+    ],
+  },
+  "currency-converter": {
+    description:
+      "Convert an amount between major currencies and review the latest available Frankfurter reference exchange rate used for the calculation.",
+    steps: [
+      "Enter the amount you want to convert.",
+      "Choose the source and target currencies.",
+      "Use swap if you want to reverse the conversion direction quickly.",
+      "Review the converted amount and the latest available reference rate summary.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Amount",
+            description: "The money value you want to convert.",
+          },
+          {
+            label: "From / To currency",
+            description:
+              "Choose the source currency and the destination currency for conversion.",
+          },
+          {
+            label: "Swap",
+            description: "Reverses the selected currency direction in one click.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default currency conversion example.",
+          },
+          {
+            label: "Reference rate",
+            description:
+              "Shows the latest available Frankfurter reference rate used to calculate the converted amount.",
+          },
+        ],
+      },
+    ],
+  },
+  "time-zone-converter": {
+    description:
+      "Convert a selected date and time between two time zones and compare the source and destination offsets.",
+    steps: [
+      "Choose the date and time you want to convert.",
+      "Search and select the source time zone and the target time zone.",
+      "Use swap if you want to reverse the direction.",
+      "Review the source time, converted time, and UTC offset summary.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Date and time",
+            description: "The local date-time value to convert from the selected source zone.",
+          },
+          {
+            label: "From / To time zone",
+            description:
+              "Search for the source time zone first and the destination time zone second.",
+          },
+          {
+            label: "Swap",
+            description: "Reverses the source and target time zones quickly.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default time zone conversion example.",
+          },
+          {
+            label: "Converted time summary",
+            description:
+              "Shows the source time, converted target time, and both UTC offsets.",
+          },
+        ],
+      },
+    ],
+  },
+  "color-converter": {
+    description:
+      "Convert color values between HEX, RGB, and HSL while viewing the resulting color preview instantly.",
+    steps: [
+      "Enter the color value in HEX, RGB, or HSL format.",
+      "Use the format you already have; the converter updates the other formats when valid.",
+      "Review the synchronized HEX, RGB, and HSL output.",
+      "Use reset to return to the default example color.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "HEX / RGB / HSL",
+            description:
+              "You can edit any of the supported formats to drive the conversion.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default example color values.",
+          },
+          {
+            label: "Color preview",
+            description:
+              "Shows the converted color visually so you can verify the output more easily.",
+          },
+        ],
+      },
+    ],
+  },
+  "number-to-words-converter": {
+    description:
+      "Convert a numeric value into English words for forms, documents, and written references.",
+    steps: [
+      "Enter the number you want to convert into words.",
+      "Review the English words output generated from the value.",
+      "Use reset if you want to return to the default example number.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Number",
+            description: "The numeric value to convert into English words.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default number example.",
+          },
+          {
+            label: "Words output",
+            description:
+              "Shows the entered number written out in English words.",
           },
         ],
       },
@@ -480,6 +772,140 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
       },
     ],
   },
+  "csv-to-json-converter": {
+    description:
+      "Convert CSV input with a header row into formatted JSON output for easier reading and reuse.",
+    steps: [
+      "Paste CSV content into the input area.",
+      "Make sure the first row contains the headers.",
+      "Review the formatted JSON output generated from the rows.",
+      "Use reset to restore the sample CSV.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "CSV input",
+            description: "The source CSV data, including the header row.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the sample CSV example.",
+          },
+          {
+            label: "JSON output",
+            description:
+              "Shows the converted JSON array generated from the CSV rows.",
+          },
+        ],
+      },
+    ],
+  },
+  "json-to-csv-converter": {
+    description:
+      "Convert a JSON array of flat objects into CSV output with header columns.",
+    steps: [
+      "Paste a JSON array of flat objects into the input area.",
+      "Review the generated CSV output.",
+      "If nested JSON is present, use the validation message to simplify the shape first.",
+      "Use reset to restore the sample JSON.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "JSON input",
+            description:
+              "The source JSON array used for the CSV conversion.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the sample JSON example.",
+          },
+          {
+            label: "CSV output",
+            description:
+              "Shows the generated CSV with automatically created headers.",
+          },
+        ],
+      },
+    ],
+  },
+  "base-number-converter": {
+    description:
+      "Convert whole numbers between binary, decimal, and hexadecimal representations from one selected input base.",
+    steps: [
+      "Choose the input base you want to type in.",
+      "Enter the whole number value.",
+      "Review the converted output in the other supported bases.",
+      "Use reset to return to the default example value.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Input base",
+            description:
+              "Select whether the entered value should be treated as binary, decimal, or hexadecimal.",
+          },
+          {
+            label: "Value",
+            description:
+              "The whole number to convert between number systems.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default conversion example.",
+          },
+          {
+            label: "Converted values",
+            description:
+              "Shows the matching binary, decimal, and hexadecimal output.",
+          },
+        ],
+      },
+    ],
+  },
+  "timestamp-converter": {
+    description:
+      "Convert Unix timestamps into readable dates or convert selected dates back into seconds and milliseconds.",
+    steps: [
+      "Choose whether you want to convert a timestamp to a date or a date to a timestamp.",
+      "Enter the timestamp or select the date and time.",
+      "Choose seconds or milliseconds when timestamp input is used.",
+      "Review the UTC value, local value, and timestamp output summary.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Mode",
+            description:
+              "Switch between timestamp-to-date conversion and date-to-timestamp conversion.",
+          },
+          {
+            label: "Timestamp unit",
+            description:
+              "Controls whether timestamp input should be interpreted as seconds or milliseconds.",
+          },
+          {
+            label: "Timestamp / Date input",
+            description:
+              "Provide either a Unix timestamp or a date-time value depending on the selected mode.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default timestamp example.",
+          },
+          {
+            label: "Converted values",
+            description:
+              "Shows UTC, local time, seconds, and milliseconds output.",
+          },
+        ],
+      },
+    ],
+  },
   "age-calculator": {
     description:
       "Calculate exact age between two dates and view the result in years, months, days, and total duration.",
@@ -509,6 +935,123 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
             label: "Result cards",
             description:
               "Show exact age in years, months, days, total months, and total days.",
+          },
+        ],
+      },
+    ],
+  },
+  "date-difference-calculator": {
+    description:
+      "Measure the exact difference between two dates and view the result in years, months, days, total days, and approximate weeks.",
+    steps: [
+      "Choose the start date and end date you want to compare.",
+      "Review the exact calendar difference shown in years, months, and days.",
+      "Check the total day count and approximate week count for a simpler duration summary.",
+      "Use reset to return to the default example dates.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Start date",
+            description: "The beginning of the date range being measured.",
+          },
+          {
+            label: "End date",
+            description: "The final date used to complete the comparison.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default example dates.",
+          },
+          {
+            label: "Difference summary",
+            description:
+              "Shows the exact date difference plus the total days and approximate weeks.",
+          },
+        ],
+      },
+    ],
+  },
+  "bmi-calculator": {
+    description:
+      "Calculate body mass index using your height and weight and view the standard BMI category immediately.",
+    steps: [
+      "Choose whether you want to use metric or imperial units.",
+      "Enter your height and weight in the selected unit system.",
+      "Review the BMI value and the matching standard category.",
+      "Use reset to return to the default BMI example.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Unit system",
+            description:
+              "Switches the calculator between metric and imperial height and weight inputs.",
+          },
+          {
+            label: "Height",
+            description:
+              "Enter height in centimeters for metric mode or feet and inches for imperial mode.",
+          },
+          {
+            label: "Weight",
+            description:
+              "Enter weight in kilograms for metric mode or pounds for imperial mode.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the default BMI example values.",
+          },
+          {
+            label: "BMI result",
+            description:
+              "Shows the calculated BMI score and the corresponding standard category.",
+          },
+        ],
+      },
+    ],
+  },
+  "biological-age-calculator": {
+    description:
+      "Estimate a wellness-based biological age using your actual age, height, weight, and a few everyday habit inputs.",
+    steps: [
+      "Enter your chronological age and choose sex and unit system.",
+      "Add height and weight so the tool can calculate BMI automatically.",
+      "Choose smoking status, exercise level, sleep duration, alcohol intake, and stress level.",
+      "Review the estimated biological age, age gap, BMI, and the habit factors that are helping or pushing the estimate older.",
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: "Chronological age",
+            description: "Your actual age today, used as the starting point for the estimate.",
+          },
+          {
+            label: "Sex",
+            description: "Applies a small baseline adjustment in the simplified wellness model.",
+          },
+          {
+            label: "Unit system",
+            description: "Switches body measurement inputs between metric and imperial modes.",
+          },
+          {
+            label: "Height and weight",
+            description: "Used to calculate BMI automatically inside the tool.",
+          },
+          {
+            label: "Smoking, exercise, sleep, alcohol, and stress",
+            description: "These lifestyle inputs drive the simplified age adjustments in the estimate.",
+          },
+          {
+            label: "Reset",
+            description: "Restores the calculator to its default example values.",
+          },
+          {
+            label: "Biological age estimate",
+            description: "Shows the estimated wellness-based age, BMI, age gap, and the factors affecting the result.",
           },
         ],
       },

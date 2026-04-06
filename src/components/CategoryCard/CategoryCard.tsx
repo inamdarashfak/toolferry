@@ -17,13 +17,18 @@ type CategoryCardProps = {
 function CategoryCard({ category, toolCount }: CategoryCardProps) {
   return (
     <Card
-      sx={{
+      sx={(theme) => ({
         height: '100%',
-        border: '1px solid rgba(11, 31, 51, 0.08)',
+        border: `1px solid ${theme.palette.divider}`,
         background:
-          'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,250,0.94) 100%)',
-        boxShadow: '0 14px 30px rgba(11, 31, 51, 0.045)',
-      }}
+          theme.palette.mode === 'dark'
+            ? 'linear-gradient(180deg, rgba(20,32,50,0.98) 0%, rgba(12,20,32,0.96) 100%)'
+            : 'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,250,0.94) 100%)',
+        boxShadow:
+          theme.palette.mode === 'dark'
+            ? '0 16px 34px rgba(0, 0, 0, 0.24)'
+            : '0 14px 30px rgba(11, 31, 51, 0.045)',
+      })}
     >
       <CardActionArea
         component={Link}

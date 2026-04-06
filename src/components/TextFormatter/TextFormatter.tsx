@@ -497,14 +497,19 @@ function TextFormatter() {
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 2.25, md: 2 }}>
           <Box sx={{ maxWidth: 760 }}>
@@ -521,20 +526,30 @@ function TextFormatter() {
           </Box>
 
           <Paper
-            sx={{
+            sx={(theme) => ({
               p: 1.75,
               borderRadius: 0,
-              border: "1px solid rgba(11, 31, 51, 0.08)",
-              boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
-            }}
+              border: `1px solid ${theme.palette.divider}`,
+              backgroundColor:
+                theme.palette.mode === "dark"
+                  ? "rgba(10, 17, 27, 0.72)"
+                  : theme.palette.background.paper,
+              boxShadow:
+                theme.palette.mode === "dark"
+                  ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                  : "0 14px 30px rgba(11, 31, 51, 0.045)",
+            })}
           >
             <Stack spacing={1.5}>
               <Stack
                 divider={<Divider />}
-                sx={{
-                  border: "1px solid rgba(11, 31, 51, 0.08)",
-                  backgroundColor: "rgba(245, 248, 248, 0.85)",
-                }}
+                sx={(theme) => ({
+                  border: `1px solid ${theme.palette.divider}`,
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(255, 255, 255, 0.04)"
+                      : "rgba(245, 248, 248, 0.85)",
+                })}
               >
                 <SummaryRow label="Active transform" value={activeTransformLabel} />
                 <SummaryRow label="Characters" value={String(stats.characters)} />
@@ -546,56 +561,58 @@ function TextFormatter() {
                 />
               </Stack>
 
-              <Grid container spacing={1}>
-                <Grid size={{ xs: 12, sm: 4 }}>
-                  <TextField
-                    select
-                    fullWidth
-                    size="small"
-                    label="Tool Group"
-                    value={selectedGroup}
-                    onChange={(event) => {
-                      const nextGroup = event.target.value as TransformGroup;
-                      const nextTransforms = groupedTransforms[nextGroup] ?? [];
+              <Box sx={{ pt: { xs: 1.25, md: 1 } }}>
+                <Grid container spacing={1}>
+                  <Grid size={{ xs: 12, sm: 4 }}>
+                    <TextField
+                      select
+                      fullWidth
+                      size="small"
+                      label="Tool Group"
+                      value={selectedGroup}
+                      onChange={(event) => {
+                        const nextGroup = event.target.value as TransformGroup;
+                        const nextTransforms = groupedTransforms[nextGroup] ?? [];
 
-                      setSelectedGroup(nextGroup);
+                        setSelectedGroup(nextGroup);
 
-                      if (
-                        activeTransform !== "none" &&
-                        !nextTransforms.some((item) => item.key === activeTransform)
-                      ) {
-                        setActiveTransform("none");
+                        if (
+                          activeTransform !== "none" &&
+                          !nextTransforms.some((item) => item.key === activeTransform)
+                        ) {
+                          setActiveTransform("none");
+                        }
+                      }}
+                    >
+                      {Object.keys(groupedTransforms).map((group) => (
+                        <MenuItem key={group} value={group}>
+                          {group}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+
+                  <Grid size={{ xs: 12, sm: 8 }}>
+                    <TextField
+                      select
+                      fullWidth
+                      size="small"
+                      label="Action"
+                      value={activeTransform}
+                      onChange={(event) =>
+                        setActiveTransform(event.target.value as TransformKey)
                       }
-                    }}
-                  >
-                    {Object.keys(groupedTransforms).map((group) => (
-                      <MenuItem key={group} value={group}>
-                        {group}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                    >
+                      <MenuItem value="none">Live preview only</MenuItem>
+                      {availableTransforms.map((item) => (
+                        <MenuItem key={item.key} value={item.key}>
+                          {item.label}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
                 </Grid>
-
-                <Grid size={{ xs: 12, sm: 8 }}>
-                  <TextField
-                    select
-                    fullWidth
-                    size="small"
-                    label="Action"
-                    value={activeTransform}
-                    onChange={(event) =>
-                      setActiveTransform(event.target.value as TransformKey)
-                    }
-                  >
-                    <MenuItem value="none">Live preview only</MenuItem>
-                    {availableTransforms.map((item) => (
-                      <MenuItem key={item.key} value={item.key}>
-                        {item.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-              </Grid>
+              </Box>
 
               {helperFieldsVisible && (
                 <Grid container spacing={1}>

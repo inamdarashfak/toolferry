@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import TrendingFlatRoundedIcon from "@mui/icons-material/TrendingFlatRounded";
@@ -13,8 +13,10 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { getChartTooltipStyles } from "../../lib/chartTooltip";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
@@ -33,7 +35,14 @@ type CurrencyOption = {
   symbol: string;
 };
 
-type GoalType = "home" | "car" | "travel" | "education" | "wedding" | "emergency" | "custom";
+type GoalType =
+  | "home"
+  | "car"
+  | "travel"
+  | "education"
+  | "wedding"
+  | "emergency"
+  | "custom";
 
 type ProjectionPoint = {
   label: string;
@@ -49,7 +58,11 @@ const currencyOptions: CurrencyOption[] = [
   { code: "AED", locale: "en-AE", symbol: "AED" },
 ];
 
-const GOAL_TYPES: Array<{ value: GoalType; label: string; defaultName: string }> = [
+const GOAL_TYPES: Array<{
+  value: GoalType;
+  label: string;
+  defaultName: string;
+}> = [
   { value: "home", label: "Home", defaultName: "Dream Home" },
   { value: "car", label: "Car", defaultName: "New Car" },
   { value: "travel", label: "Travel", defaultName: "Europe Trip" },
@@ -146,7 +159,9 @@ function formatTooltipCurrencyValue(
   locale: string,
   symbol: string
 ) {
-  const normalizedValue = Array.isArray(value) ? Number(value[0]) : Number(value);
+  const normalizedValue = Array.isArray(value)
+    ? Number(value[0])
+    : Number(value);
 
   return `${symbol} ${formatNumber(
     Number.isFinite(normalizedValue) ? normalizedValue : 0,
@@ -228,7 +243,8 @@ function projectGoalPlan({
       (monthlyContribution + extraMonthlyContribution) *
       Math.pow(1 + yearlyStepUp / 100, currentYearIndex);
 
-    projectedValue = (projectedValue + adjustedMonthlyContribution) * (1 + monthlyRate);
+    projectedValue =
+      (projectedValue + adjustedMonthlyContribution) * (1 + monthlyRate);
 
     if (month % 12 === 0 || month === months) {
       yearlySeries.push({
@@ -313,7 +329,8 @@ function calculateDelayMonths({
     const adjustedMonthlyContribution =
       monthlyContribution * Math.pow(1 + yearlyStepUp / 100, currentYearIndex);
 
-    projectedValue = (projectedValue + adjustedMonthlyContribution) * (1 + monthlyRate);
+    projectedValue =
+      (projectedValue + adjustedMonthlyContribution) * (1 + monthlyRate);
 
     if (projectedValue >= goalCost) {
       return extraMonth;
@@ -348,15 +365,20 @@ function formatDelay(delayMonths: number | null) {
 }
 
 function GoalCalculator() {
+  const theme = useTheme();
   const [goalType, setGoalType] = useState<GoalType>(DEFAULT_VALUES.goalType);
   const [goalName, setGoalName] = useState(DEFAULT_VALUES.goalName);
   const [currentCost, setCurrentCost] = useState(DEFAULT_VALUES.currentCost);
   const [yearsToGoal, setYearsToGoal] = useState(DEFAULT_VALUES.yearsToGoal);
-  const [currentSavings, setCurrentSavings] = useState(DEFAULT_VALUES.currentSavings);
+  const [currentSavings, setCurrentSavings] = useState(
+    DEFAULT_VALUES.currentSavings
+  );
   const [monthlyContribution, setMonthlyContribution] = useState(
     DEFAULT_VALUES.monthlyContribution
   );
-  const [expectedReturn, setExpectedReturn] = useState(DEFAULT_VALUES.expectedReturn);
+  const [expectedReturn, setExpectedReturn] = useState(
+    DEFAULT_VALUES.expectedReturn
+  );
   const [yearlyStepUp, setYearlyStepUp] = useState(DEFAULT_VALUES.yearlyStepUp);
   const [currencyCode, setCurrencyCode] = useState(currencyOptions[0].code);
 
@@ -365,7 +387,8 @@ function GoalCalculator() {
   }, []);
 
   const selectedCurrency =
-    currencyOptions.find((option) => option.code === currencyCode) ?? currencyOptions[0];
+    currencyOptions.find((option) => option.code === currencyCode) ??
+    currencyOptions[0];
   const numberLocale = selectedCurrency.locale;
 
   const currentGoalCost = Number(currentCost) || 0;
@@ -422,8 +445,8 @@ function GoalCalculator() {
       achievement >= 100
         ? STATUS_CONFIG.onTrack
         : achievement >= 85
-          ? STATUS_CONFIG.close
-          : STATUS_CONFIG.behind;
+        ? STATUS_CONFIG.close
+        : STATUS_CONFIG.behind;
 
     const requiredMonthly = calculateRequiredMonthlyContribution({
       years,
@@ -433,7 +456,10 @@ function GoalCalculator() {
       yearlyStepUp: stepUpRate,
     });
 
-    const growthFactor = Math.pow(1 + annualReturn / 12 / 100, Math.round(years * 12));
+    const growthFactor = Math.pow(
+      1 + annualReturn / 12 / 100,
+      Math.round(years * 12)
+    );
     const topUpToday = gap > 0 && growthFactor > 0 ? gap / growthFactor : 0;
     const delay = calculateDelayMonths({
       currentProjectionValue: projection.projectedValue,
@@ -469,7 +495,10 @@ function GoalCalculator() {
   const animatedFutureCost = useAnimatedNumber(futureGoalCost);
   const animatedProjectedValue = useAnimatedNumber(projectedValue);
   const animatedGap = useAnimatedNumber(Math.abs(fundingGap));
-  const animatedRequiredMonthly = useAnimatedNumber(requiredMonthlyContribution);
+  const animatedRequiredMonthly = useAnimatedNumber(
+    requiredMonthlyContribution
+  );
+  const tooltipStyles = getChartTooltipStyles(theme);
 
   const goalDisplayName = goalName.trim() || "My Goal";
 
@@ -477,7 +506,9 @@ function GoalCalculator() {
     setGoalType(nextGoalType);
 
     if (goalName.trim() === "" || goalName === DEFAULT_VALUES.goalName) {
-      const selectedType = GOAL_TYPES.find((item) => item.value === nextGoalType);
+      const selectedType = GOAL_TYPES.find(
+        (item) => item.value === nextGoalType
+      );
       if (selectedType) {
         setGoalName(selectedType.defaultName);
       }
@@ -504,8 +535,10 @@ function GoalCalculator() {
         numberLocale
       )}/mo`,
       accent: "#0f8b8d",
-      background:
+      lightBackground:
         "linear-gradient(180deg, rgba(15, 139, 141, 0.12) 0%, rgba(255,255,255,0.96) 100%)",
+      darkBackground:
+        "linear-gradient(180deg, rgba(15, 139, 141, 0.22) 0%, rgba(14,23,35,0.98) 100%)",
       eyebrow: fundingGap > 0 ? "Stay on schedule" : "Current pace works",
       detail:
         fundingGap > 0
@@ -517,10 +550,15 @@ function GoalCalculator() {
     },
     {
       title: "Add One-time Boost",
-      value: `${selectedCurrency.symbol} ${formatNumber(topUpRequiredToday, numberLocale)}`,
+      value: `${selectedCurrency.symbol} ${formatNumber(
+        topUpRequiredToday,
+        numberLocale
+      )}`,
       accent: "#c7573a",
-      background:
+      lightBackground:
         "linear-gradient(180deg, rgba(255, 122, 89, 0.14) 0%, rgba(255,255,255,0.96) 100%)",
+      darkBackground:
+        "linear-gradient(180deg, rgba(255, 122, 89, 0.24) 0%, rgba(14,23,35,0.98) 100%)",
       eyebrow: fundingGap > 0 ? "Fastest catch-up" : "Optional cushion",
       detail:
         fundingGap > 0
@@ -531,42 +569,61 @@ function GoalCalculator() {
       title: "Keep Current Pace",
       value: formatDelay(delayMonths),
       accent: "#0b1f33",
-      background:
+      darkAccent: "#edf2f7",
+      lightBackground:
         "linear-gradient(180deg, rgba(11, 31, 51, 0.08) 0%, rgba(255,255,255,0.96) 100%)",
+      darkBackground:
+        "linear-gradient(180deg, rgba(148, 163, 184, 0.18) 0%, rgba(14,23,35,0.98) 100%)",
       eyebrow: "Lower monthly pressure",
       detail:
         delayMonths === null
           ? "At the current pace, this goal remains out of reach within the extra delay window."
           : delayMonths === 0
-            ? "You can stay with the current plan and still hit the goal on time."
-            : "If you do not want to increase savings, this is the delay to expect.",
+          ? "You can stay with the current plan and still hit the goal on time."
+          : "If you do not want to increase savings, this is the delay to expect.",
     },
   ];
 
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 860 }}>
-            <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.75 }}>
-              <Typography variant="h3" sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}>
+            <Stack
+              direction="row"
+              spacing={1}
+              alignItems="center"
+              sx={{ mb: 0.75 }}
+            >
+              <Typography
+                variant="h3"
+                sx={{ fontSize: { xs: "1.55rem", md: "1.8rem" } }}
+              >
                 Goal Calculator
               </Typography>
               <ScrollToInstructionsButton />
             </Stack>
-            <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}>
+            <Typography
+              color="text.secondary"
+              sx={{ lineHeight: { xs: 1.8, md: 1.68 } }}
+            >
               Turn a real-life goal into a practical savings plan. See whether
-              your current plan can fund it,
-              and which adjustment path gets you there most cleanly.
+              your current plan can fund it, and which adjustment path gets you
+              there most cleanly.
             </Typography>
           </Box>
 
@@ -586,12 +643,21 @@ function GoalCalculator() {
                     spacing={1}
                     justifyContent="space-between"
                   >
-                    <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      useFlexGap
+                      flexWrap="wrap"
+                    >
                       {GOAL_TYPES.map((type) => (
                         <Button
                           key={type.value}
-                          variant={goalType === type.value ? "contained" : "outlined"}
-                          color={goalType === type.value ? "primary" : "inherit"}
+                          variant={
+                            goalType === type.value ? "contained" : "outlined"
+                          }
+                          color={
+                            goalType === type.value ? "primary" : "inherit"
+                          }
                           size="small"
                           onClick={() => handleGoalTypeChange(type.value)}
                           sx={{ borderRadius: 0 }}
@@ -606,7 +672,10 @@ function GoalCalculator() {
                       size="small"
                       startIcon={<AutorenewRoundedIcon />}
                       onClick={handleReset}
-                      sx={{ borderRadius: 0, alignSelf: { xs: "stretch", sm: "flex-start" } }}
+                      sx={{
+                        borderRadius: 0,
+                        alignSelf: { xs: "stretch", sm: "flex-start" },
+                      }}
                     >
                       Reset
                     </Button>
@@ -694,7 +763,9 @@ function GoalCalculator() {
                       size="small"
                       value={yearsToGoal}
                       onChange={(event) =>
-                        setYearsToGoal(sanitizeNumericInput(event.target.value, true))
+                        setYearsToGoal(
+                          sanitizeNumericInput(event.target.value, true)
+                        )
                       }
                       InputProps={{
                         endAdornment: (
@@ -738,14 +809,20 @@ function GoalCalculator() {
                           value={
                             currentSavings === ""
                               ? ""
-                              : formatNumber(Number(currentSavings), numberLocale, {
-                                  maximumFractionDigits: 0,
-                                })
+                              : formatNumber(
+                                  Number(currentSavings),
+                                  numberLocale,
+                                  {
+                                    maximumFractionDigits: 0,
+                                  }
+                                )
                           }
                           onChange={(event) =>
                             preserveFormattedNumberCaret({
                               event,
-                              nextValue: sanitizeNumericInput(event.target.value),
+                              nextValue: sanitizeNumericInput(
+                                event.target.value
+                              ),
                               setValue: setCurrentSavings,
                               locale: numberLocale,
                             })
@@ -784,14 +861,20 @@ function GoalCalculator() {
                           value={
                             monthlyContribution === ""
                               ? ""
-                              : formatNumber(Number(monthlyContribution), numberLocale, {
-                                  maximumFractionDigits: 0,
-                                })
+                              : formatNumber(
+                                  Number(monthlyContribution),
+                                  numberLocale,
+                                  {
+                                    maximumFractionDigits: 0,
+                                  }
+                                )
                           }
                           onChange={(event) =>
                             preserveFormattedNumberCaret({
                               event,
-                              nextValue: sanitizeNumericInput(event.target.value),
+                              nextValue: sanitizeNumericInput(
+                                event.target.value
+                              ),
                               setValue: setMonthlyContribution,
                               locale: numberLocale,
                             })
@@ -909,20 +992,30 @@ function GoalCalculator() {
 
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2.25,
                   height: "100%",
                   borderRadius: 0,
-                  border: "1px solid rgba(11, 31, 51, 0.08)",
-                  boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
-                }}
+                  border: `1px solid ${theme.palette.divider}`,
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(10, 17, 27, 0.72)"
+                      : theme.palette.background.paper,
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                      : "0 14px 30px rgba(11, 31, 51, 0.045)",
+                })}
               >
                 <Stack spacing={1.75}>
                   <Box
-                    sx={{
-                      border: "1px solid rgba(11, 31, 51, 0.08)",
-                      backgroundColor: "rgba(245, 248, 248, 0.85)",
-                    }}
+                    sx={(theme) => ({
+                      border: `1px solid ${theme.palette.divider}`,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.04)"
+                          : "rgba(245, 248, 248, 0.85)",
+                    })}
                   >
                     <SummaryRow label="Goal" value={goalDisplayName} />
                     <Divider />
@@ -943,7 +1036,9 @@ function GoalCalculator() {
                     />
                     <Divider />
                     <SummaryRow
-                      label={fundingGap > 0 ? "Funding Gap" : "Projected Surplus"}
+                      label={
+                        fundingGap > 0 ? "Funding Gap" : "Projected Surplus"
+                      }
                       value={`${selectedCurrency.symbol} ${formatNumber(
                         animatedGap,
                         numberLocale
@@ -966,7 +1061,9 @@ function GoalCalculator() {
                         spacing={0.75}
                       >
                         <Typography variant="h6">Are You On Track?</Typography>
-                        <Typography sx={{ color: status.color, fontWeight: 800 }}>
+                        <Typography
+                          sx={{ color: status.color, fontWeight: 800 }}
+                        >
                           {status.label}
                         </Typography>
                       </Stack>
@@ -985,21 +1082,30 @@ function GoalCalculator() {
                           }}
                         />
                       </Box>
-                      <Typography color="text.secondary" sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}>
+                      <Typography
+                        color="text.secondary"
+                        sx={{ lineHeight: { xs: 1.7, md: 1.58 } }}
+                      >
                         {fundingGap > 0
                           ? `Your current plan is projected to fund ${formatNumber(
                               achievementPercentage,
                               numberLocale,
                               { maximumFractionDigits: 0 }
                             )}% of this goal.`
-                          : `Your current plan is projected to reach this goal with a cushion of ${selectedCurrency.symbol} ${formatNumber(
+                          : `Your current plan is projected to reach this goal with a cushion of ${
+                              selectedCurrency.symbol
+                            } ${formatNumber(
                               Math.abs(fundingGap),
                               numberLocale
                             )}.`}
                       </Typography>
                       <Stack direction="row" spacing={0.75} alignItems="center">
-                        <TrendingFlatRoundedIcon sx={{ color: status.color, fontSize: 18 }} />
-                        <Typography sx={{ color: status.color, fontWeight: 700 }}>
+                        <TrendingFlatRoundedIcon
+                          sx={{ color: status.color, fontSize: 18 }}
+                        />
+                        <Typography
+                          sx={{ color: status.color, fontWeight: 700 }}
+                        >
                           Required monthly pace: {selectedCurrency.symbol}{" "}
                           {formatNumber(animatedRequiredMonthly, numberLocale)}
                         </Typography>
@@ -1011,35 +1117,47 @@ function GoalCalculator() {
                     {recommendationCards.map((card) => (
                       <Grid key={card.title} size={{ xs: 12, sm: 4 }}>
                         <Paper
-                          sx={{
+                          sx={(theme) => ({
                             p: 0,
                             height: "100%",
                             borderRadius: 0,
-                            border: "1px solid rgba(11, 31, 51, 0.08)",
-                            background: card.background,
-                            boxShadow: "0 14px 28px rgba(11, 31, 51, 0.05)",
+                            border: `1px solid ${theme.palette.divider}`,
+                            background:
+                              theme.palette.mode === "dark"
+                                ? card.darkBackground
+                                : card.lightBackground,
+                            boxShadow:
+                              theme.palette.mode === "dark"
+                                ? "0 14px 28px rgba(0, 0, 0, 0.2)"
+                                : "0 14px 28px rgba(11, 31, 51, 0.05)",
                             overflow: "hidden",
-                          }}
+                          })}
                         >
                           <Stack spacing={0}>
                             <Box
-                              sx={{
+                              sx={(theme) => ({
                                 px: { xs: 1.5, md: 1.25 },
                                 py: { xs: 0.9, md: 0.75 },
-                                borderBottom: "1px solid rgba(11, 31, 51, 0.08)",
-                                backgroundColor: "rgba(255,255,255,0.42)",
-                              }}
+                                borderBottom: `1px solid ${theme.palette.divider}`,
+                                backgroundColor:
+                                  theme.palette.mode === "dark"
+                                    ? "rgba(255,255,255,0.08)"
+                                    : "rgba(255,255,255,0.42)",
+                              })}
                             >
                               <Stack spacing={0.35}>
                                 <Typography
                                   variant="caption"
-                                  sx={{
-                                    color: card.accent,
+                                  sx={(theme) => ({
+                                    color:
+                                      theme.palette.mode === "dark"
+                                        ? card.darkAccent ?? card.accent
+                                        : card.accent,
                                     fontWeight: 800,
                                     letterSpacing: "0.08em",
                                     textTransform: "uppercase",
                                     fontSize: "0.66rem",
-                                  }}
+                                  })}
                                 >
                                   {card.eyebrow}
                                 </Typography>
@@ -1052,15 +1170,21 @@ function GoalCalculator() {
                               </Stack>
                             </Box>
 
-                            <Stack spacing={0.85} sx={{ p: { xs: 1.5, md: 1.25 }, height: "100%" }}>
+                            <Stack
+                              spacing={0.85}
+                              sx={{ p: { xs: 1.5, md: 1.25 }, height: "100%" }}
+                            >
                               <Typography
                                 variant="h6"
-                                sx={{
+                                sx={(theme) => ({
                                   fontSize: { xs: "1rem", md: "0.94rem" },
                                   lineHeight: 1.25,
-                                  color: card.accent,
+                                  color:
+                                    theme.palette.mode === "dark"
+                                      ? card.darkAccent ?? card.accent
+                                      : card.accent,
                                   fontWeight: 800,
-                                }}
+                                })}
                               >
                                 {card.value}
                               </Typography>
@@ -1073,7 +1197,10 @@ function GoalCalculator() {
                               />
                               <Typography
                                 color="text.secondary"
-                                sx={{ lineHeight: 1.5, fontSize: { xs: "0.84rem", md: "0.8rem" } }}
+                                sx={{
+                                  lineHeight: 1.5,
+                                  fontSize: { xs: "0.84rem", md: "0.8rem" },
+                                }}
                               >
                                 {card.detail}
                               </Typography>
@@ -1091,6 +1218,7 @@ function GoalCalculator() {
           <Paper
             sx={{
               p: { xs: 2.25, md: 2 },
+              mt: { xs: 1, md: 0.75 },
               borderRadius: 0,
               border: "1px solid rgba(11, 31, 51, 0.08)",
               boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
@@ -1104,7 +1232,10 @@ function GoalCalculator() {
                     data={growthSeries}
                     margin={{ top: 10, right: 12, left: 8, bottom: 0 }}
                   >
-                    <CartesianGrid stroke="rgba(11, 31, 51, 0.08)" vertical={false} />
+                    <CartesianGrid
+                      stroke="rgba(11, 31, 51, 0.08)"
+                      vertical={false}
+                    />
                     <XAxis
                       dataKey="label"
                       tick={{ fill: "#5b6b7f", fontSize: 12 }}
@@ -1119,6 +1250,7 @@ function GoalCalculator() {
                       tickLine={false}
                     />
                     <Tooltip
+                      {...tooltipStyles}
                       formatter={(value) =>
                         formatTooltipCurrencyValue(
                           value,
@@ -1170,7 +1302,10 @@ function SummaryRow({ label, value }: { label: string; value: string }) {
       spacing={0.75}
       sx={{ px: 2, py: 1.5 }}
     >
-      <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 600 }}>
+      <Typography
+        variant="body2"
+        sx={{ color: "text.secondary", fontWeight: 600 }}
+      >
         {label}
       </Typography>
       <Typography

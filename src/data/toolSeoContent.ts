@@ -11,7 +11,7 @@ export type ToolSeoContent = {
 
 export const toolSeoContent: Record<string, ToolSeoContent> = {
   'goal-calculator': {
-    category: 'Planning Tools',
+    category: 'Finance',
     intro:
       'Use the Goal Calculator to turn a future purchase or milestone into a clear savings plan with projected value, funding gaps, and practical catch-up options.',
     audience:
@@ -40,7 +40,7 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
     ],
   },
   'emi-calculator': {
-    category: 'Loan Calculators',
+    category: 'Finance',
     intro:
       'Use the EMI Calculator to estimate monthly payments, total interest, and full repayment cost for home, car, or personal loans.',
     audience:
@@ -69,7 +69,7 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
     ],
   },
   'fd-interest-calculator': {
-    category: 'Investment Calculators',
+    category: 'Finance',
     intro:
       'Use the FD Interest Calculator to estimate maturity value, total interest earned, and fixed deposit growth over time with different compounding frequencies.',
     audience:
@@ -97,8 +97,37 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'ppf-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the PPF Calculator to estimate annual contribution growth, interest earned, and maturity value over the chosen investment period.',
+    audience:
+      'This tool is useful for savers and long-term planners who want a quick Public Provident Fund projection without manually calculating yearly compounding.',
+    highlights: [
+      'Estimate maturity value from annual PPF contributions.',
+      'See total invested amount and interest earned separately.',
+      'Track how the balance grows year by year.',
+    ],
+    faqs: [
+      {
+        question: 'What does the PPF Calculator show?',
+        answer:
+          'It shows the projected maturity value, total invested amount, estimated interest earned, and a yearly growth trend based on the selected annual contribution and interest rate.',
+      },
+      {
+        question: 'Does this support yearly contributions?',
+        answer:
+          'Yes. This version uses a simplified annual contribution model so you can estimate long-term PPF growth quickly.',
+      },
+      {
+        question: 'Can I change the interest rate assumption?',
+        answer:
+          'Yes. You can adjust the annual interest rate to test different PPF return assumptions.',
+      },
+    ],
+  },
   'mutual-fund-returns-calculator': {
-    category: 'Investment Calculators',
+    category: 'Finance',
     intro:
       'Use the Mutual Fund Returns Calculator to estimate lump-sum or SIP growth with projected returns, total value, and inflation-adjusted output.',
     audience:
@@ -126,8 +155,37 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'cagr-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the CAGR Calculator to find the compounded annual growth rate between an initial value and a final value across a selected time period.',
+    audience:
+      'This tool is useful for investors, analysts, and business users comparing growth over time and wanting a cleaner annualized rate than a simple total return figure.',
+    highlights: [
+      'Convert total growth into an annualized rate.',
+      'Compare performance across different time periods.',
+      'See CAGR alongside absolute gain and growth multiple.',
+    ],
+    faqs: [
+      {
+        question: 'What is CAGR?',
+        answer:
+          'CAGR stands for Compounded Annual Growth Rate, which expresses how fast a value grows per year on an annualized basis over a given time period.',
+      },
+      {
+        question: 'Why use CAGR instead of total return?',
+        answer:
+          'CAGR makes it easier to compare performance across different durations because it normalizes the growth into a yearly rate.',
+      },
+      {
+        question: 'Can I use this beyond investments?',
+        answer:
+          'Yes. You can use it for any scenario where you need annualized growth between a starting value and an ending value.',
+      },
+    ],
+  },
   'gst-calculator': {
-    category: 'Business Tools',
+    category: 'Finance',
     intro:
       'Use the GST Calculator to quickly work out tax amounts for inclusive or exclusive GST pricing and see the final amount instantly.',
     audience:
@@ -152,6 +210,64 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Is the final amount shown immediately?',
         answer:
           'Yes. The output updates as you change the amount, GST rate, or pricing mode.',
+      },
+    ],
+  },
+  'percentage-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Percentage Calculator to solve common percentage problems such as finding a percent of a number, reversing a percentage, or calculating percentage change.',
+    audience:
+      'This tool is useful for students, shoppers, business users, and anyone who needs quick percentage math without switching between formulas.',
+    highlights: [
+      'Switch between common percentage calculation modes.',
+      'Handle percentage-of, reverse percentage, and percentage change.',
+      'Get a clear result from one compact workflow.',
+    ],
+    faqs: [
+      {
+        question: 'What percentage calculations are included?',
+        answer:
+          'The tool supports finding a percentage of a value, checking what percentage one number is of another, and measuring percentage increase or decrease between two values.',
+      },
+      {
+        question: 'Can I calculate percentage increase and decrease?',
+        answer:
+          'Yes. The percentage change mode shows whether the result is an increase or a decrease based on the starting and ending values.',
+      },
+      {
+        question: 'Is this useful for discounts and markups?',
+        answer:
+          'Yes. It can be used for many everyday scenarios, including discounts, growth comparisons, score changes, and price analysis.',
+      },
+    ],
+  },
+  'discount-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Discount Calculator to calculate discount savings, reduced sale price, and final amount after optional tax.',
+    audience:
+      'This tool is useful for shoppers, sellers, and small business teams who want a quick sale-price breakdown without manual percentage math.',
+    highlights: [
+      'Calculate discount amount and savings instantly.',
+      'See subtotal after discount before tax.',
+      'Optionally add tax for a final payable amount.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Discount Calculator show?',
+        answer:
+          'It shows the discount amount, the reduced subtotal after discount, the optional tax amount, and the final payable total.',
+      },
+      {
+        question: 'Can I include tax after the discount?',
+        answer:
+          'Yes. Enter a tax percentage if you want the tool to calculate the final amount after discount and tax together.',
+      },
+      {
+        question: 'Does the tool work with any currency?',
+        answer:
+          'Yes. You can switch the display currency for the result summary while keeping the same discount logic.',
       },
     ],
   },
@@ -181,6 +297,122 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Does the result update live?',
         answer:
           'Yes. The converted value changes immediately as you edit the input or switch units.',
+      },
+    ],
+  },
+  'currency-converter': {
+    category: 'Conversion Tools',
+    intro:
+      'Use the Currency Converter to switch an amount between major currencies using the latest available Frankfurter reference rates.',
+    audience:
+      'This tool is useful for shoppers, travelers, freelancers, and anyone who needs a quick cross-currency estimate without opening a separate finance app.',
+    highlights: [
+      'Convert between major currencies quickly.',
+      'See the converted amount and latest available reference rate together.',
+      'Swap the currency direction with one action.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Currency Converter show?',
+        answer:
+          'It shows the converted amount along with the reference exchange rate between the selected currencies.',
+      },
+      {
+        question: 'Are these live market exchange rates?',
+        answer:
+          'They are fetched from Frankfurter as the latest available reference rates, which are useful for conversion but should not be treated as real-time trading quotes.',
+      },
+      {
+        question: 'Can I reverse the conversion direction?',
+        answer:
+          'Yes. Use the swap action to switch the from and to currencies instantly.',
+      },
+    ],
+  },
+  'time-zone-converter': {
+    category: 'Conversion Tools',
+    intro:
+      'Use the Time Zone Converter to search global time zones and compare converted times with UTC offsets.',
+    audience:
+      'This tool is useful for remote teams, travelers, recruiters, and anyone scheduling meetings across regions.',
+    highlights: [
+      'Search a broad set of global time zones.',
+      'Compare source and target UTC offsets.',
+      'Handle meeting planning and travel timing more easily.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Time Zone Converter show?',
+        answer:
+          'It shows the source time, converted target time, and the timezone offsets for both selections.',
+      },
+      {
+        question: 'Can I change both source and target zones?',
+        answer:
+          'Yes. You can select both the source timezone and the destination timezone before converting.',
+      },
+      {
+        question: 'Is this useful for meeting planning?',
+        answer:
+          'Yes. It is especially useful when you need to compare the same date and time across different cities or regions.',
+      },
+    ],
+  },
+  'color-converter': {
+    category: 'Conversion Tools',
+    intro:
+      'Use the Color Converter to switch between HEX, RGB, and HSL values and preview the color at the same time.',
+    audience:
+      'This tool is useful for designers, frontend developers, marketers, and anyone working with brand or UI colors.',
+    highlights: [
+      'Convert between HEX, RGB, and HSL.',
+      'Preview the color instantly.',
+      'Edit from the format you already have.',
+    ],
+    faqs: [
+      {
+        question: 'What color formats are supported?',
+        answer:
+          'The converter supports HEX, RGB, and HSL formats in one tool.',
+      },
+      {
+        question: 'Can I start from any one of the formats?',
+        answer:
+          'Yes. You can edit HEX, RGB, or HSL input and the tool updates the other formats when the value is valid.',
+      },
+      {
+        question: 'Does it show a live preview?',
+        answer:
+          'Yes. A live preview block helps you confirm the converted color visually.',
+      },
+    ],
+  },
+  'number-to-words-converter': {
+    category: 'Conversion Tools',
+    intro:
+      'Use the Number to Words Converter to turn a numeric value into English words for documents, forms, or written references.',
+    audience:
+      'This tool is useful for office work, education, finance paperwork, and any scenario where a number also needs a written version.',
+    highlights: [
+      'Convert numbers into English words quickly.',
+      'Handle common decimal phrasing.',
+      'Useful for forms, checks, and written records.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Number to Words Converter show?',
+        answer:
+          'It converts the entered numeric value into English words so you can copy the written version directly.',
+      },
+      {
+        question: 'Does it support decimals?',
+        answer:
+          'Yes. Decimal values are converted using a simple spoken-style point format.',
+      },
+      {
+        question: 'Is this a multi-language tool?',
+        answer:
+          'No. This version focuses on English output only.',
       },
     ],
   },
@@ -242,6 +474,122 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'csv-to-json-converter': {
+    category: 'Developer Tools',
+    intro:
+      'Use the CSV to JSON Converter to turn tabular CSV input into formatted JSON output for inspection and reuse.',
+    audience:
+      'This tool is useful for developers, analysts, QA teams, and operations users moving data between spreadsheets and applications.',
+    highlights: [
+      'Convert CSV into structured JSON quickly.',
+      'Works well for small tabular datasets and quick testing.',
+      'Formats the output for easier reading.',
+    ],
+    faqs: [
+      {
+        question: 'What CSV format does this version expect?',
+        answer:
+          'This version expects a header row followed by one or more data rows.',
+      },
+      {
+        question: 'What does the output look like?',
+        answer:
+          'The output is a formatted JSON array where each row becomes an object keyed by the CSV headers.',
+      },
+      {
+        question: 'Can I use quoted CSV values?',
+        answer:
+          'Yes. Basic quoted values and escaped quotes are supported for normal CSV conversion workflows.',
+      },
+    ],
+  },
+  'json-to-csv-converter': {
+    category: 'Developer Tools',
+    intro:
+      'Use the JSON to CSV Converter to transform a JSON array of flat objects into CSV with header columns.',
+    audience:
+      'This tool is useful for developers, analysts, and spreadsheet users who need to move structured data into CSV quickly.',
+    highlights: [
+      'Convert flat JSON arrays into CSV.',
+      'Generate header columns automatically.',
+      'Useful for spreadsheet import and export tasks.',
+    ],
+    faqs: [
+      {
+        question: 'What JSON shape does this converter support?',
+        answer:
+          'This version supports arrays of flat objects with string, number, boolean, or empty values.',
+      },
+      {
+        question: 'What happens with nested JSON?',
+        answer:
+          'Nested objects or arrays are treated as unsupported in this version and trigger a validation message.',
+      },
+      {
+        question: 'Does it create CSV headers automatically?',
+        answer:
+          'Yes. Header columns are generated from the object keys found in the input array.',
+      },
+    ],
+  },
+  'base-number-converter': {
+    category: 'Developer Tools',
+    intro:
+      'Use the Binary / Decimal / Hex Converter to switch a whole number between base 2, base 10, and base 16 representations.',
+    audience:
+      'This tool is useful for developers, students, and anyone working with low-level values, encodings, or debugging output.',
+    highlights: [
+      'Convert between binary, decimal, and hexadecimal.',
+      'Works from a single input base selection.',
+      'Good for debugging and learning number systems.',
+    ],
+    faqs: [
+      {
+        question: 'What bases are supported?',
+        answer:
+          'The tool supports binary, decimal, and hexadecimal conversions.',
+      },
+      {
+        question: 'Can I input the number in any one of those bases?',
+        answer:
+          'Yes. Select the input base first, enter the value, and the tool converts it to the other supported bases.',
+      },
+      {
+        question: 'Does it support decimal fractions?',
+        answer:
+          'No. This version focuses on whole-number conversion only.',
+      },
+    ],
+  },
+  'timestamp-converter': {
+    category: 'Developer Tools',
+    intro:
+      'Use the Timestamp Converter to turn Unix timestamps into readable dates and convert selected dates back into seconds or milliseconds.',
+    audience:
+      'This tool is useful for developers, support teams, data analysts, and anyone working with logs or API timestamps.',
+    highlights: [
+      'Convert Unix timestamps into readable time.',
+      'Convert dates back into seconds or milliseconds.',
+      'Compare UTC and local output together.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Timestamp Converter show?',
+        answer:
+          'It shows UTC time, local time, and timestamp values in seconds and milliseconds depending on the selected mode.',
+      },
+      {
+        question: 'Can I convert in both directions?',
+        answer:
+          'Yes. You can switch between timestamp-to-date and date-to-timestamp modes.',
+      },
+      {
+        question: 'Does it support seconds and milliseconds?',
+        answer:
+          'Yes. Timestamp input can be handled as either seconds or milliseconds, and the output shows both forms.',
+      },
+    ],
+  },
   'age-calculator': {
     category: 'Date Tools',
     intro:
@@ -268,6 +616,93 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Can I use it to find duration between any two dates?',
         answer:
           'Yes. It works for exact date differences, not just age from birth date.',
+      },
+    ],
+  },
+  'date-difference-calculator': {
+    category: 'Date Tools',
+    intro:
+      'Use the Date Difference Calculator to measure exact time between two dates in years, months, days, and total days.',
+    audience:
+      'This tool is useful for project planning, travel duration checks, paperwork, billing cycles, and any scenario where exact date gaps matter.',
+    highlights: [
+      'Measure exact calendar difference between two dates.',
+      'See years, months, days, and total days together.',
+      'Use it for planning, admin, or general date checks.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Date Difference Calculator show?',
+        answer:
+          'It shows the exact calendar difference in years, months, and days, along with the total number of days between the selected dates.',
+      },
+      {
+        question: 'Can I use this for non-age date comparisons?',
+        answer:
+          'Yes. It is designed for any two-date comparison, including events, projects, subscriptions, or personal planning.',
+      },
+      {
+        question: 'What happens if the start date is later than the end date?',
+        answer:
+          'The tool shows a validation message so you can correct the date order before calculating the difference.',
+      },
+    ],
+  },
+  'bmi-calculator': {
+    category: 'Health Tools',
+    intro:
+      'Use the BMI Calculator to find body mass index from your height and weight and check the standard BMI category instantly.',
+    audience:
+      'This tool is useful for anyone who wants a quick body mass index estimate as a general screening check using either metric or imperial inputs.',
+    highlights: [
+      'Calculate BMI from height and weight in seconds.',
+      'Switch between metric and imperial inputs.',
+      'See the standard BMI category alongside the score.',
+    ],
+    faqs: [
+      {
+        question: 'What does the BMI Calculator show?',
+        answer:
+          'It shows your body mass index value and the matching standard BMI category based on the height and weight you enter.',
+      },
+      {
+        question: 'Can I use metric and imperial units?',
+        answer:
+          'Yes. The tool supports metric inputs such as centimeters and kilograms as well as imperial inputs such as feet, inches, and pounds.',
+      },
+      {
+        question: 'Is BMI a medical diagnosis?',
+        answer:
+          'No. BMI is a general screening measure and should not be treated as a medical diagnosis on its own.',
+      },
+    ],
+  },
+  'biological-age-calculator': {
+    category: 'Health Tools',
+    intro:
+      'Use the Biological Age Calculator to estimate a lifestyle-based biological age from your actual age, body measurements, and habit inputs.',
+    audience:
+      'This tool is useful for adults who want a simple, non-medical wellness estimate based on exercise, sleep, smoking, stress, alcohol intake, and BMI-related body metrics.',
+    highlights: [
+      'Compare estimated biological age with your actual age.',
+      'See how BMI and daily habits affect the estimate.',
+      'Review factors that are pushing the estimate older or younger.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Biological Age Calculator show?',
+        answer:
+          'It estimates a wellness-based biological age, compares it with your chronological age, calculates BMI from your measurements, and highlights which habits are helping or hurting the estimate.',
+      },
+      {
+        question: 'Is this a medical diagnosis or clinical age test?',
+        answer:
+          'No. This is a non-medical educational estimate based on simplified lifestyle and body-metric assumptions, not a clinical biological age assessment.',
+      },
+      {
+        question: 'Do I need to know my BMI already?',
+        answer:
+          'No. The tool calculates BMI automatically from the height and weight values you enter.',
       },
     ],
   },

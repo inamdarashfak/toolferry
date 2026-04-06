@@ -12,8 +12,10 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { getChartTooltipStyles } from "../../lib/chartTooltip";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
@@ -184,6 +186,7 @@ function useAnimatedNumber(target: number) {
 }
 
 function MutualFundCalculator() {
+  const theme = useTheme();
   const [investmentMode, setInvestmentMode] = useState(
     DEFAULT_VALUES.investmentMode
   );
@@ -366,11 +369,97 @@ function MutualFundCalculator() {
   const animatedReturns = useAnimatedNumber(estimatedReturns);
   const animatedTotal = useAnimatedNumber(totalValue);
   const animatedInflationAdjusted = useAnimatedNumber(inflationAdjustedValue);
+  const tooltipStyles = getChartTooltipStyles(theme);
 
   const chartData = [
     { name: "Invested", value: investedAmount },
     { name: "Returns", value: estimatedReturns },
   ];
+
+  const renderChartTooltip = ({
+    active,
+    label,
+    payload,
+  }: {
+    active?: boolean;
+    label?: string | number;
+    payload?: ReadonlyArray<{
+      color?: string;
+      dataKey?: unknown;
+      name?: unknown;
+      value?: number | string;
+    }>;
+  }) => {
+    if (!active || !payload?.length) {
+      return null;
+    }
+
+    const tooltipLabel =
+      typeof label === "string" || typeof label === "number"
+        ? String(label)
+        : payload[0]?.name != null
+          ? String(payload[0].name)
+          : undefined;
+
+    return (
+      <Box
+        sx={{
+          minWidth: 156,
+          px: 1.25,
+          py: 1,
+          border: `1px solid ${theme.palette.divider}`,
+          backgroundColor:
+            theme.palette.mode === "dark"
+              ? "rgba(11, 19, 32, 0.99)"
+              : "rgba(255, 255, 255, 0.99)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 12px 24px rgba(0, 0, 0, 0.28)"
+              : "0 10px 20px rgba(11, 31, 51, 0.12)",
+        }}
+      >
+        {tooltipLabel ? (
+          <Typography
+            sx={{
+              mb: 0.5,
+              color: "text.secondary",
+              fontSize: "0.76rem",
+              fontWeight: 700,
+            }}
+          >
+            {tooltipLabel}
+          </Typography>
+        ) : null}
+        <Stack spacing={0.45}>
+          {payload.map((entry) => (
+            <Stack
+              key={`${String(entry.dataKey ?? entry.name)}`}
+              direction="row"
+              spacing={0.75}
+              alignItems="center"
+            >
+              <Box
+                sx={{
+                  width: 8,
+                  height: 8,
+                  flexShrink: 0,
+                  backgroundColor: entry.color ?? "secondary.main",
+                }}
+              />
+              <Typography sx={{ fontSize: "0.8rem", color: "text.primary" }}>
+                {String(entry.name)}:{" "}
+                {formatTooltipCurrencyValue(
+                  entry.value,
+                  numberLocale,
+                  selectedCurrency.symbol
+                )}
+              </Typography>
+            </Stack>
+          ))}
+        </Stack>
+      </Box>
+    );
+  };
 
   const handleReset = () => {
     setInvestmentMode(DEFAULT_VALUES.investmentMode);
@@ -386,14 +475,19 @@ function MutualFundCalculator() {
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
@@ -767,21 +861,31 @@ function MutualFundCalculator() {
 
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2.25,
                   height: "100%",
                   borderRadius: 0,
-                  border: "1px solid rgba(11, 31, 51, 0.08)",
-                  boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
-                }}
+                  border: `1px solid ${theme.palette.divider}`,
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(10, 17, 27, 0.72)"
+                      : theme.palette.background.paper,
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                      : "0 14px 30px rgba(11, 31, 51, 0.045)",
+                })}
               >
                 <Stack spacing={1.75}>
                   <Stack
                     divider={<Divider />}
-                    sx={{
-                      border: "1px solid rgba(11, 31, 51, 0.08)",
-                      backgroundColor: "rgba(245, 248, 248, 0.85)",
-                    }}
+                    sx={(theme) => ({
+                      border: `1px solid ${theme.palette.divider}`,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.04)"
+                          : "rgba(245, 248, 248, 0.85)",
+                    })}
                   >
                     <SummaryRow
                       label="Invested Amount"
@@ -807,10 +911,13 @@ function MutualFundCalculator() {
                   </Stack>
 
                   <Box
-                    sx={{
-                      border: "1px solid rgba(11, 31, 51, 0.08)",
-                      backgroundColor: "rgba(255, 255, 255, 0.85)",
-                    }}
+                    sx={(theme) => ({
+                      border: `1px solid ${theme.palette.divider}`,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.03)"
+                          : "rgba(255, 255, 255, 0.85)",
+                    })}
                   >
                     <SummaryRow
                       label="Inflation-adjusted Value"
@@ -849,6 +956,7 @@ function MutualFundCalculator() {
                               ))}
                             </Pie>
                             <Tooltip
+                              content={(props) => renderChartTooltip(props as any)}
                               formatter={(value) =>
                                 formatTooltipCurrencyValue(
                                   value,
@@ -918,6 +1026,7 @@ function MutualFundCalculator() {
                       tickLine={false}
                     />
                     <Tooltip
+                      content={(props) => renderChartTooltip(props as any)}
                       labelFormatter={(label) => `${label}`}
                       formatter={(value) =>
                         formatTooltipCurrencyValue(

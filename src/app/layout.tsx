@@ -18,13 +18,31 @@ export const metadata: Metadata = {
 
 function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function () {
+                try {
+                  var stored = localStorage.getItem('theme-mode');
+                  var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                  var mode = stored === 'light' || stored === 'dark' ? stored : system;
+                  document.documentElement.dataset.themeMode = mode;
+                  document.documentElement.style.colorScheme = mode;
+                } catch (error) {
+                  document.documentElement.dataset.themeMode = 'light';
+                  document.documentElement.style.colorScheme = 'light';
+                }
+              })();
+            `,
+          }}
         />
       </head>
       <body>

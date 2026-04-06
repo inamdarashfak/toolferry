@@ -12,8 +12,10 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import { useTheme } from "@mui/material/styles";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { getChartTooltipStyles } from "../../lib/chartTooltip";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
@@ -161,6 +163,7 @@ function useAnimatedNumber(target: number) {
 }
 
 function EmiCalculator() {
+  const theme = useTheme();
   const [loanAmount, setLoanAmount] = useState(DEFAULT_VALUES.loanAmount);
   const [interestRate, setInterestRate] = useState(DEFAULT_VALUES.interestRate);
   const [tenureYears, setTenureYears] = useState(DEFAULT_VALUES.tenureYears);
@@ -254,6 +257,7 @@ function EmiCalculator() {
   const animatedInterest = useAnimatedNumber(totalInterest);
   const animatedPayment = useAnimatedNumber(totalPayment);
   const animatedPrincipal = useAnimatedNumber(principal);
+  const tooltipStyles = getChartTooltipStyles(theme);
 
   const chartData = useMemo(
     () => [
@@ -304,14 +308,19 @@ function EmiCalculator() {
   return (
     <Stack spacing={{ xs: 2.5, md: 2 }}>
       <Paper
-        sx={{
+        sx={(theme) => ({
           p: { xs: 2.5, md: 2.5 },
           borderRadius: 0,
-          border: "1px solid rgba(11, 31, 51, 0.08)",
+          border: `1px solid ${theme.palette.divider}`,
           background:
-            "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
-          boxShadow: "0 20px 50px rgba(11, 31, 51, 0.07)",
-        }}
+            theme.palette.mode === "dark"
+              ? "linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+              : "linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(245,248,248,0.96) 100%)",
+          boxShadow:
+            theme.palette.mode === "dark"
+              ? "0 20px 48px rgba(0, 0, 0, 0.26)"
+              : "0 20px 50px rgba(11, 31, 51, 0.07)",
+        })}
       >
         <Stack spacing={{ xs: 3, md: 2.5 }}>
           <Box sx={{ maxWidth: 760 }}>
@@ -512,21 +521,31 @@ function EmiCalculator() {
 
             <Grid size={{ xs: 12, lg: 6 }}>
               <Paper
-                sx={{
+                sx={(theme) => ({
                   p: 2.25,
                   height: "100%",
                   borderRadius: 0,
-                  border: "1px solid rgba(11, 31, 51, 0.08)",
-                  boxShadow: "0 14px 30px rgba(11, 31, 51, 0.045)",
-                }}
+                  border: `1px solid ${theme.palette.divider}`,
+                  backgroundColor:
+                    theme.palette.mode === "dark"
+                      ? "rgba(10, 17, 27, 0.72)"
+                      : theme.palette.background.paper,
+                  boxShadow:
+                    theme.palette.mode === "dark"
+                      ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                      : "0 14px 30px rgba(11, 31, 51, 0.045)",
+                })}
               >
                 <Stack spacing={1.75}>
                   <Stack
                     divider={<Divider />}
-                    sx={{
-                      border: "1px solid rgba(11, 31, 51, 0.08)",
-                      backgroundColor: "rgba(245, 248, 248, 0.85)",
-                    }}
+                    sx={(theme) => ({
+                      border: `1px solid ${theme.palette.divider}`,
+                      backgroundColor:
+                        theme.palette.mode === "dark"
+                          ? "rgba(255, 255, 255, 0.04)"
+                          : "rgba(245, 248, 248, 0.85)",
+                    })}
                   >
                     {summaryItems.map((item) => (
                       <SummaryRow
@@ -560,6 +579,7 @@ function EmiCalculator() {
                               ))}
                             </Pie>
                             <Tooltip
+                              {...tooltipStyles}
                               formatter={(value) =>
                                 formatTooltipCurrencyValue(
                                   value,
@@ -673,6 +693,7 @@ function EmiCalculator() {
                       tickLine={false}
                     />
                     <Tooltip
+                      {...tooltipStyles}
                       labelFormatter={(label) => `${label}`}
                       formatter={(value) =>
                         formatTooltipCurrencyValue(

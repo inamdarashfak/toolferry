@@ -1,6 +1,4 @@
 :root {
-  color: #0b1f33;
-  background: #f3f7f8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,10 +16,6 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at top left, rgba(15, 139, 141, 0.08), transparent 28%),
-    radial-gradient(circle at top right, rgba(11, 31, 51, 0.05), transparent 24%),
-    linear-gradient(180deg, #f6f8f8 0%, #f2f6f7 100%);
 }
 
 a {

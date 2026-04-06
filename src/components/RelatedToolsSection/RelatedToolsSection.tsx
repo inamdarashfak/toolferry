@@ -36,13 +36,18 @@ function RelatedToolsSection({ tools }: RelatedToolsSectionProps) {
         {tools.map((tool) => (
           <Grid key={tool.slug} size={{ xs: 12, md: 4 }}>
             <Card
-              sx={{
+              sx={(theme) => ({
                 height: "100%",
-                border: "1px solid rgba(11, 31, 51, 0.08)",
+                border: `1px solid ${theme.palette.divider}`,
                 background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,250,0.94) 100%)",
-                boxShadow: "0 12px 26px rgba(11, 31, 51, 0.04)",
-              }}
+                  theme.palette.mode === "dark"
+                    ? "linear-gradient(180deg, rgba(20,32,50,0.98) 0%, rgba(12,20,32,0.96) 100%)"
+                    : "linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,250,250,0.94) 100%)",
+                boxShadow:
+                  theme.palette.mode === "dark"
+                    ? "0 14px 30px rgba(0, 0, 0, 0.22)"
+                    : "0 12px 26px rgba(11, 31, 51, 0.04)",
+              })}
             >
               <CardActionArea
                 component={Link}

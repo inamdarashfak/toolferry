@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import JsonLd from '../../../components/seo/JsonLd'
 import ToolPage from '../../../components/ToolPage/ToolPage'
 import { relatedTools } from '../../../data/relatedTools'
+import { toolCategoryMap } from '../../../data/toolCategories'
 import { toolHelpContent } from '../../../data/toolHelpContent'
 import { toolSeoContent } from '../../../data/toolSeoContent'
 import { tools } from '../../../data/tools'
@@ -50,6 +51,7 @@ async function ToolRoutePage({ params }: ToolPageProps) {
     notFound()
   }
 
+  const category = toolCategoryMap[selectedTool.categorySlug]
   const seoContent = toolSeoContent[selectedTool.slug]
   const faqSchema = seoContent.faqs.length
     ? {
@@ -104,6 +106,14 @@ async function ToolRoutePage({ params }: ToolPageProps) {
               {
                 '@type': 'ListItem',
                 position: 2,
+                name: category?.name ?? 'Tools',
+                item: buildCanonicalUrl(
+                  category ? `/category/${category.slug}` : '/',
+                ),
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
                 name: selectedTool.name,
                 item: buildCanonicalUrl(`/tool/${selectedTool.slug}`),
               },

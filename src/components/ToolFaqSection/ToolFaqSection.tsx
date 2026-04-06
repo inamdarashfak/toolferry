@@ -20,14 +20,19 @@ function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
 
   return (
     <Paper
-      sx={{
+      sx={(theme) => ({
         p: { xs: 2, md: 2.1 },
         borderRadius: 0,
-        border: '1px solid rgba(11, 31, 51, 0.08)',
+        border: `1px solid ${theme.palette.divider}`,
         background:
-          'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,250,0.96) 100%)',
-        boxShadow: '0 14px 30px rgba(11, 31, 51, 0.045)',
-      }}
+          theme.palette.mode === 'dark'
+            ? 'linear-gradient(180deg, rgba(18,29,44,0.98) 0%, rgba(12,20,32,0.96) 100%)'
+            : 'linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(247,250,250,0.96) 100%)',
+        boxShadow:
+          theme.palette.mode === 'dark'
+            ? '0 16px 34px rgba(0, 0, 0, 0.24)'
+            : '0 14px 30px rgba(11, 31, 51, 0.045)',
+      })}
     >
       <Stack spacing={{ xs: 1.5, md: 1.2 }}>
         <Stack spacing={0.5}>
@@ -45,13 +50,13 @@ function ToolFaqSection({ faqs }: ToolFaqSectionProps) {
               key={faq.question}
               disableGutters
               elevation={0}
-              sx={{
+              sx={(theme) => ({
                 borderRadius: 0,
-                border: '1px solid rgba(11, 31, 51, 0.08)',
+                border: `1px solid ${theme.palette.divider}`,
                 '&::before': {
                   display: 'none',
                 },
-              }}
+              })}
             >
               <AccordionSummary
                 expandIcon={<ExpandMoreRoundedIcon />}

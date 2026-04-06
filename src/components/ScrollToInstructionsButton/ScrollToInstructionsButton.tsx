@@ -19,14 +19,20 @@ function ScrollToInstructionsButton() {
         aria-label="Scroll to instructions"
         size="small"
         onClick={handleClick}
-        sx={{
-          border: "1px solid rgba(11, 31, 51, 0.14)",
+        sx={(theme) => ({
+          border: `1px solid ${theme.palette.divider}`,
           color: "secondary.main",
-          backgroundColor: "rgba(255,255,255,0.82)",
+          backgroundColor:
+            theme.palette.mode === "dark"
+              ? "rgba(255,255,255,0.08)"
+              : "rgba(255,255,255,0.82)",
           "&:hover": {
-            backgroundColor: "rgba(255, 122, 89, 0.08)",
+            backgroundColor:
+              theme.palette.mode === "dark"
+                ? "rgba(255, 122, 89, 0.12)"
+                : "rgba(255, 122, 89, 0.08)",
           },
-        }}
+        })}
       >
         <HelpOutlineRoundedIcon fontSize="small" />
       </IconButton>
