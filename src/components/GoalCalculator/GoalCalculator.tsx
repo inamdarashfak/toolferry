@@ -15,6 +15,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
   Legend,
@@ -648,7 +649,12 @@ function GoalCalculator() {
                             })
                       }
                       onChange={(event) =>
-                        setCurrentCost(sanitizeNumericInput(event.target.value))
+                        preserveFormattedNumberCaret({
+                          event,
+                          nextValue: sanitizeNumericInput(event.target.value),
+                          setValue: setCurrentCost,
+                          locale: numberLocale,
+                        })
                       }
                       InputProps={{
                         startAdornment: (
@@ -737,7 +743,12 @@ function GoalCalculator() {
                                 })
                           }
                           onChange={(event) =>
-                            setCurrentSavings(sanitizeNumericInput(event.target.value))
+                            preserveFormattedNumberCaret({
+                              event,
+                              nextValue: sanitizeNumericInput(event.target.value),
+                              setValue: setCurrentSavings,
+                              locale: numberLocale,
+                            })
                           }
                           InputProps={{
                             startAdornment: (
@@ -778,9 +789,12 @@ function GoalCalculator() {
                                 })
                           }
                           onChange={(event) =>
-                            setMonthlyContribution(
-                              sanitizeNumericInput(event.target.value)
-                            )
+                            preserveFormattedNumberCaret({
+                              event,
+                              nextValue: sanitizeNumericInput(event.target.value),
+                              setValue: setMonthlyContribution,
+                              locale: numberLocale,
+                            })
                           }
                           InputProps={{
                             startAdornment: (

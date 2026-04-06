@@ -14,6 +14,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
   Cell,
@@ -493,9 +494,12 @@ function MutualFundCalculator() {
                               )
                         }
                         onChange={(event) =>
-                          setInvestmentAmount(
-                            sanitizeNumericInput(event.target.value)
-                          )
+                          preserveFormattedNumberCaret({
+                            event,
+                            nextValue: sanitizeNumericInput(event.target.value),
+                            setValue: setInvestmentAmount,
+                            locale: numberLocale,
+                          })
                         }
                         InputProps={{
                           startAdornment: (
@@ -547,9 +551,12 @@ function MutualFundCalculator() {
                                 })
                           }
                           onChange={(event) =>
-                            setSipAmount(
-                              sanitizeNumericInput(event.target.value)
-                            )
+                            preserveFormattedNumberCaret({
+                              event,
+                              nextValue: sanitizeNumericInput(event.target.value),
+                              setValue: setSipAmount,
+                              locale: numberLocale,
+                            })
                           }
                           InputProps={{
                             startAdornment: (

@@ -14,6 +14,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useEffect, useMemo, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
+import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
   Cell,
@@ -385,11 +386,14 @@ function FdCalculator() {
                               maximumFractionDigits: 0,
                             })
                       }
-                      onChange={(event) =>
-                        setDepositAmount(
-                          sanitizeNumericInput(event.target.value)
-                        )
-                      }
+                        onChange={(event) =>
+                          preserveFormattedNumberCaret({
+                            event,
+                            nextValue: sanitizeNumericInput(event.target.value),
+                            setValue: setDepositAmount,
+                            locale: numberLocale,
+                          })
+                        }
                       InputProps={{
                         startAdornment: (
                           <InputAdornment position="start">
