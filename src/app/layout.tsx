@@ -4,16 +4,17 @@ import { Suspense } from 'react'
 import AnalyticsTracker from '../components/AnalyticsTracker/AnalyticsTracker'
 import LayoutShell from '../components/LayoutShell/LayoutShell'
 import Providers from '../components/Providers/Providers'
-import { DEFAULT_DESCRIPTION, SITE_NAME } from '../lib/site'
+import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from '../lib/site'
 import './globals.css'
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://toolferry.vercel.app'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} | Productivity Tools`,
     template: `%s | ${SITE_NAME}`,
   },
   description: DEFAULT_DESCRIPTION,
+  applicationName: SITE_NAME,
   icons: {
     icon: [{ url: '/favicon.svg', type: 'image/svg+xml' }],
     shortcut: ['/favicon.svg'],
@@ -25,7 +26,11 @@ function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
