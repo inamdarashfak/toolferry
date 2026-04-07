@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "next dev",
     "lint": "eslint .",
+    "lint:strict": "eslint . --max-warnings=0",
     "build": "next build",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "precommit": "lint-staged",
     "prepare": "husky",
     "start": "next start"
   },
@@ -16,9 +20,11 @@
     "@mui/icons-material": "^7.3.1",
     "@mui/material": "^7.3.1",
     "@mui/material-nextjs": "^7.3.9",
+    "@types/papaparse": "^5.5.2",
     "@vvo/tzdb": "^6.198.0",
     "html-to-image": "^1.11.13",
     "next": "^16.2.2",
+    "papaparse": "^5.5.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "recharts": "^3.8.1"
@@ -31,7 +37,13 @@
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.2",
     "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "napi-postinstall": "^0.3.4",
+    "prettier": "^3.8.1",
     "typescript": "~5.8.3"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,mjs,cjs,json,css,md}": "prettier --write",
+    "*.{js,jsx,ts,tsx,mjs,cjs}": "eslint --fix --max-warnings=0"
   }
 }

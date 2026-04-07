@@ -372,8 +372,7 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
     faqs: [
       {
         question: 'What color formats are supported?',
-        answer:
-          'The converter supports HEX, RGB, and HSL formats in one tool.',
+        answer: 'The converter supports HEX, RGB, and HSL formats in one tool.',
       },
       {
         question: 'Can I start from any one of the formats?',
@@ -411,13 +410,12 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
       {
         question: 'Is this a multi-language tool?',
-        answer:
-          'No. This version focuses on English output only.',
+        answer: 'No. This version focuses on English output only.',
       },
     ],
   },
   'text-formatter': {
-    category: 'Text Tools',
+    category: 'Utilities',
     intro:
       'Use the Text Formatter to clean, transform, sort, replace, and restructure text from one lightweight workspace.',
     audience:
@@ -477,29 +475,29 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
   'csv-to-json-converter': {
     category: 'Developer Tools',
     intro:
-      'Use the CSV to JSON Converter to turn tabular CSV input into formatted JSON output for inspection and reuse.',
+      'Use the CSV to JSON Converter to paste or import CSV data and turn it into formatted JSON output for inspection, reuse, and nested data mapping.',
     audience:
       'This tool is useful for developers, analysts, QA teams, and operations users moving data between spreadsheets and applications.',
     highlights: [
-      'Convert CSV into structured JSON quickly.',
-      'Works well for small tabular datasets and quick testing.',
-      'Formats the output for easier reading.',
+      'Import local CSV files or paste CSV text directly.',
+      'Convert CSV into structured JSON with nested path support.',
+      'Formats the output for easier reading and inspection.',
     ],
     faqs: [
       {
         question: 'What CSV format does this version expect?',
         answer:
-          'This version expects a header row followed by one or more data rows.',
+          'This version expects a header row followed by one or more data rows, and it handles common CSV exports with quoted values, embedded newlines, and common delimiters.',
       },
       {
-        question: 'What does the output look like?',
+        question: 'Can I import a CSV file instead of pasting text?',
         answer:
-          'The output is a formatted JSON array where each row becomes an object keyed by the CSV headers.',
+          'Yes. You can import a local CSV file into the input panel and the tool converts it with the same parser used for pasted CSV text.',
       },
       {
-        question: 'Can I use quoted CSV values?',
+        question: 'How do I create nested JSON from CSV headers?',
         answer:
-          'Yes. Basic quoted values and escaped quotes are supported for normal CSV conversion workflows.',
+          'Use path-style headers such as user.name or items[0].sku to map a row into nested objects or arrays, and valid JSON object or array cells are also preserved as nested values.',
       },
     ],
   },
@@ -556,8 +554,7 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
       {
         question: 'Does it support decimal fractions?',
-        answer:
-          'No. This version focuses on whole-number conversion only.',
+        answer: 'No. This version focuses on whole-number conversion only.',
       },
     ],
   },
