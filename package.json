@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "lint": "eslint .",
     "build": "next build",
     "prepare": "husky",
     "start": "next start"
@@ -23,10 +24,14 @@
     "recharts": "^3.8.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@types/node": "^24.12.2",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.2",
     "husky": "^9.1.7",
+    "napi-postinstall": "^0.3.4",
     "typescript": "~5.8.3"
   }
 }

@@ -13,9 +13,8 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
-import { getChartTooltipStyles } from "../../lib/chartTooltip";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 import {
   CartesianGrid,
@@ -158,10 +157,11 @@ function formatAxisCurrencyValue(value: number) {
 
 function useAnimatedNumber(target: number) {
   const [displayValue, setDisplayValue] = useState(target);
+  const displayValueRef = useRef(target);
 
   useEffect(() => {
     let animationFrame = 0;
-    const startValue = displayValue;
+    const startValue = displayValueRef.current;
     const startTime = performance.now();
     const duration = 320;
 
@@ -170,12 +170,17 @@ function useAnimatedNumber(target: number) {
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       const nextValue = startValue + (target - startValue) * easedProgress;
 
+      displayValueRef.current = nextValue;
       setDisplayValue(nextValue);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(step);
       }
     };
+
+    if (startValue === target) {
+      return () => cancelAnimationFrame(animationFrame);
+    }
 
     animationFrame = requestAnimationFrame(step);
 
@@ -369,8 +374,6 @@ function MutualFundCalculator() {
   const animatedReturns = useAnimatedNumber(estimatedReturns);
   const animatedTotal = useAnimatedNumber(totalValue);
   const animatedInflationAdjusted = useAnimatedNumber(inflationAdjustedValue);
-  const tooltipStyles = getChartTooltipStyles(theme);
-
   const chartData = [
     { name: "Invested", value: investedAmount },
     { name: "Returns", value: estimatedReturns },

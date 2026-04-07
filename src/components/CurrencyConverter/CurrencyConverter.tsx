@@ -153,7 +153,7 @@ function CurrencyConverter() {
     if (detected !== fromCurrency) {
       setFromCurrency(detected);
     }
-  }, []);
+  }, [fromCurrency]);
 
   useEffect(() => {
     if (fromCurrency === toCurrency) {

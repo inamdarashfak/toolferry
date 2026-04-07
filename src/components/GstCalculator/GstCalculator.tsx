@@ -12,7 +12,7 @@ import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
 
@@ -93,10 +93,11 @@ function formatNumber(
 
 function useAnimatedNumber(target: number) {
   const [displayValue, setDisplayValue] = useState(target);
+  const displayValueRef = useRef(target);
 
   useEffect(() => {
     let animationFrame = 0;
-    const startValue = displayValue;
+    const startValue = displayValueRef.current;
     const startTime = performance.now();
     const duration = 320;
 
@@ -105,12 +106,17 @@ function useAnimatedNumber(target: number) {
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       const nextValue = startValue + (target - startValue) * easedProgress;
 
+      displayValueRef.current = nextValue;
       setDisplayValue(nextValue);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(step);
       }
     };
+
+    if (startValue === target) {
+      return () => cancelAnimationFrame(animationFrame);
+    }
 
     animationFrame = requestAnimationFrame(step);
 

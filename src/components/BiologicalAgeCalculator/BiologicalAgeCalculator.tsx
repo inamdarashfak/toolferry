@@ -4,6 +4,7 @@ import AutorenewRoundedIcon from "@mui/icons-material/AutorenewRounded";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Chip from "@mui/material/Chip";
+import CircularProgress from "@mui/material/CircularProgress";
 import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
 import MenuItem from "@mui/material/MenuItem";
@@ -11,7 +12,7 @@ import Paper from "@mui/material/Paper";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import {
   formatNumber,
@@ -317,6 +318,8 @@ function BiologicalAgeCalculator() {
   const [alcoholLevel, setAlcoholLevel] = useState<AlcoholLevel>(DEFAULT_VALUES.alcoholLevel);
   const [stressLevel, setStressLevel] = useState<StressLevel>(DEFAULT_VALUES.stressLevel);
   const [submittedValues, setSubmittedValues] = useState<BiologicalAgeFormValues>(DEFAULT_VALUES);
+  const [isCalculating, setIsCalculating] = useState(false);
+  const calculationTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const result = useMemo(() => {
     const chronologicalAge = Number(submittedValues.age) || 0;
@@ -405,8 +408,20 @@ function BiologicalAgeCalculator() {
 
   const insightSummary = useMemo(() => buildInsightSummary(result.insights), [result.insights]);
 
+  useEffect(() => {
+    return () => {
+      if (calculationTimeoutRef.current) {
+        clearTimeout(calculationTimeoutRef.current);
+      }
+    };
+  }, []);
+
   const handleCalculate = () => {
-    setSubmittedValues({
+    if (calculationTimeoutRef.current) {
+      clearTimeout(calculationTimeoutRef.current);
+    }
+
+    const nextSubmittedValues = {
       age,
       sex,
       unitMode,
@@ -420,10 +435,22 @@ function BiologicalAgeCalculator() {
       sleepHours,
       alcoholLevel,
       stressLevel,
-    });
+    };
+
+    setIsCalculating(true);
+    calculationTimeoutRef.current = setTimeout(() => {
+      setSubmittedValues(nextSubmittedValues);
+      setIsCalculating(false);
+      calculationTimeoutRef.current = null;
+    }, 3800);
   };
 
   const handleReset = () => {
+    if (calculationTimeoutRef.current) {
+      clearTimeout(calculationTimeoutRef.current);
+      calculationTimeoutRef.current = null;
+    }
+
     setAge(DEFAULT_VALUES.age);
     setSex(DEFAULT_VALUES.sex);
     setUnitMode(DEFAULT_VALUES.unitMode);
@@ -438,6 +465,7 @@ function BiologicalAgeCalculator() {
     setAlcoholLevel(DEFAULT_VALUES.alcoholLevel);
     setStressLevel(DEFAULT_VALUES.stressLevel);
     setSubmittedValues(DEFAULT_VALUES);
+    setIsCalculating(false);
   };
 
   return (
@@ -623,9 +651,10 @@ function BiologicalAgeCalculator() {
                       variant="contained"
                       size="small"
                       onClick={handleCalculate}
+                      disabled={isCalculating}
                       sx={{ borderRadius: 0 }}
                     >
-                      Calculate
+                      {isCalculating ? "Calculating..." : "Calculate"}
                     </Button>
                     <Button
                       variant="outlined"
@@ -633,6 +662,7 @@ function BiologicalAgeCalculator() {
                       size="small"
                       startIcon={<AutorenewRoundedIcon />}
                       onClick={handleReset}
+                      disabled={isCalculating}
                       sx={{ borderRadius: 0 }}
                     >
                       Reset
@@ -651,7 +681,22 @@ function BiologicalAgeCalculator() {
                     </Typography>
                   </Box>
 
-                  {result.biologicalAge !== null ? (
+                  {isCalculating ? (
+                    <Stack
+                      spacing={1.25}
+                      alignItems="center"
+                      justifyContent="center"
+                      sx={{ minHeight: 320, textAlign: "center" }}
+                    >
+                      <CircularProgress size={30} color="secondary" />
+                      <Typography sx={{ fontWeight: 700 }}>
+                        Calculating your biological age...
+                      </Typography>
+                      <Typography color="text.secondary" sx={{ maxWidth: 360 }}>
+                        Reviewing body metrics, sleep, stress, and lifestyle factors.
+                      </Typography>
+                    </Stack>
+                  ) : result.biologicalAge !== null ? (
                     <>
                       <Stack spacing={0.75}>
                         <Typography

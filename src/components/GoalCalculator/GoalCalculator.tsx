@@ -14,7 +14,7 @@ import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import ScrollToInstructionsButton from "../ScrollToInstructionsButton/ScrollToInstructionsButton";
 import { getChartTooltipStyles } from "../../lib/chartTooltip";
 import { preserveFormattedNumberCaret } from "../../lib/formattedNumericInput";
@@ -183,10 +183,11 @@ function formatAxisCurrencyValue(value: number) {
 
 function useAnimatedNumber(target: number) {
   const [displayValue, setDisplayValue] = useState(target);
+  const displayValueRef = useRef(target);
 
   useEffect(() => {
     let animationFrame = 0;
-    const startValue = displayValue;
+    const startValue = displayValueRef.current;
     const startTime = performance.now();
     const duration = 320;
 
@@ -195,12 +196,17 @@ function useAnimatedNumber(target: number) {
       const easedProgress = 1 - Math.pow(1 - progress, 3);
       const nextValue = startValue + (target - startValue) * easedProgress;
 
+      displayValueRef.current = nextValue;
       setDisplayValue(nextValue);
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(step);
       }
     };
+
+    if (startValue === target) {
+      return () => cancelAnimationFrame(animationFrame);
+    }
 
     animationFrame = requestAnimationFrame(step);
 
@@ -235,7 +241,7 @@ function projectGoalPlan({
   const monthlyRate = annualReturn / 12 / 100;
   const yearlySeries: ProjectionPoint[] = [];
   let projectedValue = currentSavings;
-  let goalCost = currentCost;
+  const goalCost = currentCost;
 
   for (let month = 1; month <= months; month += 1) {
     const currentYearIndex = Math.floor((month - 1) / 12);
@@ -321,7 +327,7 @@ function calculateDelayMonths({
   const monthlyRate = annualReturn / 12 / 100;
   const maxExtraMonths = 15 * 12;
   let projectedValue = currentProjectionValue;
-  let goalCost = currentFutureCost;
+  const goalCost = currentFutureCost;
 
   for (let extraMonth = 1; extraMonth <= maxExtraMonths; extraMonth += 1) {
     const totalMonthIndex = currentMonths + extraMonth - 1;
