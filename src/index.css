@@ -11,11 +11,27 @@
 
 html {
   scroll-behavior: smooth;
+  background: #f6f8f8;
+}
+
+html[data-theme-mode='dark'] {
+  background: #09111b;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  background: radial-gradient(circle at top left, rgba(15, 139, 141, 0.08), transparent 28%),
+    radial-gradient(circle at top right, rgba(11, 31, 51, 0.05), transparent 24%),
+    linear-gradient(180deg, #f6f8f8 0%, #f2f6f7 100%);
+  color: #0b1f33;
+}
+
+html[data-theme-mode='dark'] body {
+  background: radial-gradient(circle at top left, rgba(79, 208, 200, 0.09), transparent 30%),
+    radial-gradient(circle at top right, rgba(148, 163, 184, 0.07), transparent 24%),
+    linear-gradient(180deg, #0b1320 0%, #09111b 100%);
+  color: #edf2f7;
 }
 
 a {

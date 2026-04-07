@@ -52,6 +52,7 @@ export function useColorMode() {
 function Providers({ children }: PropsWithChildren) {
   const [mode, setMode] = useState<ThemeMode>('light')
   const [hasExplicitPreference, setHasExplicitPreference] = useState(false)
+  const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
     const storedMode = resolveStoredMode()
@@ -59,6 +60,7 @@ function Providers({ children }: PropsWithChildren) {
 
     setMode(nextMode)
     setHasExplicitPreference(Boolean(storedMode))
+    setIsReady(true)
   }, [])
 
   useEffect(() => {
@@ -108,7 +110,7 @@ function Providers({ children }: PropsWithChildren) {
       <ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          {children}
+          <div style={{ visibility: isReady ? 'visible' : 'hidden' }}>{children}</div>
         </ThemeProvider>
       </ColorModeContext.Provider>
     </AppRouterCacheProvider>
