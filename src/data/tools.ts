@@ -64,6 +64,58 @@ export const tools: Tool[] = [
     homeRank: 4,
   },
   {
+    name: 'SWP Calculator',
+    description:
+      'Project fixed withdrawals from an investment corpus and see how long the balance can last.',
+    metaDescription:
+      'Use the SWP Calculator to estimate monthly withdrawals, ending balance, and how long your corpus may support a withdrawal plan.',
+    slug: 'swp-calculator',
+    categorySlug: 'finance',
+    homeRank: 5,
+  },
+  {
+    name: 'Step-Up SIP Calculator',
+    description:
+      'Estimate how increasing SIP contributions every year can change your long-term corpus.',
+    metaDescription:
+      'Use the Step-Up SIP Calculator to project growing SIP contributions, invested amount, returns, and final portfolio value.',
+    slug: 'step-up-sip-calculator',
+    categorySlug: 'finance',
+    isFeatured: true,
+    homeRank: 6,
+  },
+  {
+    name: 'XIRR Calculator',
+    description:
+      'Calculate annualized returns for investments with irregular cash flows and dates.',
+    metaDescription:
+      'Use the XIRR Calculator to calculate annualized return from irregular dated cash flows such as SIPs, top-ups, and redemptions.',
+    slug: 'xirr-calculator',
+    categorySlug: 'finance',
+    homeRank: 7,
+  },
+  {
+    name: 'Emergency Fund Runway Calculator',
+    description:
+      'See how many months your savings can cover and how long it may take to reach your target cushion.',
+    metaDescription:
+      'Use the Emergency Fund Runway Calculator to measure current savings runway, target emergency fund size, and the gap still left to fund.',
+    slug: 'emergency-fund-runway-calculator',
+    categorySlug: 'finance',
+    homeRank: 8,
+  },
+  {
+    name: 'Debt Payoff Planner',
+    description:
+      'Compare avalanche and snowball debt strategies with balances, rates, and payment inputs.',
+    metaDescription:
+      'Use the Debt Payoff Planner to compare avalanche and snowball repayment strategies, payoff time, and total interest cost.',
+    slug: 'debt-payoff-planner',
+    categorySlug: 'finance',
+    isFeatured: true,
+    homeRank: 9,
+  },
+  {
     name: 'GST Calculator',
     description:
       'Calculate GST amounts quickly with clear input and output sections.',
@@ -73,6 +125,17 @@ export const tools: Tool[] = [
     categorySlug: 'finance',
     isFeatured: true,
     homeRank: 1,
+  },
+  {
+    name: 'Invoice Generator',
+    description:
+      'Create a GST-friendly invoice with line items, taxes, totals, and a live printable preview.',
+    metaDescription:
+      'Use the Invoice Generator to create GST-friendly invoices with business details, client details, line items, tax totals, and PDF-ready print output.',
+    slug: 'invoice-generator',
+    categorySlug: 'finance',
+    isFeatured: true,
+    homeRank: 2,
   },
   {
     name: 'Percentage Calculator',
@@ -92,6 +155,56 @@ export const tools: Tool[] = [
       'Use the Discount Calculator to calculate discount amount, sale price, savings, and final total after tax.',
     slug: 'discount-calculator',
     categorySlug: 'finance',
+    homeRank: 3,
+  },
+  {
+    name: 'Subscription Cost Calculator',
+    description:
+      'Turn recurring subscription prices into daily, monthly, yearly, and long-term totals.',
+    metaDescription:
+      'Use the Subscription Cost Calculator to compare recurring plan prices across daily, monthly, yearly, and 5-year cost views.',
+    slug: 'subscription-cost-calculator',
+    categorySlug: 'finance',
+    homeRank: 10,
+  },
+  {
+    name: 'Can I Afford This? Calculator',
+    description:
+      'Check whether a purchase fits your monthly budget after essentials and savings.',
+    metaDescription:
+      'Use the Can I Afford This? Calculator to compare income, expenses, savings goals, and item price in one simple monthly budget check.',
+    slug: 'can-i-afford-this-calculator',
+    categorySlug: 'finance',
+    homeRank: 11,
+  },
+  {
+    name: 'Addiction Price Calculator',
+    description:
+      'Estimate how much a repeated habit costs per day, month, year, and beyond.',
+    metaDescription:
+      'Use the Addiction Price Calculator to estimate daily, monthly, yearly, and long-term spend from repeated per-unit habit costs.',
+    slug: 'addiction-price-calculator',
+    categorySlug: 'finance',
+    homeRank: 12,
+  },
+  {
+    name: 'Decision Maker (Spin the Wheel)',
+    description:
+      'Add custom choices, spin the wheel, and get one random answer with a fast playful interaction.',
+    metaDescription:
+      'Use the Decision Maker (Spin the Wheel) to enter custom options, spin a random wheel, and pick one result instantly.',
+    slug: 'decision-maker-spin-the-wheel',
+    categorySlug: 'utilities',
+    homeRank: 2,
+  },
+  {
+    name: 'Coin Toss (Heads or Tails)',
+    description:
+      'Flip a coin with a smooth animation and reveal a fair random heads-or-tails result after the toss.',
+    metaDescription:
+      'Use the Coin Toss tool to flip a virtual coin with animation, fair random results, streak tracking, and recent flip history.',
+    slug: 'coin-toss-heads-or-tails',
+    categorySlug: 'utilities',
     homeRank: 3,
   },
   {
@@ -157,6 +270,38 @@ export const tools: Tool[] = [
     homeRank: 1,
   },
   {
+    name: 'QR Code Generator',
+    description:
+      'Generate QR codes for links, text, Wi-Fi access, and contact details.',
+    metaDescription:
+      'Use the QR Code Generator to create QR codes for URLs, plain text, Wi-Fi login details, and contact cards.',
+    slug: 'qr-code-generator',
+    categorySlug: 'utilities',
+    isFeatured: true,
+    homeRank: 4,
+  },
+  {
+    name: 'Password Generator',
+    description:
+      'Generate strong passwords with adjustable length and character options.',
+    metaDescription:
+      'Use the Password Generator to create strong passwords with custom length, letters, numbers, and symbols.',
+    slug: 'password-generator',
+    categorySlug: 'utilities',
+    isFeatured: true,
+    homeRank: 5,
+  },
+  {
+    name: 'Image Resizer / Compressor',
+    description:
+      'Resize and compress one image directly in the browser and download the result.',
+    metaDescription:
+      'Use the Image Resizer / Compressor to resize images, reduce file size, and download the processed result directly in your browser.',
+    slug: 'image-resizer-compressor',
+    categorySlug: 'utilities',
+    homeRank: 6,
+  },
+  {
     name: 'JSON Viewer',
     description:
       'Paste raw JSON and inspect nested objects and arrays in a collapsible tree view.',
@@ -207,6 +352,46 @@ export const tools: Tool[] = [
     homeRank: 5,
   },
   {
+    name: 'Base64 Encode / Decode',
+    description:
+      'Encode plain text into Base64 or decode Base64 back into readable text.',
+    metaDescription:
+      'Use the Base64 Encode / Decode tool to convert text to Base64 and decode Base64 text back into readable output.',
+    slug: 'base64-encode-decode',
+    categorySlug: 'developer-tools',
+    homeRank: 6,
+  },
+  {
+    name: 'URL Encoder / Decoder',
+    description:
+      'Encode full URL text or decode encoded strings back into readable values.',
+    metaDescription:
+      'Use the URL Encoder / Decoder to safely encode URL text and decode encoded URL strings back into readable output.',
+    slug: 'url-encoder-decoder',
+    categorySlug: 'developer-tools',
+    homeRank: 7,
+  },
+  {
+    name: 'UUID Generator / Validator',
+    description:
+      'Generate UUID v1, v4, or v7 values and validate pasted UUID strings.',
+    metaDescription:
+      'Use the UUID Generator / Validator to create UUID v1, v4, and v7 values or validate existing UUID strings.',
+    slug: 'uuid-generator-validator',
+    categorySlug: 'developer-tools',
+    homeRank: 8,
+  },
+  {
+    name: 'JWT Decoder',
+    description:
+      'Decode JWT header and payload values and inspect common token claims.',
+    metaDescription:
+      'Use the JWT Decoder to inspect JWT header and payload data, time claims, and token details directly in your browser.',
+    slug: 'jwt-decoder',
+    categorySlug: 'developer-tools',
+    homeRank: 9,
+  },
+  {
     name: 'Age Calculator',
     description: 'Find exact age in years, months, and days between two dates.',
     metaDescription:
@@ -224,6 +409,26 @@ export const tools: Tool[] = [
     slug: 'date-difference-calculator',
     categorySlug: 'date-tools',
     homeRank: 2,
+  },
+  {
+    name: 'Business Days Calculator',
+    description:
+      'Count business days, weekend days, and total days between two selected dates.',
+    metaDescription:
+      'Use the Business Days Calculator to count working days, weekend days, and total days between two dates.',
+    slug: 'business-days-calculator',
+    categorySlug: 'date-tools',
+    homeRank: 3,
+  },
+  {
+    name: 'Weekend Left Calculator',
+    description:
+      'Count how many weekends, Saturdays, and Sundays are left in the year from any date.',
+    metaDescription:
+      'Use the Weekend Left Calculator to check how many weekends, Saturdays, and Sundays remain in the current year.',
+    slug: 'weekend-left-calculator',
+    categorySlug: 'date-tools',
+    homeRank: 3,
   },
   {
     name: 'Pregnancy Due Date Calculator',
@@ -244,6 +449,36 @@ export const tools: Tool[] = [
     slug: 'bmi-calculator',
     categorySlug: 'health-tools',
     homeRank: 2,
+  },
+  {
+    name: 'Screen Time Impact Calculator',
+    description:
+      'Turn daily screen time into yearly hours, full days, and a simple impact estimate.',
+    metaDescription:
+      'Use the Screen Time Impact Calculator to convert daily screen time into yearly hours, equivalent days, and a potential productivity-loss estimate.',
+    slug: 'screen-time-impact-calculator',
+    categorySlug: 'health-tools',
+    homeRank: 3,
+  },
+  {
+    name: 'Sitting Time Risk Calculator',
+    description:
+      'Estimate a simple sedentary risk level and get a stand-up reminder interval.',
+    metaDescription:
+      'Use the Sitting Time Risk Calculator to estimate a simple health risk level from daily sitting hours and get a suggested stand-up interval.',
+    slug: 'sitting-time-risk-calculator',
+    categorySlug: 'health-tools',
+    homeRank: 4,
+  },
+  {
+    name: 'Heart Rate Zone Calculator',
+    description:
+      'Estimate fat-burn, cardio, and peak training zones from your age.',
+    metaDescription:
+      'Use the Heart Rate Zone Calculator to estimate max heart rate and training zones such as fat-burn and cardio from age.',
+    slug: 'heart-rate-zone-calculator',
+    categorySlug: 'health-tools',
+    homeRank: 5,
   },
   {
     name: 'Biological Age Calculator',

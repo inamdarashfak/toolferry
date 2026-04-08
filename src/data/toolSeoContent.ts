@@ -184,6 +184,151 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'swp-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the SWP Calculator to estimate how a fixed monthly withdrawal plan affects corpus life, ending balance, and total withdrawals.',
+    audience:
+      'This tool is useful for investors and retirees testing whether a portfolio can support a planned withdrawal amount over a chosen time period.',
+    highlights: [
+      'Estimate whether a withdrawal plan can sustain the selected duration.',
+      'See total withdrawals alongside the remaining balance.',
+      'Compare multiple SWP scenarios without leaving the page.',
+    ],
+    faqs: [
+      {
+        question: 'What does the SWP Calculator show?',
+        answer:
+          'It estimates the ending corpus balance, total withdrawals, growth earned, and how long the corpus may last under the selected withdrawal plan.',
+      },
+      {
+        question: 'Does the tool assume the corpus keeps earning returns?',
+        answer:
+          'Yes. It applies the selected annual return assumption while monthly withdrawals are being made from the corpus.',
+      },
+      {
+        question: 'Can I use it for retirement planning?',
+        answer:
+          'Yes. It is useful for retirement-style withdrawal planning, as long as you understand that the results are estimates based on the chosen return assumption.',
+      },
+    ],
+  },
+  'step-up-sip-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Step-Up SIP Calculator to project how increasing your SIP every year can change total invested amount, estimated returns, and future corpus.',
+    audience:
+      'This tool is useful for long-term investors who expect their monthly investment capacity to rise with income over time.',
+    highlights: [
+      'Model a SIP that increases every year.',
+      'Compare invested amount against projected corpus growth.',
+      'See how a step-up assumption changes long-term outcomes.',
+    ],
+    faqs: [
+      {
+        question: 'What is a step-up SIP?',
+        answer:
+          'A step-up SIP is a systematic investment plan where the monthly contribution increases by a chosen percentage each year.',
+      },
+      {
+        question: 'Why use a step-up SIP instead of a fixed SIP?',
+        answer:
+          'A step-up SIP can better match income growth and may build a larger corpus over time than a flat monthly contribution.',
+      },
+      {
+        question: 'Does the tool show the final year SIP amount too?',
+        answer:
+          'Yes. It also shows the final year monthly SIP estimate based on the selected step-up rate and duration.',
+      },
+    ],
+  },
+  'xirr-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the XIRR Calculator to calculate annualized returns when investments and redemptions happen on irregular dates and in irregular amounts.',
+    audience:
+      'This tool is useful for investors who want a more realistic annualized return measure for SIPs, top-ups, withdrawals, and portfolio exits.',
+    highlights: [
+      'Handle irregular cash flows with dated entries.',
+      'Calculate annualized return beyond simple CAGR assumptions.',
+      'Review total invested, realized value, and net gain together.',
+    ],
+    faqs: [
+      {
+        question: 'What is XIRR?',
+        answer:
+          'XIRR is an annualized return measure for investments with irregular cash flows and dates, making it useful for real-world investing activity.',
+      },
+      {
+        question: 'Do I need both investment and redemption entries?',
+        answer:
+          'Yes. The calculation needs money going in and money coming out, or a current portfolio value treated as a final positive cash flow.',
+      },
+      {
+        question: 'How is XIRR different from CAGR?',
+        answer:
+          'CAGR assumes a single starting value and a single ending value, while XIRR works better when multiple cash flows happen on different dates.',
+      },
+    ],
+  },
+  'emergency-fund-runway-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Emergency Fund Runway Calculator to measure how long your savings can cover essential spending and how far you are from a target emergency corpus.',
+    audience:
+      'This tool is useful for households, freelancers, and salaried users who want a quick view of emergency cash coverage and funding progress.',
+    highlights: [
+      'Measure current emergency runway in months.',
+      'Set a target savings cushion based on essential expenses.',
+      'Estimate the remaining gap and time needed to fund it.',
+    ],
+    faqs: [
+      {
+        question: 'What is emergency fund runway?',
+        answer:
+          'Emergency fund runway is the number of months your current savings can cover essential monthly expenses if income stops or drops unexpectedly.',
+      },
+      {
+        question: 'How is the target fund calculated?',
+        answer:
+          'The target fund is calculated as monthly essential expenses multiplied by the number of months of coverage you choose.',
+      },
+      {
+        question: 'Can I use a different target than six months?',
+        answer:
+          'Yes. The target coverage is fully editable, so you can test lower or higher emergency fund goals.',
+      },
+    ],
+  },
+  'debt-payoff-planner': {
+    category: 'Finance',
+    intro:
+      'Use the Debt Payoff Planner to compare avalanche and snowball repayment strategies using balances, interest rates, minimum payments, and extra monthly payoff amount.',
+    audience:
+      'This tool is useful for borrowers managing multiple debts and wanting a clearer path to faster payoff with lower interest cost.',
+    highlights: [
+      'Compare avalanche and snowball repayment strategies.',
+      'See payoff time and total interest for each method.',
+      'Understand which debt gets priority under the selected plan.',
+    ],
+    faqs: [
+      {
+        question: 'What is the avalanche method?',
+        answer:
+          'The avalanche method focuses extra payments on the highest-interest debt first while continuing minimum payments on the others.',
+      },
+      {
+        question: 'What is the snowball method?',
+        answer:
+          'The snowball method focuses extra payments on the smallest balance first so debts can be cleared earlier in the sequence.',
+      },
+      {
+        question: 'Does the planner compare both methods automatically?',
+        answer:
+          'Yes. It shows payoff time and total interest for both methods, while also letting you focus on one active plan at a time.',
+      },
+    ],
+  },
   'gst-calculator': {
     category: 'Finance',
     intro:
@@ -210,6 +355,35 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Is the final amount shown immediately?',
         answer:
           'Yes. The output updates as you change the amount, GST rate, or pricing mode.',
+      },
+    ],
+  },
+  'invoice-generator': {
+    category: 'Finance',
+    intro:
+      'Use the Invoice Generator to create GST-friendly invoices with seller details, client details, itemized charges, tax totals, and a printable preview.',
+    audience:
+      'This tool is useful for freelancers, agencies, shop owners, consultants, and small businesses that need a clean invoice without using heavy accounting software.',
+    highlights: [
+      'Create itemized invoices with GST-friendly tax breakdowns.',
+      'Preview seller details, client details, totals, and balance due live.',
+      'Print or save the invoice as a PDF directly from the browser.',
+    ],
+    faqs: [
+      {
+        question: 'Can I create a GST-friendly invoice with this tool?',
+        answer:
+          'Yes. The invoice includes GST fields, place of supply, GSTIN inputs, and a tax summary that adapts to the entered details.',
+      },
+      {
+        question: 'Can I save the invoice as a PDF?',
+        answer:
+          'Yes. Use the print action and choose Save as PDF in the browser print dialog.',
+      },
+      {
+        question: 'Can I add more than one item to the invoice?',
+        answer:
+          'Yes. You can add multiple line items, each with its own quantity, unit price, and GST rate.',
       },
     ],
   },
@@ -268,6 +442,150 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Does the tool work with any currency?',
         answer:
           'Yes. You can switch the display currency for the result summary while keeping the same discount logic.',
+      },
+    ],
+  },
+  'subscription-cost-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Subscription Cost Calculator to turn recurring plan prices into equivalent daily, monthly, yearly, and 5-year totals.',
+    audience:
+      'This tool is useful for anyone reviewing streaming services, software plans, memberships, or app subscriptions and wanting a clearer long-term cost view.',
+    highlights: [
+      'Convert recurring subscription prices into yearly totals.',
+      'Compare daily, monthly, and 5-year cost impact quickly.',
+      'Include more than one subscription in the same estimate.',
+    ],
+    faqs: [
+      {
+        question: 'What billing frequencies are supported?',
+        answer:
+          'The calculator supports weekly, monthly, quarterly, and yearly billing so you can compare common subscription plans in one place.',
+      },
+      {
+        question: 'Can I include more than one subscription?',
+        answer:
+          'Yes. Increase the subscription count to estimate the combined cost of multiple similar plans or seats.',
+      },
+      {
+        question: 'Does it show long-term cost too?',
+        answer:
+          'Yes. Along with the daily and yearly breakdown, it also shows a 5-year total so recurring costs are easier to judge.',
+      },
+    ],
+  },
+  'can-i-afford-this-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Can I Afford This? Calculator to compare a planned purchase against your monthly income, essential expenses, and savings goal.',
+    audience:
+      'This tool is useful for shoppers, planners, and budget-conscious users who want a simple monthly affordability check before buying something non-essential.',
+    highlights: [
+      'See what remains after essentials and savings.',
+      'Check whether a purchase fits your current month.',
+      'Measure the remaining buffer or shortfall instantly.',
+    ],
+    faqs: [
+      {
+        question: 'What does this calculator use to judge affordability?',
+        answer:
+          'It compares your monthly income against essential monthly expenses, your chosen savings goal, and the item price to show whether the purchase fits inside the remaining budget.',
+      },
+      {
+        question: 'Can I include a monthly savings target?',
+        answer:
+          'Yes. The savings goal is treated as money you want to preserve before deciding whether the item is affordable this month.',
+      },
+      {
+        question: 'Does it tell me if I am short?',
+        answer:
+          'Yes. If the purchase does not fit, the tool shows the shortfall needed to cover the item after expenses and savings.',
+      },
+    ],
+  },
+  'addiction-price-calculator': {
+    category: 'Finance',
+    intro:
+      'Use the Addiction Price Calculator to estimate how much a repeated habit costs per day, month, year, and over longer stretches of time.',
+    audience:
+      'This tool is useful for anyone who wants a spend-focused estimate of how repeated purchases add up over time, without medical or behavioral scoring.',
+    highlights: [
+      'Estimate repeated habit cost from price and usage frequency.',
+      'See daily, monthly, yearly, and 5-year spend together.',
+      'Preview potential savings if the habit stops for a selected period.',
+    ],
+    faqs: [
+      {
+        question: 'What inputs does the calculator need?',
+        answer:
+          'It uses the cost per unit, how many units are used, and whether that usage is measured per day or per week.',
+      },
+      {
+        question: 'Can I use this for habits other than smoking?',
+        answer:
+          'Yes. The unit label is editable, so you can estimate repeated spending for any per-unit habit or purchase pattern.',
+      },
+      {
+        question: 'Does the calculator give health advice?',
+        answer:
+          'No. It is strictly a cost-estimation tool that focuses on spending totals and possible savings over time.',
+      },
+    ],
+  },
+  'decision-maker-spin-the-wheel': {
+    category: 'Utilities',
+    intro:
+      'Use the Decision Maker (Spin the Wheel) to enter your own choices, spin a colorful wheel, and get one random answer in a quick playful format.',
+    audience:
+      'This tool is useful for anyone trying to choose between food ideas, weekend plans, team picks, chores, yes-or-no questions, or any small everyday decision.',
+    highlights: [
+      'Add your own options and spin for one random result.',
+      'Edit, delete, reset, or quickly load preset lists without leaving the page.',
+      'Keep a few recent option lists saved locally for faster repeat use.',
+    ],
+    faqs: [
+      {
+        question: 'How many options can I add to the wheel?',
+        answer:
+          'You can add multiple custom options, and the wheel will still spin through them, although shorter lists are easier to read directly on the wheel.',
+      },
+      {
+        question: 'Does the tool stop duplicate options?',
+        answer:
+          'Yes. Blank entries and duplicate options are blocked after trimming extra spaces and checking the text case-insensitively.',
+      },
+      {
+        question: 'Can I reuse a list later?',
+        answer:
+          'Yes. Recent option lists are saved in local storage on your device so you can restore them later without re-entering every option.',
+      },
+    ],
+  },
+  'coin-toss-heads-or-tails': {
+    category: 'Utilities',
+    intro:
+      'Use the Coin Toss tool to flip a virtual coin with a smooth animated toss and reveal either heads or tails only after the flip finishes.',
+    audience:
+      'This tool is useful for anyone making a quick everyday decision, settling a tie, choosing a starter, or adding a small playful randomizer to a conversation or activity.',
+    highlights: [
+      'Flip a coin with a responsive 3D-style animation.',
+      'Reveal the result only after the toss completes.',
+      'Track recent flips and short result streaks without extra setup.',
+    ],
+    faqs: [
+      {
+        question: 'Is the coin toss random?',
+        answer: 'Yes. Each flip gives heads and tails an equal 50/50 chance.',
+      },
+      {
+        question: 'Can I flip the coin more than once?',
+        answer:
+          'Yes. You can keep flipping as often as you want, and the button becomes available again as soon as the current animation finishes.',
+      },
+      {
+        question: 'Does the tool show previous results?',
+        answer:
+          'Yes. It keeps a short history of the latest flips and shows whether you are currently on a heads or tails streak.',
       },
     ],
   },
@@ -411,6 +729,93 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       {
         question: 'Is this a multi-language tool?',
         answer: 'No. This version focuses on English output only.',
+      },
+    ],
+  },
+  'qr-code-generator': {
+    category: 'Utilities',
+    intro:
+      'Use the QR Code Generator to create QR codes for links, plain text, Wi-Fi access details, and contact cards from one simple page.',
+    audience:
+      'This tool is useful for businesses, event teams, freelancers, students, and anyone who needs a fast QR code for sharing links or contact details.',
+    highlights: [
+      'Generate QR codes for several common use cases.',
+      'Preview the code before downloading it.',
+      'Download the result as a ready-to-share image.',
+    ],
+    faqs: [
+      {
+        question: 'What types of QR codes can I create here?',
+        answer:
+          'You can create QR codes for website links, plain text, Wi-Fi access details, and contact cards.',
+      },
+      {
+        question: 'Can I download the QR code as an image?',
+        answer:
+          'Yes. The generated QR code can be downloaded as a PNG image directly from the page.',
+      },
+      {
+        question: 'Does it support Wi-Fi QR codes?',
+        answer:
+          'Yes. You can enter the network name, password, and security type to generate a Wi-Fi QR code.',
+      },
+    ],
+  },
+  'password-generator': {
+    category: 'Utilities',
+    intro:
+      'Use the Password Generator to create strong passwords with custom length and character settings from one simple page.',
+    audience:
+      'This tool is useful for anyone creating account passwords, updating credentials, or needing a quick strong-password option without leaving the browser.',
+    highlights: [
+      'Generate passwords with adjustable length.',
+      'Choose which character types to include.',
+      'Copy the password instantly after generation.',
+    ],
+    faqs: [
+      {
+        question: 'Can I choose what kinds of characters are included?',
+        answer:
+          'Yes. You can turn lowercase letters, uppercase letters, numbers, and symbols on or off before generating the password.',
+      },
+      {
+        question: 'Can I generate more than one password?',
+        answer:
+          'Yes. Use the regenerate button to create a fresh password with the same settings.',
+      },
+      {
+        question: 'Does the tool show a strength hint?',
+        answer:
+          'Yes. It includes a simple strength label based on password length and character variety.',
+      },
+    ],
+  },
+  'image-resizer-compressor': {
+    category: 'Utilities',
+    intro:
+      'Use the Image Resizer / Compressor to resize a single image, reduce file size, and download the processed result directly in your browser.',
+    audience:
+      'This tool is useful for marketers, designers, sellers, students, and anyone preparing images for websites, forms, uploads, or email.',
+    highlights: [
+      'Resize one image directly in the browser.',
+      'Compare original and processed image size quickly.',
+      'Download the updated image without leaving the page.',
+    ],
+    faqs: [
+      {
+        question: 'What image formats does this tool support?',
+        answer:
+          'This version supports common single-image uploads such as PNG, JPEG, and WEBP.',
+      },
+      {
+        question: 'Can I keep the image proportions the same?',
+        answer:
+          'Yes. The keep aspect ratio option helps resize the image without stretching it.',
+      },
+      {
+        question: 'Can I download the processed image?',
+        answer:
+          'Yes. After applying the changes, the processed image can be downloaded directly from the page.',
       },
     ],
   },
@@ -587,6 +992,122 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'base64-encode-decode': {
+    category: 'Developer Tools',
+    intro:
+      'Use the Base64 Encode / Decode tool to convert text into Base64 or decode Base64 back into readable text.',
+    audience:
+      'This tool is useful for developers, QA teams, support teams, and anyone working with encoded strings in APIs, configs, or debugging tasks.',
+    highlights: [
+      'Encode plain text into Base64 quickly.',
+      'Decode Base64 back into readable text.',
+      'Handle both directions from one small workspace.',
+    ],
+    faqs: [
+      {
+        question: 'Can I both encode and decode in the same tool?',
+        answer:
+          'Yes. The mode switch lets you move between Base64 encoding and decoding from the same page.',
+      },
+      {
+        question: 'What happens if the Base64 input is invalid?',
+        answer:
+          'The tool shows a clear validation message instead of returning broken output.',
+      },
+      {
+        question: 'Does it work with regular text input?',
+        answer:
+          'Yes. In encode mode you can paste or type normal text and convert it into Base64 output.',
+      },
+    ],
+  },
+  'url-encoder-decoder': {
+    category: 'Developer Tools',
+    intro:
+      'Use the URL Encoder / Decoder to turn plain URL text into encoded output or decode encoded URL strings back into readable values.',
+    audience:
+      'This tool is useful for developers, QA teams, support teams, and anyone working with links, query strings, redirects, or encoded text.',
+    highlights: [
+      'Encode full URL text quickly.',
+      'Decode encoded URL strings from one page.',
+      'Useful for links, query params, and debugging tasks.',
+    ],
+    faqs: [
+      {
+        question: 'Can I both encode and decode in the same tool?',
+        answer:
+          'Yes. You can switch between encoding and decoding modes from the same workspace.',
+      },
+      {
+        question: 'What happens if the encoded value is invalid?',
+        answer:
+          'The tool shows a clear validation message instead of returning broken output.',
+      },
+      {
+        question: 'Can I use this for full links with query parameters?',
+        answer:
+          'Yes. You can paste full links, plain text, or encoded query-string values depending on what you need to convert.',
+      },
+    ],
+  },
+  'uuid-generator-validator': {
+    category: 'Developer Tools',
+    intro:
+      'Use the UUID Generator / Validator to create UUID v1, v4, and v7 values or validate existing UUID strings line by line.',
+    audience:
+      'This tool is useful for developers, QA teams, testers, and support users who need fresh UUIDs or want to check whether an ID string is valid.',
+    highlights: [
+      'Generate UUIDs in common versions.',
+      'Validate one or many UUID strings at once.',
+      'See the detected version for valid values.',
+    ],
+    faqs: [
+      {
+        question: 'Which UUID versions does this tool support?',
+        answer:
+          'This version supports UUID v1, UUID v4, and UUID v7 generation, along with validation for pasted UUID strings.',
+      },
+      {
+        question: 'Can I validate more than one UUID at a time?',
+        answer:
+          'Yes. Paste one UUID per line and the tool checks each one separately.',
+      },
+      {
+        question: 'Does it show the version of a valid UUID?',
+        answer:
+          'Yes. Valid UUID values are labeled with the detected version so you can confirm the format more easily.',
+      },
+    ],
+  },
+  'jwt-decoder': {
+    category: 'Developer Tools',
+    intro:
+      'Use the JWT Decoder to inspect token header and payload data, review common claims, and check readable time fields directly in your browser.',
+    audience:
+      'This tool is useful for developers, support teams, QA testers, and API users who need to inspect JWT content without sending the token anywhere.',
+    highlights: [
+      'Decode JWT header and payload sections instantly.',
+      'Review issuer, subject, audience, and time claims.',
+      'See clear status hints without claiming signature verification.',
+    ],
+    faqs: [
+      {
+        question: 'Does this tool verify the JWT signature?',
+        answer:
+          'No. It decodes the token and shows useful hints, but it does not perform cryptographic signature verification.',
+      },
+      {
+        question: 'What token details can I inspect here?',
+        answer:
+          'You can inspect the decoded header, payload, signature text, and common claims such as issuer, subject, audience, issued-at time, and expiry time.',
+      },
+      {
+        question: 'What happens if the token format is invalid?',
+        answer:
+          'The tool shows a clear error message when the token does not have the expected sections or when the header or payload cannot be decoded properly.',
+      },
+    ],
+  },
   'age-calculator': {
     category: 'Date Tools',
     intro:
@@ -645,6 +1166,64 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'business-days-calculator': {
+    category: 'Date Tools',
+    intro:
+      'Use the Business Days Calculator to count workdays, weekend days, and total days between two selected dates.',
+    audience:
+      'This tool is useful for office planning, deadline estimates, leave planning, operations work, and any task that depends on Monday-to-Friday date counting.',
+    highlights: [
+      'Count business days between two dates quickly.',
+      'See weekend days and total days in the same result.',
+      'Choose whether the start date should be included.',
+    ],
+    faqs: [
+      {
+        question: 'What does this calculator treat as a business day?',
+        answer:
+          'This version treats Monday through Friday as business days and Saturday and Sunday as weekend days.',
+      },
+      {
+        question: 'Can I include the start date in the count?',
+        answer:
+          'Yes. There is a toggle that lets you include or exclude the start date from the result.',
+      },
+      {
+        question: 'Does this version include public holidays?',
+        answer:
+          'No. This version focuses only on weekday and weekend counting and does not include holiday calendars.',
+      },
+    ],
+  },
+  'weekend-left-calculator': {
+    category: 'Date Tools',
+    intro:
+      'Use the Weekend Left Calculator to check how many Saturdays, Sundays, and full weekends are still left in the current year from a selected date.',
+    audience:
+      'This tool is useful for personal planning, time-off planning, travel planning, and anyone who wants a quick year-end weekend count without manually checking a calendar.',
+    highlights: [
+      'Count remaining weekends from any chosen date.',
+      'See Saturday and Sunday counts separately.',
+      'Check the next weekend day and the days left in the year.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Weekend Left Calculator show?',
+        answer:
+          'It shows the number of Saturdays, Sundays, full weekends, and remaining days left in the current year from the selected reference date.',
+      },
+      {
+        question: 'Can I use a date other than today?',
+        answer:
+          'Yes. You can change the reference date to any valid date and the result updates for that point in the same year.',
+      },
+      {
+        question: 'Does it count only future weekends?',
+        answer:
+          'Yes. It counts from the selected date forward through December 31 of that year, including the selected day if it falls on a weekend.',
+      },
+    ],
+  },
   'bmi-calculator': {
     category: 'Health Tools',
     intro:
@@ -671,6 +1250,93 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
         question: 'Is BMI a medical diagnosis?',
         answer:
           'No. BMI is a general screening measure and should not be treated as a medical diagnosis on its own.',
+      },
+    ],
+  },
+  'screen-time-impact-calculator': {
+    category: 'Health Tools',
+    intro:
+      'Use the Screen Time Impact Calculator to convert average daily screen exposure into yearly hours, equivalent days, and a simple potential productivity-loss estimate.',
+    audience:
+      'This tool is useful for students, office workers, creators, and anyone who wants a clearer yearly picture of how daily screen habits add up.',
+    highlights: [
+      'Turn daily screen time into yearly hours instantly.',
+      'See the equivalent number of full days spent on screens.',
+      'Use a simple impact estimate as a behavior prompt.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Screen Time Impact Calculator show?',
+        answer:
+          'It converts average daily screen time into yearly hours, equivalent full days, and a simple potential productivity-loss estimate.',
+      },
+      {
+        question: 'Is the productivity-loss output exact?',
+        answer:
+          'No. It is a simplified estimate designed to make the time impact easier to visualize, not a precise performance measurement.',
+      },
+      {
+        question: 'Can I use decimal hours?',
+        answer:
+          'Yes. You can enter values such as 5.5 hours per day to get a more precise estimate.',
+      },
+    ],
+  },
+  'sitting-time-risk-calculator': {
+    category: 'Health Tools',
+    intro:
+      'Use the Sitting Time Risk Calculator to estimate a simple sedentary risk band from daily sitting time and get a suggested stand-up interval.',
+    audience:
+      'This tool is useful for desk workers, students, gamers, drivers, and anyone who spends long periods seated during the day.',
+    highlights: [
+      'Classify daily sitting time into a simple risk band.',
+      'Get a stand-up reminder interval in minutes.',
+      'Use it as a quick sedentary-habit awareness check.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Sitting Time Risk Calculator show?',
+        answer:
+          'It shows a simple sedentary risk level and a suggested stand-up interval based on the number of hours you sit each day.',
+      },
+      {
+        question: 'Is this a medical diagnosis tool?',
+        answer:
+          'No. It is a simplified wellness estimate meant for habit awareness, not a clinical health assessment.',
+      },
+      {
+        question: 'Why does it suggest standing every few minutes?',
+        answer:
+          'The reminder interval is intended to break up long sedentary stretches and make regular movement easier to remember.',
+      },
+    ],
+  },
+  'heart-rate-zone-calculator': {
+    category: 'Health Tools',
+    intro:
+      'Use the Heart Rate Zone Calculator to estimate max heart rate and common training zones such as fat-burn, cardio, and peak ranges from age.',
+    audience:
+      'This tool is useful for gym users, runners, cyclists, and anyone who wants a quick age-based training-zone estimate before a workout.',
+    highlights: [
+      'Estimate max heart rate with a simple age-based formula.',
+      'See fat-burn, cardio, and peak training zones together.',
+      'Get quick bpm ranges without using a separate fitness app.',
+    ],
+    faqs: [
+      {
+        question: 'How is max heart rate estimated?',
+        answer:
+          'This version uses the standard 220 minus age formula to estimate max heart rate and then applies percentage ranges for common training zones.',
+      },
+      {
+        question: 'Which zones does the calculator show?',
+        answer:
+          'It shows fat-burn, cardio, and peak heart-rate ranges in beats per minute.',
+      },
+      {
+        question: 'Are these values exact for every person?',
+        answer:
+          'No. They are simplified training estimates and may differ from lab-tested or device-specific results.',
       },
     ],
   },

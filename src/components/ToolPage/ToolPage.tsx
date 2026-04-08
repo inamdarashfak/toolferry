@@ -27,43 +27,161 @@ const FdCalculator = dynamic(() => import('../FdCalculator/FdCalculator'), {
 const PpfCalculator = dynamic(() => import('../PpfCalculator/PpfCalculator'), {
   loading: () => <CalculatorFallback />,
 })
-const MutualFundCalculator = dynamic(() => import('../MutualFundCalculator/MutualFundCalculator'), {
+const MutualFundCalculator = dynamic(
+  () => import('../MutualFundCalculator/MutualFundCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const CagrCalculator = dynamic(
+  () => import('../CagrCalculator/CagrCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const SwpCalculator = dynamic(() => import('../SwpCalculator/SwpCalculator'), {
   loading: () => <CalculatorFallback />,
 })
-const CagrCalculator = dynamic(() => import('../CagrCalculator/CagrCalculator'), {
-  loading: () => <CalculatorFallback />,
-})
-const GoalCalculator = dynamic(() => import('../GoalCalculator/GoalCalculator'), {
-  loading: () => <CalculatorFallback />,
-})
+const StepUpSipCalculator = dynamic(
+  () => import('../StepUpSipCalculator/StepUpSipCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const XirrCalculator = dynamic(
+  () => import('../XirrCalculator/XirrCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const EmergencyFundRunwayCalculator = dynamic(
+  () =>
+    import('../EmergencyFundRunwayCalculator/EmergencyFundRunwayCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const DebtPayoffPlanner = dynamic(
+  () => import('../DebtPayoffPlanner/DebtPayoffPlanner'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const GoalCalculator = dynamic(
+  () => import('../GoalCalculator/GoalCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const InvoiceGenerator = dynamic(
+  () => import('../InvoiceGenerator/InvoiceGenerator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
 const GstCalculator = dynamic(() => import('../GstCalculator/GstCalculator'), {
   loading: () => <CalculatorFallback />,
 })
-const PercentageCalculator = dynamic(() => import('../PercentageCalculator/PercentageCalculator'), {
-  loading: () => <CalculatorFallback />,
-})
-const DiscountCalculator = dynamic(() => import('../DiscountCalculator/DiscountCalculator'), {
+const PercentageCalculator = dynamic(
+  () => import('../PercentageCalculator/PercentageCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const DiscountCalculator = dynamic(
+  () => import('../DiscountCalculator/DiscountCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const SubscriptionCostCalculator = dynamic(
+  () => import('../SubscriptionCostCalculator/SubscriptionCostCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const CanIAffordThisCalculator = dynamic(
+  () => import('../CanIAffordThisCalculator/CanIAffordThisCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const AddictionPriceCalculator = dynamic(
+  () => import('../AddictionPriceCalculator/AddictionPriceCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const DecisionMakerWheel = dynamic(
+  () => import('../DecisionMakerWheel/DecisionMakerWheel'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const CoinToss = dynamic(() => import('../CoinToss/CoinToss'), {
   loading: () => <CalculatorFallback />,
 })
 const UnitConverter = dynamic(() => import('../UnitConverter/UnitConverter'), {
   loading: () => <CalculatorFallback />,
 })
-const CurrencyConverter = dynamic(() => import('../CurrencyConverter/CurrencyConverter'), {
-  loading: () => <CalculatorFallback />,
-})
-const TimeZoneConverter = dynamic(() => import('../TimeZoneConverter/TimeZoneConverter'), {
-  loading: () => <CalculatorFallback />,
-})
-const ColorConverter = dynamic(() => import('../ColorConverter/ColorConverter'), {
-  loading: () => <CalculatorFallback />,
-})
+const CurrencyConverter = dynamic(
+  () => import('../CurrencyConverter/CurrencyConverter'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const TimeZoneConverter = dynamic(
+  () => import('../TimeZoneConverter/TimeZoneConverter'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const ColorConverter = dynamic(
+  () => import('../ColorConverter/ColorConverter'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
 const NumberToWordsConverter = dynamic(
   () => import('../NumberToWordsConverter/NumberToWordsConverter'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const TextFormatter = dynamic(() => import('../TextFormatter/TextFormatter'), {
+  loading: () => <CalculatorFallback />,
+})
+const PasswordGenerator = dynamic(
+  () => import('../PasswordGenerator/PasswordGenerator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const QrCodeGenerator = dynamic(
+  () => import('../QrCodeGenerator/QrCodeGenerator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const Base64EncoderDecoder = dynamic(
+  () => import('../Base64EncoderDecoder/Base64EncoderDecoder'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const UrlEncoderDecoder = dynamic(
+  () => import('../UrlEncoderDecoder/UrlEncoderDecoder'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const UuidGeneratorValidator = dynamic(
+  () => import('../UuidGeneratorValidator/UuidGeneratorValidator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const JwtDecoder = dynamic(() => import('../JwtDecoder/JwtDecoder'), {
   loading: () => <CalculatorFallback />,
 })
 const JsonViewer = dynamic(() => import('../JsonViewer/JsonViewer'), {
@@ -73,25 +191,25 @@ const CsvToJsonConverter = dynamic(
   () => import('../CsvToJsonConverter/CsvToJsonConverter'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const JsonToCsvConverter = dynamic(
   () => import('../JsonToCsvConverter/JsonToCsvConverter'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const BaseNumberConverter = dynamic(
   () => import('../BaseNumberConverter/BaseNumberConverter'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const TimestampConverter = dynamic(
   () => import('../TimestampConverter/TimestampConverter'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const AgeCalculator = dynamic(() => import('../AgeCalculator/AgeCalculator'), {
   loading: () => <CalculatorFallback />,
@@ -100,22 +218,58 @@ const DateDifferenceCalculator = dynamic(
   () => import('../DateDifferenceCalculator/DateDifferenceCalculator'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
+)
+const BusinessDaysCalculator = dynamic(
+  () => import('../BusinessDaysCalculator/BusinessDaysCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const WeekendLeftCalculator = dynamic(
+  () => import('../WeekendLeftCalculator/WeekendLeftCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const ImageResizerCompressor = dynamic(
+  () => import('../ImageResizerCompressor/ImageResizerCompressor'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
 )
 const BmiCalculator = dynamic(() => import('../BmiCalculator/BmiCalculator'), {
   loading: () => <CalculatorFallback />,
 })
+const ScreenTimeImpactCalculator = dynamic(
+  () => import('../ScreenTimeImpactCalculator/ScreenTimeImpactCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const SittingTimeRiskCalculator = dynamic(
+  () => import('../SittingTimeRiskCalculator/SittingTimeRiskCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const HeartRateZoneCalculator = dynamic(
+  () => import('../HeartRateZoneCalculator/HeartRateZoneCalculator'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
 const BiologicalAgeCalculator = dynamic(
   () => import('../BiologicalAgeCalculator/BiologicalAgeCalculator'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 const PregnancyDueDateCalculator = dynamic(
   () => import('../PregnancyDueDateCalculator/PregnancyDueDateCalculator'),
   {
     loading: () => <CalculatorFallback />,
-  },
+  }
 )
 
 type ToolPageProps = {
@@ -150,7 +304,12 @@ function CalculatorFallback() {
   )
 }
 
-function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPageProps) {
+function ToolPage({
+  tool,
+  helpContent,
+  faqs = [],
+  relatedToolSlugs,
+}: ToolPageProps) {
   useEffect(() => {
     trackEvent('tool_open', {
       tool_slug: tool.slug,
@@ -175,8 +334,20 @@ function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPagePr
     toolContent = <MutualFundCalculator />
   } else if (tool.slug === 'cagr-calculator') {
     toolContent = <CagrCalculator />
+  } else if (tool.slug === 'swp-calculator') {
+    toolContent = <SwpCalculator />
+  } else if (tool.slug === 'step-up-sip-calculator') {
+    toolContent = <StepUpSipCalculator />
+  } else if (tool.slug === 'xirr-calculator') {
+    toolContent = <XirrCalculator />
+  } else if (tool.slug === 'emergency-fund-runway-calculator') {
+    toolContent = <EmergencyFundRunwayCalculator />
+  } else if (tool.slug === 'debt-payoff-planner') {
+    toolContent = <DebtPayoffPlanner />
   } else if (tool.slug === 'goal-calculator') {
     toolContent = <GoalCalculator />
+  } else if (tool.slug === 'invoice-generator') {
+    toolContent = <InvoiceGenerator />
   } else if (tool.slug === 'unit-converter') {
     toolContent = <UnitConverter />
   } else if (tool.slug === 'currency-converter') {
@@ -193,8 +364,32 @@ function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPagePr
     toolContent = <PercentageCalculator />
   } else if (tool.slug === 'discount-calculator') {
     toolContent = <DiscountCalculator />
+  } else if (tool.slug === 'subscription-cost-calculator') {
+    toolContent = <SubscriptionCostCalculator />
+  } else if (tool.slug === 'can-i-afford-this-calculator') {
+    toolContent = <CanIAffordThisCalculator />
+  } else if (tool.slug === 'addiction-price-calculator') {
+    toolContent = <AddictionPriceCalculator />
+  } else if (tool.slug === 'decision-maker-spin-the-wheel') {
+    toolContent = <DecisionMakerWheel />
+  } else if (tool.slug === 'coin-toss-heads-or-tails') {
+    toolContent = <CoinToss />
   } else if (tool.slug === 'text-formatter') {
     toolContent = <TextFormatter />
+  } else if (tool.slug === 'password-generator') {
+    toolContent = <PasswordGenerator />
+  } else if (tool.slug === 'qr-code-generator') {
+    toolContent = <QrCodeGenerator />
+  } else if (tool.slug === 'image-resizer-compressor') {
+    toolContent = <ImageResizerCompressor />
+  } else if (tool.slug === 'base64-encode-decode') {
+    toolContent = <Base64EncoderDecoder />
+  } else if (tool.slug === 'url-encoder-decoder') {
+    toolContent = <UrlEncoderDecoder />
+  } else if (tool.slug === 'uuid-generator-validator') {
+    toolContent = <UuidGeneratorValidator />
+  } else if (tool.slug === 'jwt-decoder') {
+    toolContent = <JwtDecoder />
   } else if (tool.slug === 'json-viewer') {
     toolContent = <JsonViewer />
   } else if (tool.slug === 'csv-to-json-converter') {
@@ -209,8 +404,18 @@ function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPagePr
     toolContent = <AgeCalculator />
   } else if (tool.slug === 'date-difference-calculator') {
     toolContent = <DateDifferenceCalculator />
+  } else if (tool.slug === 'business-days-calculator') {
+    toolContent = <BusinessDaysCalculator />
+  } else if (tool.slug === 'weekend-left-calculator') {
+    toolContent = <WeekendLeftCalculator />
   } else if (tool.slug === 'bmi-calculator') {
     toolContent = <BmiCalculator />
+  } else if (tool.slug === 'screen-time-impact-calculator') {
+    toolContent = <ScreenTimeImpactCalculator />
+  } else if (tool.slug === 'sitting-time-risk-calculator') {
+    toolContent = <SittingTimeRiskCalculator />
+  } else if (tool.slug === 'heart-rate-zone-calculator') {
+    toolContent = <HeartRateZoneCalculator />
   } else if (tool.slug === 'biological-age-calculator') {
     toolContent = <BiologicalAgeCalculator />
   } else if (tool.slug === 'pregnancy-due-date-calculator') {
@@ -249,7 +454,9 @@ function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPagePr
         <BreadcrumbNav
           items={[
             { label: 'Home', href: '/' },
-            ...(category ? [{ label: category.name, href: `/category/${category.slug}` }] : []),
+            ...(category
+              ? [{ label: category.name, href: `/category/${category.slug}` }]
+              : []),
             { label: tool.name },
           ]}
         />
@@ -274,7 +481,6 @@ function ToolPage({ tool, helpContent, faqs = [], relatedToolSlugs }: ToolPagePr
 
         <RelatedToolsSection tools={selectedRelatedTools} />
       </Stack>
-
     </Container>
   )
 }

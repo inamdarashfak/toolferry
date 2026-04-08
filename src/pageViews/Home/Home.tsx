@@ -21,8 +21,6 @@ import Container from '../../components/Container/Container'
 import { toolCategories } from '../../data/toolCategories'
 import { tools } from '../../data/tools'
 
-const CATEGORY_PREVIEW_COUNT = 10
-
 function sortToolsForHome() {
   return [...tools].sort((left, right) => {
     const leftRank = left.homeRank ?? Number.MAX_SAFE_INTEGER
@@ -81,10 +79,10 @@ function CompactToolLink({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 1,
-        minHeight: 40,
-        px: 1.25,
-        py: 0.875,
+        gap: 0.75,
+        minHeight: 34,
+        px: 1,
+        py: 0.7,
         border: `1px solid ${theme.palette.divider}`,
         backgroundColor:
           theme.palette.mode === 'dark'
@@ -93,19 +91,35 @@ function CompactToolLink({
         opacity: isPending ? 0.78 : 1,
         pointerEvents: isPending ? 'none' : 'auto',
         transition:
-          'border-color 180ms ease, transform 180ms ease, color 180ms ease, opacity 180ms ease',
+          'border-color 180ms ease, background-color 180ms ease, color 180ms ease, opacity 180ms ease',
         '&:hover': {
           borderColor: 'secondary.main',
+          backgroundColor:
+            theme.palette.mode === 'dark'
+              ? 'rgba(255,255,255,0.04)'
+              : 'rgba(255,255,255,0.96)',
+        },
+        '&:hover .compact-tool-title': {
           color: 'secondary.main',
-          transform: 'translateX(2px)',
+        },
+        '&:hover .compact-tool-arrow': {
+          color: 'secondary.main',
         },
       })}
     >
       <Typography
+        className="compact-tool-title"
+        title={toolName}
         sx={{
-          fontSize: { xs: '0.94rem', md: '0.92rem' },
+          flex: 1,
+          minWidth: 0,
+          fontSize: { xs: '0.88rem', md: '0.86rem' },
           fontWeight: 600,
-          lineHeight: 1.35,
+          lineHeight: 1.3,
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+          transition: 'color 180ms ease',
         }}
       >
         {toolName}
@@ -113,7 +127,15 @@ function CompactToolLink({
       {isPending ? (
         <CircularProgress size={16} thickness={5} sx={{ flexShrink: 0 }} />
       ) : (
-        <ArrowOutwardRoundedIcon sx={{ fontSize: '1rem', flexShrink: 0 }} />
+        <ArrowOutwardRoundedIcon
+          className="compact-tool-arrow"
+          sx={{
+            fontSize: '0.85rem',
+            flexShrink: 0,
+            color: 'text.disabled',
+            transition: 'color 180ms ease',
+          }}
+        />
       )}
     </MuiLink>
   )
@@ -272,9 +294,9 @@ function Home() {
 
         <Stack spacing={{ xs: 2.25, md: 2.5 }}>
           {toolCategories.map((category) => {
-            const categoryTools = orderedTools
-              .filter((tool) => tool.categorySlug === category.slug)
-              .slice(0, CATEGORY_PREVIEW_COUNT)
+            const categoryTools = orderedTools.filter(
+              (tool) => tool.categorySlug === category.slug
+            )
             return (
               <Paper
                 key={category.slug}
@@ -324,9 +346,17 @@ function Home() {
                     <Button
                       component={Link}
                       href={`/category/${category.slug}`}
+                      size="small"
                       endIcon={<ArrowOutwardRoundedIcon />}
+                      sx={{
+                        minWidth: 'auto',
+                        px: 1.25,
+                        py: 0.5,
+                        borderRadius: 0,
+                        whiteSpace: 'nowrap',
+                      }}
                     >
-                      View more tools
+                      View all
                     </Button>
                   </Stack>
 
@@ -334,7 +364,7 @@ function Home() {
 
                   <Grid container spacing={{ xs: 1, md: 1.25 }}>
                     {categoryTools.map((tool) => (
-                      <Grid key={tool.slug} size={{ xs: 12, sm: 6, md: 4 }}>
+                      <Grid key={tool.slug} size={{ xs: 12, sm: 6, lg: 3 }}>
                         <CompactToolLink
                           toolName={tool.name}
                           slug={tool.slug}
