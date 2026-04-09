@@ -21,6 +21,18 @@ export const toolCategories: ToolCategory[] = [
       'Loans, investing, tax, pricing, and money-planning tools in one category.',
   },
   {
+    slug: 'health-tools',
+    name: 'Health',
+    description:
+      'Simple health-related planning calculators for due date and timeline estimation.',
+    metaDescription:
+      'Browse ToolFerry health tools for practical pregnancy date estimation and related planning support.',
+    intro:
+      'Health tools provide lightweight estimate-based planning aids that are helpful for day-to-day reference.',
+    homeSummary:
+      'Macro, meal, body, and everyday health calculators in one category.',
+  },
+  {
     slug: 'conversion-tools',
     name: 'Conversion',
     description:
@@ -55,18 +67,6 @@ export const toolCategories: ToolCategory[] = [
       'Date tools simplify exact date difference calculations for personal, administrative, and planning use cases.',
     homeSummary:
       'Age, duration, and date-gap tools for everyday date calculations.',
-  },
-  {
-    slug: 'health-tools',
-    name: 'Health',
-    description:
-      'Simple health-related planning calculators for due date and timeline estimation.',
-    metaDescription:
-      'Browse ToolFerry health tools for practical pregnancy date estimation and related planning support.',
-    intro:
-      'Health tools provide lightweight estimate-based planning aids that are helpful for day-to-day reference.',
-    homeSummary:
-      'Health-related planning tools for quick timeline and due-date checks.',
   },
   {
     slug: 'utilities',

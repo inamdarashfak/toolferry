@@ -2143,4 +2143,208 @@ export const toolHelpContent: Record<string, ToolHelpContent> = {
       },
     ],
   },
+  'circadian-rhythm-optimizer': {
+    description:
+      'Build simple daily light windows from your wake-up time and current location so you know when to seek bright light and when to soften it.',
+    steps: [
+      'Enter the time you usually wake up and choose the date you want to plan for.',
+      'Use current location so the tool can align the schedule with local sunrise and sunset.',
+      'Review the morning light window, dim-light window, and estimated bedtime.',
+      'Use reset to return to the default example and clear the saved location state.',
+    ],
+    fieldGroups: [
+      {
+        fields: [
+          {
+            label: 'Wake-up time',
+            description:
+              'The daily anchor used to build the rest of the light schedule.',
+          },
+          {
+            label: 'Date',
+            description:
+              'The selected date used to reflect seasonal daylight changes.',
+          },
+          {
+            label: 'Use current location',
+            description:
+              'Fetches your current location so the tool can align the schedule with local daylight.',
+          },
+          {
+            label: 'Reset',
+            description:
+              'Restores the default wake-up time and date, and clears location-based daylight data.',
+          },
+          {
+            label: 'Morning light and dim-light windows',
+            description:
+              'Shows when to get bright light soon after waking and when to start reducing bright light before bed.',
+          },
+          {
+            label: 'Daily rhythm timeline',
+            description:
+              'Visualizes the wake-to-sleep span with light windows layered into a simple daily timeline.',
+          },
+        ],
+      },
+    ],
+  },
+  'food-macro-counter': {
+    description:
+      'Build a meal by searching foods, adding multiple rows, and watching calories, protein, fiber, and fats total up live with simple daily intake context.',
+    steps: [
+      'Search for a food and choose it from the dropdown to add it to the meal table.',
+      'Adjust the serving count or enter grams if you want a more exact portion for that row.',
+      'Add more foods to keep building the meal and review the live row-by-row macro values.',
+      'Use the total cards, daily guidance, and meal verdict to understand whether the meal looks balanced or heavier than expected.',
+    ],
+    fieldGroups: [
+      {
+        title: 'Inputs',
+        fields: [
+          {
+            label: 'Search food',
+            description:
+              'Find foods from the live dataset and add them into the meal builder one by one.',
+          },
+          {
+            label: 'Meal table',
+            description:
+              'Shows every selected food in its own row with quantity controls and row-level macros.',
+          },
+          {
+            label: 'Servings',
+            description:
+              'Scales the row using the default serving size stored for that food.',
+          },
+          {
+            label: 'Grams',
+            description:
+              'Overrides the serving calculation when you want to enter a more exact food portion.',
+          },
+          {
+            label: 'Remove',
+            description:
+              'Deletes an individual food row from the meal without affecting the others.',
+          },
+          {
+            label: 'Clear meal',
+            description: 'Resets the meal builder back to an empty table.',
+          },
+        ],
+      },
+      {
+        title: 'Results',
+        fields: [
+          {
+            label: 'Total calories, protein, fiber, and fats',
+            description:
+              'Sums the macros across all selected foods in the current meal.',
+          },
+          {
+            label: 'Meal vs day guidance',
+            description:
+              'Shows how much of a generalized daily calorie, protein, fiber, and fat target the current meal contributes.',
+          },
+          {
+            label: 'Meal verdict',
+            description:
+              'Shows a simple balanced, okay, or heavy read based on the total macro mix.',
+          },
+          {
+            label: 'Quick macro facts',
+            description:
+              'Adds short guidance about protein, fiber, fats, and calorie balance in simple language.',
+          },
+        ],
+      },
+    ],
+  },
+  'plan-my-meals': {
+    description:
+      'Build a daily meal plan using your goal, body details, preferences, and meal count, then review serving guidance and nutrition estimates in one place.',
+    steps: [
+      'Choose the goal you want the planner to optimize for, such as weight loss, maintenance, muscle gain, or a higher-protein day.',
+      'Enter your age, height, weight, activity level, dietary preference, and how many meals you want across the day.',
+      'Add allergies, foods to avoid, likes, dislikes, and optional cuisine preferences so the planner can filter and score foods more realistically.',
+      'Generate the plan and review breakfast, lunch, dinner, and snacks with serving sizes, calories, protein, fiber, fats, and explanation cards.',
+    ],
+    fieldGroups: [
+      {
+        title: 'Inputs',
+        fields: [
+          {
+            label: 'Goal',
+            description:
+              'Changes calorie targeting, food scoring, and how strongly the planner prioritizes protein, fiber, or calorie density.',
+          },
+          {
+            label: 'Body details',
+            description:
+              'Age, height, weight, gender, and activity level are used to build a simple calorie estimate before goal adjustments.',
+          },
+          {
+            label: 'Dietary preference',
+            description:
+              'Keeps the recommendations aligned with veg, non-veg, or vegan choices before the plan is built.',
+          },
+          {
+            label: 'Meals per day',
+            description:
+              'Controls how the planner spreads calories across breakfast, lunch, dinner, and snacks.',
+          },
+          {
+            label: 'Allergies and foods to avoid',
+            description:
+              'Removes matching foods from the recommendation pool so the plan stays closer to your restrictions.',
+          },
+          {
+            label: 'Likes, dislikes, and cuisines',
+            description:
+              'Adds lighter preference boosts so the plan feels more personal instead of just technically valid.',
+          },
+          {
+            label: 'Meal style',
+            description:
+              'Lets you lean the planner toward simple meals, budget-friendly choices, or a little more variety.',
+          },
+        ],
+      },
+      {
+        title: 'Results',
+        fields: [
+          {
+            label: 'Summary cards',
+            description:
+              'Show your goal setup, body stats, daily calorie target, and overall nutrition estimate for the generated day.',
+          },
+          {
+            label: 'Meal cards',
+            description:
+              'Break down each meal into foods, suggested serving sizes, and meal-level calories, protein, fiber, and fats.',
+          },
+          {
+            label: 'Why this plan works',
+            description:
+              'Explains why the generated meals fit your selected goal and how the day is balanced.',
+          },
+          {
+            label: 'Interesting nutrition facts',
+            description:
+              'Highlights the stronger protein, fiber, or fat contributors in the recommended meals.',
+          },
+          {
+            label: 'Regenerate and reset',
+            description:
+              'Regenerate rotates to the next practical candidate mix, while reset restores the default example setup.',
+          },
+          {
+            label: 'Print / Save as PDF',
+            description:
+              'Opens a print-friendly layout so you can save the full meal plan, nutrition breakdown, and facts as a PDF from the browser.',
+          },
+        ],
+      },
+    ],
+  },
 }

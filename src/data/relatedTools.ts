@@ -235,4 +235,20 @@ export const relatedTools: Record<string, string[]> = {
     'date-difference-calculator',
     'age-calculator',
   ],
+  'circadian-rhythm-optimizer': [
+    'screen-time-impact-calculator',
+    'heart-rate-zone-calculator',
+    'time-zone-converter',
+  ],
+  'food-macro-counter': [
+    'plan-my-meals',
+    'bmi-calculator',
+    'heart-rate-zone-calculator',
+    'biological-age-calculator',
+  ],
+  'plan-my-meals': [
+    'food-macro-counter',
+    'bmi-calculator',
+    'heart-rate-zone-calculator',
+  ],
 }

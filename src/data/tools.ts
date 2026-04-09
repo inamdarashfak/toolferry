@@ -431,6 +431,26 @@ export const tools: Tool[] = [
     homeRank: 3,
   },
   {
+    name: 'Meal Calories, Protein, Fiber & Fats Calculator',
+    description:
+      'Search foods, stack a meal, and total calories, protein, fiber, and fats in one place.',
+    metaDescription:
+      'Use the Meal Calories, Protein, Fiber & Fats Calculator to search foods, add multiple items to a meal, and total calories, protein, fiber, and fats with a simple meal verdict.',
+    slug: 'food-macro-counter',
+    categorySlug: 'health-tools',
+    homeRank: 1,
+  },
+  {
+    name: 'Plan My Meals',
+    description:
+      'Build a practical day of meals with client-side recommendations, serving guidance, and nutrition estimates.',
+    metaDescription:
+      'Use Plan My Meals to generate a practical breakfast, lunch, dinner, and snack plan from the food dataset using your goal, preferences, and body details.',
+    slug: 'plan-my-meals',
+    categorySlug: 'health-tools',
+    homeRank: 1,
+  },
+  {
     name: 'Pregnancy Due Date Calculator',
     description:
       'Estimate due date, conception date, and pregnancy progress from LMP.',
@@ -438,7 +458,7 @@ export const tools: Tool[] = [
       'Use the Pregnancy Due Date Calculator to estimate due date, conception date, pregnancy progress, and days remaining.',
     slug: 'pregnancy-due-date-calculator',
     categorySlug: 'health-tools',
-    homeRank: 1,
+    homeRank: 2,
   },
   {
     name: 'BMI Calculator',
@@ -448,7 +468,7 @@ export const tools: Tool[] = [
       'Use the BMI Calculator to find body mass index from height and weight and check the standard BMI category.',
     slug: 'bmi-calculator',
     categorySlug: 'health-tools',
-    homeRank: 2,
+    homeRank: 3,
   },
   {
     name: 'Screen Time Impact Calculator',
@@ -458,7 +478,7 @@ export const tools: Tool[] = [
       'Use the Screen Time Impact Calculator to convert daily screen time into yearly hours, equivalent days, and a potential productivity-loss estimate.',
     slug: 'screen-time-impact-calculator',
     categorySlug: 'health-tools',
-    homeRank: 3,
+    homeRank: 4,
   },
   {
     name: 'Sitting Time Risk Calculator',
@@ -468,7 +488,7 @@ export const tools: Tool[] = [
       'Use the Sitting Time Risk Calculator to estimate a simple health risk level from daily sitting hours and get a suggested stand-up interval.',
     slug: 'sitting-time-risk-calculator',
     categorySlug: 'health-tools',
-    homeRank: 4,
+    homeRank: 5,
   },
   {
     name: 'Heart Rate Zone Calculator',
@@ -478,7 +498,7 @@ export const tools: Tool[] = [
       'Use the Heart Rate Zone Calculator to estimate max heart rate and training zones such as fat-burn and cardio from age.',
     slug: 'heart-rate-zone-calculator',
     categorySlug: 'health-tools',
-    homeRank: 5,
+    homeRank: 6,
   },
   {
     name: 'Biological Age Calculator',
@@ -488,6 +508,16 @@ export const tools: Tool[] = [
       'Use the Biological Age Calculator to estimate a wellness-based biological age from age, BMI-related body metrics, sleep, exercise, smoking, and stress.',
     slug: 'biological-age-calculator',
     categorySlug: 'health-tools',
-    homeRank: 3,
+    homeRank: 7,
+  },
+  {
+    name: 'Circadian Rhythm Optimizer',
+    description:
+      'Turn wake-up time and your current location into morning light and evening dim-light windows.',
+    metaDescription:
+      'Use the Circadian Rhythm Optimizer to map wake-up time and current location into light windows for morning sunlight and evening dim-light habits.',
+    slug: 'circadian-rhythm-optimizer',
+    categorySlug: 'health-tools',
+    homeRank: 8,
   },
 ]

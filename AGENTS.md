@@ -10,3 +10,4 @@
 - Preserve spacing, typography, and breakpoint behavior used in nearby components.
 - Run lint/build checks after changes when possible.
 - for tool usage and faqs, dont mention anything about integration just keep the content simple and users to understand
+- do not mention integration details in feature, make it like a user tool details

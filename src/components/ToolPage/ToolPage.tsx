@@ -271,6 +271,21 @@ const PregnancyDueDateCalculator = dynamic(
     loading: () => <CalculatorFallback />,
   }
 )
+const CircadianRhythmOptimizer = dynamic(
+  () => import('../CircadianRhythmOptimizer/CircadianRhythmOptimizer'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const FoodMacroCounter = dynamic(
+  () => import('../FoodMacroCounter/FoodMacroCounter'),
+  {
+    loading: () => <CalculatorFallback />,
+  }
+)
+const PlanMyMeals = dynamic(() => import('../PlanMyMeals/PlanMyMeals'), {
+  loading: () => <CalculatorFallback />,
+})
 
 type ToolPageProps = {
   tool: Tool
@@ -420,6 +435,12 @@ function ToolPage({
     toolContent = <BiologicalAgeCalculator />
   } else if (tool.slug === 'pregnancy-due-date-calculator') {
     toolContent = <PregnancyDueDateCalculator />
+  } else if (tool.slug === 'circadian-rhythm-optimizer') {
+    toolContent = <CircadianRhythmOptimizer />
+  } else if (tool.slug === 'food-macro-counter') {
+    toolContent = <FoodMacroCounter />
+  } else if (tool.slug === 'plan-my-meals') {
+    toolContent = <PlanMyMeals />
   }
 
   return (

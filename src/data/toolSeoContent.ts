@@ -1398,4 +1398,102 @@ export const toolSeoContent: Record<string, ToolSeoContent> = {
       },
     ],
   },
+  'circadian-rhythm-optimizer': {
+    category: 'Health Tools',
+    intro:
+      'Use the Circadian Rhythm Optimizer to turn your wake-up time and current location into clear morning light and evening dim-light windows.',
+    audience:
+      'This tool is useful for anyone trying to build a steadier sleep-wake rhythm, especially people who want a simple reference for when to seek bright daylight and when to reduce bright light at night.',
+    highlights: [
+      'Build a light routine from your wake-up time in seconds.',
+      'Adjust the schedule to local sunrise and sunset with current location.',
+      'See the full day rhythm in one clean visual timeline.',
+    ],
+    faqs: [
+      {
+        question: 'What does the Circadian Rhythm Optimizer show?',
+        answer:
+          'It shows a suggested morning light window, an evening dim-light window, and an estimated bedtime built from your wake-up time and local daylight when available.',
+      },
+      {
+        question: 'Why does the tool ask for current location?',
+        answer:
+          'Current location helps the calculator align your schedule with local sunrise and sunset for the selected date.',
+      },
+      {
+        question: 'What happens if location access is denied?',
+        answer:
+          'The tool still shows an approximate wake-time-based schedule, but the results are no longer adjusted to local daylight.',
+      },
+    ],
+  },
+  'food-macro-counter': {
+    category: 'Health Tools',
+    intro:
+      'Use the Meal Calories, Protein, Fiber & Fats Calculator to search foods, build a meal, total calories, protein, fiber, and fats, and compare that meal against generalized daily intake targets.',
+    audience:
+      'This tool is useful for anyone who wants a quick meal-level macro check without manually adding food values across different tabs, apps, or labels.',
+    highlights: [
+      'Search foods and add them into one meal builder.',
+      'Mix serving-based entry with grams for tighter portions.',
+      'See meal totals, simple daily macro guidance, and a balanced-or-heavy verdict instantly.',
+    ],
+    faqs: [
+      {
+        question:
+          'What does the Meal Calories, Protein, Fiber & Fats Calculator show?',
+        answer:
+          'It totals calories, protein, fiber, and fats across all foods you add into the meal table, then compares that meal with generalized daily reference targets and shows a simple meal verdict.',
+      },
+      {
+        question: 'Can I add more than one food to the same meal?',
+        answer:
+          'Yes. Each selected food is added as its own row so you can build a full meal and review the combined totals.',
+      },
+      {
+        question: 'Do I have to use servings only?',
+        answer:
+          'No. You can keep the default serving-based entry or type grams to override the serving amount for a more exact portion.',
+      },
+      {
+        question: 'Are the daily macro targets personalized?',
+        answer:
+          'No. The daily guidance is generalized for a typical adult and is meant to give quick context rather than a personalized nutrition target.',
+      },
+    ],
+  },
+  'plan-my-meals': {
+    category: 'Health Tools',
+    intro:
+      'Use Plan My Meals to generate a practical breakfast, lunch, dinner, and snack plan using your goal, body details, restrictions, and food preferences.',
+    audience:
+      'This tool is useful for anyone who wants a realistic day of meals without manually sorting foods, serving sizes, and macro tradeoffs across different apps or notes.',
+    highlights: [
+      'Build a full day of meals around your goal and preferences.',
+      'Use goal-based serving sizes and practical nutrition scoring.',
+      'Review meal cards, daily nutrition, and print the plan as a PDF from the browser.',
+    ],
+    faqs: [
+      {
+        question: 'What does Plan My Meals show?',
+        answer:
+          'It generates a daily meal plan with breakfast, lunch, dinner, and snacks based on your goal, body details, dietary preference, and food restrictions, then shows serving guidance and nutrition estimates.',
+      },
+      {
+        question: 'Does the planner respect foods I want to avoid?',
+        answer:
+          'Yes. Allergies, foods to avoid, dietary preference, and disliked foods are used to filter the candidate foods before the plan is built.',
+      },
+      {
+        question: 'How are fats shown in the meal plan?',
+        answer:
+          'Fat values are included alongside calories, protein, and fiber so you can review the overall nutrition balance for each meal and for the full day.',
+      },
+      {
+        question: 'Can I save the meal plan as a PDF?',
+        answer:
+          'Yes. Use the Print / Save as PDF action to open a clean printable version in the browser and save it as a PDF.',
+      },
+    ],
+  },
 }
